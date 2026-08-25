@@ -8,10 +8,10 @@ const foundations = [
   { title: 'Коррекция', text: 'Бережная работа с поведением, которое сформировалось из страха.' },
 ];
 
-const fearSteps = [
-  { title: 'Замечаем страхи', text: 'Определяем, какие переживания мешают ребёнку чувствовать себя в безопасности и строить доверительные отношения.' },
-  { title: 'Даём инструменты', text: 'Осваиваем понятные ребёнку способы саморегуляции и выражения эмоций.' },
-  { title: 'Закрепляем навыки', text: 'Переносим новые способы взаимодействия в повседневную жизнь семьи.' },
+const programTracks = [
+  { title: 'Для детей', text: 'Дети учатся замечать и называть чувства, выражать потребности и использовать способы саморегуляции.' },
+  { title: 'Для родителей', text: 'Родители осваивают взаимодействие с детьми, пережившими травматический опыт, и учатся видеть причины сложного поведения.' },
+  { title: 'Вместе', text: 'Семьи закрепляют новые навыки в совместных занятиях, играх и повседневных ситуациях при сопровождении специалистов и волонтёров.' },
 ];
 
 export function SvyazPage() {
@@ -38,7 +38,8 @@ export function SvyazPage() {
 
           <Reveal type="right" delay={0.18}>
             <figure className="svyaz-hero__photo">
-              <img src={asset('/площадка связь.jpg')} alt="Участники и команда семейной площадки «Связь»" />
+              <img src={asset('/svyaz/group.jpg')} alt="Участники и команда семейной площадки «Связь»" />
+              <img className="svyaz-hero__project-logo" src={asset('/svyaz/logo.png')} alt="Семейная площадка «Связь»" />
               <figcaption>вместе учимся быть ближе</figcaption>
             </figure>
           </Reveal>
@@ -68,6 +69,48 @@ export function SvyazPage() {
           </div>
           <Reveal delay={0.18}>
             <p className="svyaz-foundations__note">Сначала контакт. Затем опора. И только после этого изменения.</p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="svyaz-process">
+        <div className="svyaz-shell">
+          <Reveal>
+            <header className="svyaz-section-heading svyaz-process__heading">
+              <span className="svyaz-kicker">Как проходит площадка</span>
+              <h2>Учимся слышать <em>друг друга</em></h2>
+              <p>Программа работает сразу в трёх направлениях: ребёнок получает безопасный опыт, взрослый осваивает поддерживающие навыки, а семья пробует их вместе.</p>
+            </header>
+          </Reveal>
+
+          <div className="svyaz-process__grid">
+            <Reveal type="left">
+              <figure className="svyaz-process__photo">
+                <img src={asset('/svyaz/care.jpg')} alt="Специалист поддерживает ребёнка во время семейной площадки" loading="lazy" />
+                <figcaption>быть рядом и замечать</figcaption>
+              </figure>
+            </Reveal>
+
+            <div className="svyaz-process__tracks">
+              {programTracks.map((track, index) => (
+                <Reveal key={track.title} delay={index * 0.08}>
+                  <article>
+                    <span>0{index + 1}</span>
+                    <div>
+                      <h3>{track.title}</h3>
+                      <p>{track.text}</p>
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          <Reveal delay={0.16}>
+            <div className="svyaz-process__result">
+              <span>Что остаётся с семьёй</span>
+              <p>Больше эмоциональной опоры, доверия и понятных способов быть вместе в трудных ситуациях.</p>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -127,42 +170,12 @@ export function SvyazPage() {
 
           <Reveal type="right" delay={0.12}>
             <figure className="svyaz-video">
-              <video controls playsInline preload="metadata" poster={asset('/площадка связь.jpg')}>
+              <video controls playsInline preload="metadata" poster={asset('/svyaz/group.jpg')}>
                 <source src={asset('/video/svyaz-presentation.mp4')} type="video/mp4" />
                 Ваш браузер не поддерживает встроенное видео.
               </video>
               <figcaption><span>Видео о площадке</span><strong>Как семьи проживают опыт «Связи»</strong></figcaption>
             </figure>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="svyaz-impact">
-        <div className="svyaz-shell">
-          <Reveal>
-            <header className="svyaz-section-heading svyaz-impact__heading">
-              <span className="svyaz-kicker">Что меняется</span>
-              <h2>Опыт, который остаётся <em>с семьёй</em></h2>
-            </header>
-          </Reveal>
-
-          <div className="svyaz-impact__outcomes">
-            <Reveal type="left"><article><span>01</span><h3>Эмоциональная поддержка</h3><p>Дети получают опыт безопасного общения, а взрослые лучше замечают сигналы и потребности ребёнка.</p></article></Reveal>
-            <Reveal type="right" delay={0.08}><article><span>02</span><h3>Развитие доверия</h3><p>Совместные занятия и сопровождение специалистов помогают выстраивать более прочные и тёплые отношения.</p></article></Reveal>
-          </div>
-
-          <Reveal>
-            <div className="svyaz-fear">
-              <div className="svyaz-fear__intro">
-                <span className="svyaz-kicker">Путь изменений</span>
-                <h3>От поведения, основанного на страхе, к внутренней опоре</h3>
-              </div>
-              <div className="svyaz-fear__steps">
-                {fearSteps.map((step, index) => (
-                  <article key={step.title}><span>0{index + 1}</span><div><h4>{step.title}</h4><p>{step.text}</p></div></article>
-                ))}
-              </div>
-            </div>
           </Reveal>
         </div>
       </section>
