@@ -1,22 +1,29 @@
 import { useUI } from '../context/UIContext';
 import { Link } from 'react-router-dom';
 import { asset } from '../utils';
-import { Mail, Phone, Send } from 'lucide-react';
+import { ArrowUpRight, Mail, Phone, Send } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer>
+    <footer className="site-footer">
+      <div className="footer-epilogue">
+        <div>
+          <span className="footer-epilogue__label">послесловие</span>
+          <p>Добрые истории продолжаются,<br />когда рядом есть люди.</p>
+        </div>
+        <Link className="footer-support" to="/#donate">
+          <span>Поддержать семьи</span>
+          <ArrowUpRight size={19} aria-hidden="true" />
+        </Link>
+      </div>
+
       <div className="footer-grid">
         <div className="footer-brand">
           <Link className="nav-logo" to="/">
             <img src={asset('/logo.png')} alt="Мечты и Судьбы" className="logo-img" />
           </Link>
           <p>АНО «Мечты и судьбы» — центр комплексной поддержки семьи, материнства, отцовства и детства. Команда поддерживает приёмные семьи с 2011 года.</p>
-          <address className="footer-legal-identity">
-            <strong>АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ ЦЕНТР КОМПЛЕКСНОЙ ПОДДЕРЖКИ СЕМЬИ, МАТЕРИНСТВА, ОТЦОВСТВА И ДЕТСТВА «МЕЧТЫ И СУДЬБЫ»</strong>
-            <span>ОГРН 1269600021712 · ИНН 6686173647</span>
-            <span>Юридический адрес: 624090, Свердловская область, г.о. Верхняя Пышма, г. Верхняя Пышма, ул. 40 лет Октября, д. 30</span>
-          </address>
+          <span className="footer-brand__note">рядом с семьями с 2011 года</span>
         </div>
         <div className="footer-col">
           <h5>Проекты</h5>
@@ -45,6 +52,16 @@ export function Footer() {
           </div>
         </div>
       </div>
+
+      <section className="footer-colophon" aria-labelledby="footer-legal-title">
+        <p className="footer-colophon__label" id="footer-legal-title">Официальные сведения</p>
+        <div className="footer-colophon__grid">
+          <strong>АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ ЦЕНТР КОМПЛЕКСНОЙ ПОДДЕРЖКИ СЕМЬИ, МАТЕРИНСТВА, ОТЦОВСТВА И ДЕТСТВА «МЕЧТЫ И СУДЬБЫ»</strong>
+          <p><span>ОГРН 1269600021712</span><span>ИНН 6686173647</span></p>
+          <address><span className="footer-colophon__item-label">Юридический адрес</span>624090, Свердловская область, г.о. Верхняя Пышма, г. Верхняя Пышма, ул. 40 лет Октября, д. 30</address>
+        </div>
+      </section>
+
       <div className="footer-bottom">
         <p>© 2026 АНО «Мечты и судьбы»</p>
         <nav className="footer-legal-links" aria-label="Правовая информация">
