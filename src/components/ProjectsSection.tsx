@@ -48,7 +48,7 @@ const projects: Project[] = [
     detail: 'Возможность выдохнуть, побыть вместе и набраться сил вдали от городского ритма.',
     link: '/domiki',
     linkLabel: 'Посмотреть домики',
-    image: '/домики/IMG_6172 — средний размер.jpeg',
+    image: '/cabins/family-interior.jpeg',
   },
   {
     id: 'consult',
