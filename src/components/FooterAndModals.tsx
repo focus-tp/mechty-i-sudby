@@ -1,5 +1,6 @@
 import { useUI } from '../context/UIContext';
 import { Link } from 'react-router-dom';
+import { asset } from '../utils';
 import { Mail, Phone, Send } from 'lucide-react';
 
 export function Footer() {
@@ -8,8 +9,7 @@ export function Footer() {
       <div className="footer-grid">
         <div className="footer-brand">
           <Link className="nav-logo" to="/">
-            <img src="/logo.png" alt="Мечты и Судьбы" className="logo-img footer-logo-light" />
-            <img src="/logo.png" alt="" aria-hidden="true" className="logo-img footer-logo-color" />
+            <img src={asset('/logo.png')} alt="Мечты и Судьбы" className="logo-img" />
           </Link>
           <p>АНО «Мечты и судьбы» — центр комплексной поддержки семьи, материнства, отцовства и детства. Команда поддерживает приёмные семьи с 2011 года.</p>
         </div>

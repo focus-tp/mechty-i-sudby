@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useUI } from '../context/UIContext';
+import { asset } from '../utils';
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -50,7 +51,7 @@ export function Navbar() {
       aria-label="Основная навигация"
     >
       <Link className="nav-logo" to="/" onClick={handleNavClick} aria-label="На главную">
-        <img src="/logo.png" alt="Мечты и судьбы" className="logo-img" />
+        <img src={asset('/logo.png')} alt="Мечты и судьбы" className="logo-img" />
       </Link>
       
       <ul className={`nav-links ${menuOpen ? 'open' : ''} md:absolute md:left-1/2 md:-translate-x-1/2`}>

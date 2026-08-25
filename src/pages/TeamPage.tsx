@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Reveal } from "../components/Reveal";
 import { ButterflySVG } from "../components/Decorations";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import { asset } from "../utils";
 
 export function TeamPage() {
   useDocumentTitle('Команда');
@@ -45,7 +46,7 @@ export function TeamPage() {
                 <div className="team-front">
                   <div className="badge">Основатель</div>
                   <img
-                    src="/team/zenya.jpeg"
+                    src={asset("/team/zenya.jpeg")}
                     alt="Евгения Ощепкова"
                     className="team-avatar"
                   />
@@ -92,7 +93,7 @@ export function TeamPage() {
               >
                 <div className="team-front">
                   <img
-                    src="/team/mopiti.jpeg"
+                    src={asset("/team/mopiti.jpeg")}
                     alt="Светлана Мопити"
                     className="team-avatar"
                   />
@@ -138,7 +139,7 @@ export function TeamPage() {
               >
                 <div className="team-front">
                   <img
-                    src="/team/agul.jpeg"
+                    src={asset("/team/agul.jpeg")}
                     alt="Айгуль Ермакова"
                     className="team-avatar"
                   />
@@ -179,7 +180,7 @@ export function TeamPage() {
               >
                 <div className="team-front">
                   <img
-                    src="/team/shura.jpeg"
+                    src={asset("/team/shura.jpeg")}
                     alt="Александра Бугаевская"
                     className="team-avatar"
                   />
@@ -224,7 +225,7 @@ export function TeamPage() {
               >
                 <div className="team-front">
                   <img
-                    src="/team/pavel.jpeg"
+                    src={asset("/team/pavel.jpeg")}
                     alt="Павел Казанцев"
                     className="team-avatar"
                   />
@@ -266,7 +267,7 @@ export function TeamPage() {
               >
                 <div className="team-front">
                   <img
-                    src="/team/luda.jpeg"
+                    src={asset("/team/luda.jpeg")}
                     alt="Людмила Солодовник"
                     className="team-avatar"
                   />
@@ -307,7 +308,7 @@ export function TeamPage() {
               >
                 <div className="team-front">
                   <img
-                    src="/team/lina.jpeg"
+                    src={asset("/team/lina.jpeg")}
                     alt="Эвелина Литвинова"
                     className="team-avatar"
                   />

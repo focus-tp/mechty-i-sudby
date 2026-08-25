@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowDown } from 'lucide-react';
 import { useUI } from '../context/UIContext';
+import { asset } from '../utils';
 
 const heroFacts = [
   { value: '15+', label: 'лет рядом' },
@@ -66,7 +67,7 @@ export function Hero() {
             <span className="book-photo-tape" />
           </div>
           <figure className="book-photo book-photo--main">
-            <img src="/hero/hero-embrace.jpeg" alt="Мама и мальчик в тёплом объятии на встрече сообщества" />
+            <img src={asset('/hero/hero-embrace.jpeg')} alt="Мама и мальчик в тёплом объятии на встрече сообщества" />
             <figcaption>истории, которые продолжаются</figcaption>
           </figure>
           <div className="book-note book-note--photo">история заботы</div>

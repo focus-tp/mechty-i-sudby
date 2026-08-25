@@ -1,6 +1,7 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Reveal } from './Reveal';
+import { asset } from '../utils';
 
 interface Project {
   id: string;
@@ -106,7 +107,7 @@ export function ProjectsSection() {
               <article className="chapter-project">
                 <span className="chapter-project__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                 <div className="chapter-project__photo">
-                  <img src={project.image} alt={project.title} loading="lazy" />
+                  <img src={asset(project.image)} alt={project.title} loading="lazy" />
                 </div>
                 <div className="chapter-project__copy">
                   <h3>{project.title}</h3>

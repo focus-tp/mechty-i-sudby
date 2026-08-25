@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useUI } from '../context/UIContext';
 import { Reveal } from './Reveal';
+import { asset } from '../utils';
 
 export function ContactSection() {
   const { showToast } = useUI();
@@ -47,7 +48,7 @@ export function ContactSection() {
             <div className="contact-items">
               <div className="contact-item">
                 <div className="contact-item-icon">
-                  <img src="/icons/phone.png" alt="" className="w-full h-full object-contain" />
+                  <img src={asset('/icons/phone.png')} alt="" className="w-full h-full object-contain" />
                 </div>
                 <div className="contact-item-text">
                   <strong>WhatsApp / Телефон</strong>
@@ -56,7 +57,7 @@ export function ContactSection() {
               </div>
               <div className="contact-item">
                 <div className="contact-item-icon">
-                  <img src="/icons/email.png" alt="" className="w-full h-full object-contain" />
+                  <img src={asset('/icons/email.png')} alt="" className="w-full h-full object-contain" />
                 </div>
                 <div className="contact-item-text">
                   <strong>Email</strong>
@@ -65,7 +66,7 @@ export function ContactSection() {
               </div>
               <div className="contact-item">
                 <div className="contact-item-icon">
-                  <img src="/icons/location.png" alt="" className="w-full h-full object-contain" />
+                  <img src={asset('/icons/location.png')} alt="" className="w-full h-full object-contain" />
                 </div>
                 <div className="contact-item-text">
                   <strong>Адрес</strong>
@@ -74,7 +75,7 @@ export function ContactSection() {
               </div>
               <div className="contact-item">
                 <div className="contact-item-icon">
-                  <img src="/icons/consult.png" alt="" className="w-full h-full object-contain" />
+                  <img src={asset('/icons/consult.png')} alt="" className="w-full h-full object-contain" />
                 </div>
                 <div className="contact-item-text">
                   <strong>Telegram</strong>

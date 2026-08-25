@@ -1,4 +1,5 @@
 import { Reveal } from './Reveal';
+import { asset } from '../utils';
 
 const pillars = [
   {
@@ -51,7 +52,7 @@ export function AboutSection() {
             <div className="about-photo-block">
               <div className="about-photo-frame">
                 <img
-                  src="/hero/team-specialists.jpeg"
+                  src={asset('/hero/team-specialists.jpeg')}
                   alt="Команда специалистов и волонтёров Мечты и судьбы"
                   className="about-photo"
                   loading="lazy"
@@ -82,7 +83,7 @@ export function AboutSection() {
           {pillars.map((pillar) => (
             <div className="about-pillar" key={pillar.title}>
               <div className={`about-pillar-icon${pillar.portrait ? ' about-pillar-icon--portrait' : ''}`}>
-                <img src={pillar.image} alt={pillar.imageAlt} />
+                <img src={asset(pillar.image)} alt={pillar.imageAlt} />
               </div>
               <div>
                 <strong>{pillar.title}</strong>

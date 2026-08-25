@@ -1,6 +1,7 @@
 import { Reveal } from '../components/Reveal';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { Play } from 'lucide-react';
+import { asset } from '../utils';
 
 export function SvyazPage() {
   useDocumentTitle('Площадка «Связь»');
@@ -12,7 +13,7 @@ export function SvyazPage() {
           <div>
             <Reveal>
               <div className="flex items-center gap-4 mb-6">
-                <img src="/icons/svyaz.png" alt="Связь" className="w-16 h-16 mix-blend-multiply" />
+                <img src={asset('/icons/svyaz.png')} alt="Связь" className="w-16 h-16 mix-blend-multiply" />
                 <h1 className="text-4xl md:text-6xl font-display font-bold text-[var(--text)] uppercase tracking-tight">СВЯЗЬ</h1>
               </div>
             </Reveal>
@@ -33,7 +34,7 @@ export function SvyazPage() {
           
           <Reveal type="right" delay={0.3}>
             <div className="relative rounded-xl overflow-hidden shadow-2xl h-[400px] md:h-[500px]">
-              <img src="/площадка связь.jpg" alt="Команда площадки Связь" className="w-full h-full object-cover" />
+              <img src={asset('/площадка связь.jpg')} alt="Команда площадки Связь" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
             </div>
           </Reveal>
@@ -143,7 +144,7 @@ export function SvyazPage() {
             <Reveal type="right">
               {/* VIDEO PLACEHOLDER */}
               <div className="relative w-full aspect-video bg-[#0c3c3c] rounded-xl overflow-hidden shadow-2xl group cursor-pointer border-[6px] border-white/40 hover:border-white transition-all duration-500">
-                <img src="/загородные домики.jpg" alt="Video placeholder" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-40 transition-all duration-700" />
+                <img src={asset('/загородные домики.jpg')} alt="Video placeholder" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-40 transition-all duration-700" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <div className="w-24 h-24 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center group-hover:bg-[var(--pink)] group-hover:scale-110 transition-all duration-300 shadow-xl border border-white/30">
                     <Play size={48} className="text-white fill-white ml-2" />

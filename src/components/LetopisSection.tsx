@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ArrowLeft, ArrowRight, BookOpen, CalendarDays, X } from 'lucide-react';
 import { Reveal } from './Reveal';
+import { asset } from '../utils';
 
 type Stream = 'upcoming' | 'past';
 
@@ -122,7 +123,7 @@ export function LetopisSection() {
                   onClick={() => openStream(stream, latestPost.id)}
                   aria-label={`Открыть запись: ${latestPost.title}`}
                 >
-                  <img src={latestPost.image} alt={latestPost.title} loading="lazy" />
+                  <img src={asset(latestPost.image)} alt={latestPost.title} loading="lazy" />
                 </button>
 
                 <div className="letopis-stream-card__body">
@@ -172,7 +173,7 @@ export function LetopisSection() {
             </button>
 
             <div className="letopis-modal-media">
-              <img src={selectedPost.image} alt={selectedPost.title} />
+              <img src={asset(selectedPost.image)} alt={selectedPost.title} />
             </div>
 
             <div className="letopis-modal-body">
