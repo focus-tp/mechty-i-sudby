@@ -1,159 +1,213 @@
+import { ArrowUpRight } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
-import { TrainingSection } from '../components/CabinsSection';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import { asset } from '../utils';
 
-const modules = [
-  { num: '01', title: 'Принципы благополучия детей', desc: 'Что нужно ребёнку для здорового развития. Потребности, права, ответственность взрослых.' },
-  { num: '02', title: 'Детская травма', desc: 'Виды травмы, её влияние на мозг и поведение. Почему «плохое поведение» — это сигнал боли.' },
-  { num: '03', title: 'Привязанность', desc: 'Теория привязанности Боулби. Как формируются безопасные и нарушенные типы привязанности.' },
-  { num: '04', title: 'Диссоциация и защитные реакции', desc: 'Заморозка, борьба, бегство. Как травма меняет реакции ребёнка на стресс.' },
-  { num: '05', title: 'Навыки ухода за травмированным ребёнком', desc: 'Практические стратегии: как реагировать, когда помочь и когда дать пространство.' },
-  { num: '06', title: 'Распознавание детских реакций', desc: 'Что стоит за агрессией, уходом, зависимостью, ложью. Читаем поведение как язык.' },
-  { num: '07', title: 'Защитные факторы адаптации', desc: 'Что помогает детям восстановиться. Резилентность, значимый взрослый, ритуалы.' },
-  { num: '08', title: 'Вызывающее поведение: стратегии', desc: 'Конкретные алгоритмы реагирования. Де-эскалация, границы, логические последствия.' },
-  { num: '09', title: 'Забота о себе и профилактика выгорания', desc: 'Признаки выгорания у опекунов. Ресурсы, группы поддержки, личные границы.' },
+const audience = [
+  { title: 'Приёмные родители и опекуны', text: 'Для взрослых, которые растят ребёнка с опытом утраты, пренебрежения или разрыва привязанности.' },
+  { title: 'Педагоги', text: 'Для учителей, воспитателей и школьных психологов, работающих с детьми из уязвимых семей.' },
+  { title: 'Социальные специалисты', text: 'Для сотрудников органов опеки, НКО, семейных и кризисных центров.' },
+  { title: 'Психологи и волонтёры', text: 'Для тех, кто профессионально или добровольно сопровождает детей и семьи.' },
+];
+
+const trainingDays = [
+  {
+    day: 'День 01',
+    title: 'Понять опыт ребёнка',
+    modules: [
+      ['01', 'Принципы благополучия детей', 'Потребности ребёнка, его права и ответственность взрослых.'],
+      ['02', 'Детская травма', 'Как травматический опыт влияет на мозг, развитие и поведение.'],
+      ['03', 'Привязанность', 'Как формируются безопасные и нарушенные модели привязанности.'],
+    ],
+  },
+  {
+    day: 'День 02',
+    title: 'Увидеть причину поведения',
+    modules: [
+      ['04', 'Защитные реакции', 'Борьба, бегство, замирание и диссоциация в ответ на стресс.'],
+      ['05', 'Навыки поддерживающего ухода', 'Как реагировать, когда помогать и когда давать пространство.'],
+      ['06', 'Язык детских реакций', 'Что может стоять за агрессией, уходом, зависимостью и ложью.'],
+    ],
+  },
+  {
+    day: 'День 03',
+    title: 'Стать устойчивой опорой',
+    modules: [
+      ['07', 'Факторы восстановления', 'Значимый взрослый, предсказуемость, ритуалы и устойчивость.'],
+      ['08', 'Сложное поведение', 'Деэскалация, ясные границы и последовательные действия.'],
+      ['09', 'Забота о себе', 'Ресурсы взрослого и профилактика эмоционального выгорания.'],
+    ],
+  },
+];
+
+const outcomes = [
+  'Распознавать, что стоит за сложным поведением ребёнка',
+  'Создавать больше безопасности и предсказуемости',
+  'Поддерживать ребёнка во время сильных эмоций',
+  'Выстраивать границы без разрушения контакта',
+  'Замечать собственное истощение и вовремя восстанавливаться',
 ];
 
 export function TrainingPage() {
   useDocumentTitle('Тренинг КППТ');
-  const isPast = new Date() > new Date('2026-04-27T00:00:00+05:00');
 
   return (
-    <div style={{ paddingTop: '80px', minHeight: '100vh', backgroundColor: 'var(--cream)' }}>
-      
-      {/* Hero-шапка страницы */}
-      <section className="training-page-hero">
-        <div className="training-page-hero-inner">
-          <Reveal>
-            <div className="section-label" style={{ color: 'var(--gold)' }}>Ближайший тренинг</div>
-          </Reveal>
-          <Reveal>
-            <h1 className="training-page-title">
-              Тренинг КППТ —<br />
-              <em>Компетентная помощь<br />при травматизации</em>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="training-page-subtitle">
-              Международная программа, работающая в 59 странах мира. 3 дня · 9 модулей · 24 академических часа.
-              Для приёмных родителей, опекунов, педагогов и социальных работников.
-            </p>
-          </Reveal>
-
-          {/* Карточки деталей */}
-          <Reveal delay={0.2}>
-            <div className="training-details-grid">
-              <div className="training-detail-card">
-                <span className="training-detail-icon">📆</span>
-                <div>
-                  <strong>Дата</strong>
-                  <span>{isPast ? 'Дата уточняется' : '24–26 апреля 2026'}</span>
-                </div>
-              </div>
-              <div className="training-detail-card">
-                <span className="training-detail-icon">🕙</span>
-                <div>
-                  <strong>Время</strong>
-                  <span>10:00 — 18:00 каждый день</span>
-                </div>
-              </div>
-              <div className="training-detail-card">
-                <span className="training-detail-icon">📍</span>
-                <div>
-                  <strong>Место</strong>
-                  <span>г. Екатеринбург (адрес при записи)</span>
-                </div>
-              </div>
-              <div className="training-detail-card training-detail-card--accent">
-                <span className="training-detail-icon">💰</span>
-                <div>
-                  <strong>Стоимость</strong>
-                  <span>3 000 ₽ (кофе-брейки и пособие включены)</span>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.3}>
-            <div className="training-page-cta">
-              <a
-                href="https://forms.yandex.ru/cloud/69b938be6d2d7330d642c645"
-                target="_blank"
-                rel="noreferrer"
-                className="btn-primary"
-                style={{ fontSize: '1rem', padding: '0.9rem 2.5rem' }}
-              >
-                <span>Зарегистрироваться на тренинг →</span>
-              </a>
-              <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', marginTop: '0.75rem' }}>
-                Вопросы? Пишите: <a href="tel:+79321275011" style={{ color: 'rgba(255,255,255,0.85)' }}>+7 932-127-50-11</a>
+    <main className="kpt-page">
+      <section className="kpt-hero">
+        <div className="kpt-shell kpt-hero__grid">
+          <div className="kpt-hero__copy">
+            <Reveal>
+              <span className="kpt-kicker">Международная обучающая программа</span>
+              <h1>Тренинг <em>КППТ</em></h1>
+              <p className="kpt-hero__name">Компетентная помощь при травматизации</p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="kpt-hero__lead">
+                Трёхдневное обучение о том, как понимать ребёнка с травматическим опытом, сохранять контакт в сложных ситуациях и становиться для него устойчивой опорой.
               </p>
+            </Reveal>
+
+            <Reveal delay={0.16}>
+              <dl className="kpt-facts">
+                <div><dt>3</dt><dd>учебных дня</dd></div>
+                <div><dt>9</dt><dd>последовательных модулей</dd></div>
+                <div><dt>24</dt><dd>академических часа</dd></div>
+                <div><dt>59</dt><dd>стран применяют программу</dd></div>
+              </dl>
+            </Reveal>
+
+            <Reveal delay={0.22}>
+              <div className="kpt-hero__actions">
+                <a className="kpt-primary-link" href={asset('/#contact')}>
+                  Узнать о следующем тренинге
+                  <ArrowUpRight size={18} aria-hidden="true" />
+                </a>
+                <span>Новый набор готовится</span>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal type="right" delay={0.16}>
+            <figure className="kpt-hero__photo">
+              <img src={asset('/training/group.jpg')} alt="Участники тренинга КППТ с преподавателями" />
+              <figcaption>знания, которые помогают быть рядом</figcaption>
+            </figure>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="kpt-audience">
+        <div className="kpt-shell">
+          <Reveal>
+            <header className="kpt-heading">
+              <span className="kpt-kicker">Для кого</span>
+              <h2>Для тех, кто становится <em>опорой</em></h2>
+              <p>Программа соединяет родителей и специалистов вокруг общего языка: не оценивать поведение, а видеть за ним опыт и потребность ребёнка.</p>
+            </header>
+          </Reveal>
+
+          <div className="kpt-audience__list">
+            {audience.map((item, index) => (
+              <Reveal key={item.title} delay={index * 0.06}>
+                <article>
+                  <span>0{index + 1}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="kpt-outcomes">
+        <div className="kpt-shell kpt-outcomes__grid">
+          <Reveal type="left">
+            <div className="kpt-experience">
+              <figure>
+                <img src={asset('/training/session.jpg')} alt="Практическая работа участников во время тренинга КППТ" loading="lazy" />
+                <figcaption>обсуждаем реальные ситуации</figcaption>
+              </figure>
+              <div className="kpt-quote">
+                <blockquote>
+                  «Я наконец поняла, почему мой ребёнок так себя ведёт. Это не капризы. Это травма, и с этим можно работать»
+                </blockquote>
+                <p>Из отзыва участницы КППТ</p>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal type="right" delay={0.1}>
+            <div className="kpt-outcomes__content">
+              <span className="kpt-kicker">Практический результат</span>
+              <h2>Не только понять, но и знать, <em>что делать</em></h2>
+              <ul>
+                {outcomes.map((outcome, index) => (
+                  <li key={outcome}><span>0{index + 1}</span>{outcome}</li>
+                ))}
+              </ul>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Для кого */}
-      <section style={{ padding: '80px 5%', background: 'white' }}>
-        <Reveal>
-          <div className="section-label">Аудитория</div>
-        </Reveal>
-        <Reveal>
-          <h2 className="section-title">Для кого этот тренинг</h2>
-        </Reveal>
-        <div className="training-audience-grid">
-          {[
-            { icon: '👨‍👩‍👧‍👦', title: 'Приёмные семьи', desc: 'Опекуны, усыновители, приёмные родители — все, кто воспитывает детей из трудных ситуаций.' },
-            { icon: '🏫', title: 'Педагоги', desc: 'Учителя, воспитатели, школьные психологи, работающие с детьми из уязвимых семей.' },
-            { icon: '🤝', title: 'Соцработники', desc: 'Специалисты органов опеки, НКО и кризисных центров помощи семье.' },
-            { icon: '💼', title: 'Специалисты', desc: 'Психологи, коучи, волонтёры, все, кто работает с детьми, пережившими травму.' },
-          ].map((item, i) => (
-            <div key={i}>
-              <Reveal delay={i * 0.08}>
-                <div className="training-audience-card">
-                  <span style={{ fontSize: '2rem' }}>{item.icon}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.desc}</p>
-                </div>
+      <section className="kpt-program">
+        <div className="kpt-shell">
+          <Reveal>
+            <header className="kpt-heading kpt-program__heading">
+              <span className="kpt-kicker">Программа</span>
+              <h2>Три дня последовательного <em>погружения</em></h2>
+              <p>Каждый день продолжает предыдущий: теория сразу связывается с разбором ситуаций и практическими инструментами.</p>
+            </header>
+          </Reveal>
+
+          <div className="kpt-program__days">
+            {trainingDays.map((day, index) => (
+              <Reveal key={day.day} delay={index * 0.08}>
+                <article className="kpt-day">
+                  <span className="kpt-day__label">{day.day}</span>
+                  <h3>{day.title}</h3>
+                  <ol>
+                    {day.modules.map(([num, title, text]) => (
+                      <li key={num}>
+                        <span>{num}</span>
+                        <div><h4>{title}</h4><p>{text}</p></div>
+                      </li>
+                    ))}
+                  </ol>
+                </article>
               </Reveal>
+            ))}
+          </div>
+
+          <Reveal>
+            <div className="kpt-program__note">
+              <span>Важно</span>
+              <p>Для получения целостной методики необходимо участие во всех трёх учебных днях.</p>
             </div>
-          ))}
+          </Reveal>
         </div>
       </section>
 
-      {/* Timeline модулей */}
-      <section style={{ padding: '80px 5%', background: 'var(--cream)' }}>
-        <Reveal>
-          <div className="section-label">Программа</div>
-        </Reveal>
-        <Reveal>
-          <h2 className="section-title">9 модулей — полное погружение</h2>
-        </Reveal>
-        <Reveal>
-          <p className="section-subtitle" style={{ marginBottom: '3rem' }}>
-            Каждый модуль — это теория + практика. Обязательно посещение всех трёх дней.
-          </p>
-        </Reveal>
-
-        <div className="training-timeline">
-          {modules.map((mod, i) => (
-            <div key={i}>
-              <Reveal delay={i * 0.06} type={i % 2 === 0 ? 'left' : 'right'}>
-                <div className="training-timeline-item">
-                  <div className="training-timeline-num">{mod.num}</div>
-                  <div className="training-timeline-content">
-                    <h3>{mod.title}</h3>
-                    <p>{mod.desc}</p>
-                  </div>
-                </div>
-              </Reveal>
+      <section className="kpt-cta">
+        <div className="kpt-shell kpt-cta__grid">
+          <Reveal>
+            <span>Следующий набор</span>
+            <h2>Дата, место и стоимость будут объявлены после формирования новой группы</h2>
+            <p>Оставьте сообщение с темой «Тренинг КППТ», и команда свяжется с вами, когда откроется регистрация.</p>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <div className="kpt-cta__actions">
+              <a href={asset('/#contact')}>
+                Оставить заявку
+                <ArrowUpRight size={18} aria-hidden="true" />
+              </a>
+              <a href="tel:+79321275011">+7 932 127-50-11</a>
             </div>
-          ))}
+          </Reveal>
         </div>
+        <div className="kpt-shell kpt-cta__partner">Программа проводится в партнёрстве с «Мир без травмы»</div>
       </section>
-
-      {/* Партнёры и финальный CTA */}
-      <TrainingSection />
-    </div>
+    </main>
   );
 }
