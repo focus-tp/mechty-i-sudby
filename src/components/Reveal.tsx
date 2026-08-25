@@ -26,7 +26,7 @@ export const Reveal = ({ children, delay = 0, type = 'up', className = '', amoun
 
   return (
     <motion.div
-      className={className}
+      className={`reveal ${className}`.trim()}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount, margin: '0px 0px -40px 0px' }}

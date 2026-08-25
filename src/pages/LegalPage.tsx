@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import { asset } from '../utils';
 
 type LegalPageKind = 'privacy' | 'consent' | 'offer' | 'recurring' | 'legal' | 'reports';
 
@@ -133,9 +134,9 @@ export function LegalPage({ kind }: { kind: LegalPageKind }) {
               <p><strong>Дата регистрации:</strong> 8 июля 2026 года.<br /><strong>Руководитель:</strong> директор Ощепкова Евгения Юрьевна.</p>
               <h2>Учредительные документы</h2>
               <div className="legal-page__documents">
-                <a href="/документы/устав НКО.pdf" target="_blank" rel="noreferrer">Устав АНО</a>
-                <a href="/документы/VypZapEGRUL_2a59605fde99468c928039179383f2de.pdf" target="_blank" rel="noreferrer">Лист записи ЕГРЮЛ</a>
-                <a href="/документы/Выписка из ЕГРН.pdf" target="_blank" rel="noreferrer">Выписка из ЕГРН (реестр налогоплательщиков)</a>
+                <a href={asset('/документы/устав НКО.pdf')} target="_blank" rel="noreferrer">Устав АНО</a>
+                <a href={asset('/документы/VypZapEGRUL_2a59605fde99468c928039179383f2de.pdf')} target="_blank" rel="noreferrer">Лист записи ЕГРЮЛ</a>
+                <a href={asset('/документы/Выписка из ЕГРН.pdf')} target="_blank" rel="noreferrer">Выписка из ЕГРН (реестр налогоплательщиков)</a>
               </div>
               <h2>Контакты</h2>
               <p><a href="mailto:O.E.U.76@mail.ru">O.E.U.76@mail.ru</a><br /><a href="tel:+79321275011">+7 932-127-50-11</a></p>

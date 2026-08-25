@@ -117,7 +117,7 @@ export function ContactSection() {
             <label className="consent-label consent-label--light" style={{ marginBottom: '.75rem', display: 'flex' }}>
               <input type="checkbox" checked={form.consent} onChange={(e) => setForm({...form, consent: e.target.checked})} />
               <span style={{ fontSize: '.8rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
-                Я даю отдельное <a href="/consent" target="_blank" rel="noreferrer" style={{ color: 'var(--purple)' }}>согласие на обработку персональных данных</a>
+                Я даю отдельное <a href={asset('/consent')} target="_blank" rel="noreferrer" style={{ color: 'var(--purple)' }}>согласие на обработку персональных данных</a>
               </span>
             </label>
             <button className="form-submit" onClick={submitContact}>Открыть письмо</button>

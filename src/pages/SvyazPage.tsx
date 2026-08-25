@@ -238,7 +238,7 @@ export function SvyazPage() {
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <a href="/#donate" className="inline-block bg-white text-[var(--purple)] font-bold uppercase tracking-widest px-12 py-6 rounded-full hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+            <a href={asset('/#donate')} className="inline-block bg-white text-[var(--purple)] font-bold uppercase tracking-widest px-12 py-6 rounded-full hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
               Поддержать площадку
             </a>
           </Reveal>

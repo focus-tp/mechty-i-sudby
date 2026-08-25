@@ -307,6 +307,7 @@ nav#mainNav.scrolled .logo-img {
 .letopis-section {
   padding: 4.75rem 5% 5.25rem;
   background: var(--paper-rose);
+  content-visibility: visible;
 }
 
 .letopis-section::before {
@@ -788,10 +789,18 @@ footer::before {
 }
 
 .footer-legal-links {
+  position: static;
+  width: auto;
+  height: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 0.45rem 1.2rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .footer-bottom .footer-legal-links a {
@@ -1670,6 +1679,13 @@ footer::before {
 }
 
 @media (max-width: 760px) {
+  #cur,
+  #cur-ring,
+  .trail,
+  .trail-particle {
+    display: none !important;
+  }
+
   nav#mainNav,
   nav#mainNav.scrolled {
     height: 78px;
@@ -1864,5 +1880,449 @@ footer::before {
   .chapter-project__photo,
   .letopis-stream-card__media img {
     transition: none;
+  }
+}
+
+/* Mobile editorial pass: compact chapters, contained scrapbook details. */
+@media (max-width: 760px) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  #about,
+  #projects,
+  #letopis,
+  #stories,
+  #donate,
+  #contact {
+    scroll-margin-top: 72px;
+  }
+
+  nav#mainNav,
+  nav#mainNav.scrolled {
+    height: 72px;
+    padding: 0.25rem 1rem;
+  }
+
+  nav#mainNav .nav-logo {
+    width: 150px;
+    height: 58px;
+  }
+
+  nav#mainNav .logo-img,
+  nav#mainNav.scrolled .logo-img {
+    width: 150px;
+    transform: none;
+  }
+
+  nav#mainNav .nav-links:not(.open) {
+    display: none;
+  }
+
+  nav#mainNav .nav-links.open {
+    top: 72px;
+    max-height: calc(100svh - 72px);
+    padding: 1.25rem 1rem 1.5rem;
+    overflow-y: auto;
+    background: #fffdf9;
+  }
+
+  nav#mainNav .nav-links .btn-primary {
+    color: #fff;
+  }
+
+  .book-hero {
+    min-height: 0;
+    padding: 5.4rem 1rem 2.8rem;
+  }
+
+  .book-hero__inner {
+    gap: 1.5rem;
+  }
+
+  .book-hero__copy {
+    max-width: 100%;
+    padding: 3rem 0 0;
+  }
+
+  .book-hero__copy::before {
+    width: 112px;
+    height: 68px;
+    inset: -0.25rem auto auto 50%;
+    opacity: 0.32;
+  }
+
+  .book-note--top {
+    width: max-content;
+    max-width: calc(100vw - 2rem);
+    top: 0;
+    left: 50%;
+    font-size: 1rem;
+    white-space: nowrap;
+    transform: translateX(-50%) rotate(-2deg);
+  }
+
+  .book-hero__eyebrow {
+    margin-bottom: 0.75rem;
+    font-size: 0.68rem;
+  }
+
+  .book-hero h1 {
+    max-width: 9.8ch;
+    font-size: clamp(2.55rem, 12vw, 3.15rem);
+    line-height: 0.96;
+  }
+
+  .book-hero__lead {
+    margin-top: 1rem;
+    font-size: 0.92rem;
+    line-height: 1.62;
+  }
+
+  .book-hero__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+    margin-top: 1.15rem;
+  }
+
+  .book-hero__primary,
+  .book-hero__secondary {
+    min-width: 0;
+    min-height: 46px;
+    justify-content: center;
+    padding: 0.7rem 0.75rem;
+    text-align: center;
+  }
+
+  .book-hero__facts {
+    margin-top: 1.25rem;
+  }
+
+  .book-hero__facts > div {
+    min-width: 0;
+    padding: 0 0.45rem;
+  }
+
+  .book-hero__facts strong {
+    font-size: 1.65rem;
+  }
+
+  .book-hero__facts span {
+    font-size: 0.65rem;
+    line-height: 1.25;
+  }
+
+  .book-hero__visual {
+    width: min(340px, 96%);
+    min-height: 350px;
+    margin: 0 auto;
+  }
+
+  .book-photo-paper {
+    width: 88%;
+    right: 2%;
+  }
+
+  .book-photo-paper::before {
+    width: 30px;
+    background-size: 30px 64px;
+    background-position: -4px top;
+  }
+
+  .book-photo-tape {
+    width: 112px;
+    height: 24px;
+  }
+
+  .book-photo {
+    width: min(245px, 72%);
+    padding: 0.6rem;
+    transform: translate(-0.45rem, -0.25rem) rotate(-1.5deg);
+  }
+
+  .about,
+  .stories-section,
+  .donate,
+  .contact {
+    padding: 3.75rem 1rem;
+  }
+
+  .about-grid {
+    gap: 2.25rem;
+  }
+
+  .about-copy-column .section-title {
+    max-width: 11ch;
+    margin-bottom: 1.35rem;
+    font-size: 2.35rem;
+    line-height: 1;
+  }
+
+  .about-text p {
+    font-size: 0.94rem;
+    line-height: 1.68;
+  }
+
+  .about-text p + p {
+    margin-top: 0.85rem;
+  }
+
+  .about-visual-column,
+  .about-photo-block {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .about-photo-block {
+    margin: 0 auto 1.5rem;
+  }
+
+  .about-photo-bg-decor {
+    inset: 0.55rem 0 -0.6rem 0.55rem;
+  }
+
+  .about-photo-frame {
+    padding: 0.55rem;
+  }
+
+  .about-photo-frame::before {
+    width: 6.5rem;
+    height: 1.3rem;
+    top: -0.65rem;
+  }
+
+  .about-float-badge {
+    right: 0.25rem;
+    bottom: -1rem;
+    width: 5.1rem;
+    height: 5.1rem;
+  }
+
+  .about-founder-note--visual {
+    width: 100%;
+    margin: 2rem 0 0;
+    padding: 1.15rem 1.2rem;
+    transform: rotate(0.35deg);
+  }
+
+  .about-founder-note p {
+    font-size: 1.28rem;
+  }
+
+  .about-trust-row {
+    margin-top: 2.5rem;
+  }
+
+  .about-directions-action {
+    margin-top: 2rem;
+  }
+
+  .chapter-projects {
+    padding: 3.75rem 1rem 4rem;
+  }
+
+  .chapter-projects__heading {
+    margin-bottom: 2rem;
+  }
+
+  .chapter-projects__eyebrow {
+    margin-bottom: 0.55rem;
+  }
+
+  .chapter-projects__heading h2 {
+    max-width: 10ch;
+    font-size: 2.75rem;
+    line-height: 0.98;
+  }
+
+  .chapter-projects__heading p {
+    margin-top: 0.9rem;
+    font-size: 0.94rem;
+    line-height: 1.58;
+  }
+
+  .chapter-project {
+    grid-template-columns: 2.1rem minmax(0, 1fr);
+    gap: 0.75rem;
+    padding: 1.25rem 0 1.45rem;
+  }
+
+  .chapter-project__number {
+    font-size: 1.45rem;
+  }
+
+  .chapter-project__copy h3 {
+    font-size: 1.85rem;
+  }
+
+  .letopis-section {
+    padding: 3.75rem 1rem 4rem;
+  }
+
+  .letopis-heading {
+    margin-bottom: 1.65rem;
+  }
+
+  .letopis-heading h2 {
+    margin-bottom: 0.55rem;
+    font-size: 2.8rem;
+  }
+
+  .letopis-heading p {
+    font-size: 0.94rem;
+    line-height: 1.58;
+  }
+
+  .letopis-streams {
+    gap: 1rem;
+  }
+
+  .letopis-stream-card__media {
+    aspect-ratio: 1.85 / 1;
+  }
+
+  .letopis-stream-card__header h3 {
+    font-size: 2rem;
+  }
+
+  .letopis-stream-card__note {
+    display: none;
+  }
+
+  .stories-section .section-title,
+  .contact > .section-title {
+    font-size: 2.75rem;
+    line-height: 1;
+  }
+
+  .stories-intro {
+    font-size: 0.92rem;
+    line-height: 1.58;
+  }
+
+  .stories-letter {
+    margin-top: 1.6rem;
+    padding: 2.2rem 1.15rem 1.45rem;
+    transform: none;
+  }
+
+  .stories-quote {
+    font-size: 1.1rem;
+  }
+
+  .donate {
+    padding-top: 3.75rem;
+  }
+
+  .donate-editorial {
+    gap: 2.2rem;
+  }
+
+  .donate-story .section-title {
+    max-width: 9ch;
+    font-size: 2.9rem;
+  }
+
+  .donate .donate-lead {
+    font-size: 0.94rem;
+    line-height: 1.62;
+  }
+
+  .donate .donate-note {
+    margin: 1.4rem 0 0;
+    font-size: 1rem;
+  }
+
+  .donate-panel {
+    padding: 1.35rem 1rem;
+  }
+
+  .donate-amounts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .donate-documents {
+    margin-top: 2.5rem;
+  }
+
+  .contact-grid {
+    width: 100%;
+    gap: 2.25rem;
+    margin-top: 2rem;
+  }
+
+  .contact-info,
+  .contact-form-card {
+    width: 100%;
+  }
+
+  .contact-item {
+    gap: 0.75rem;
+  }
+
+  .contact-item-icon {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .contact-form-letter {
+    padding: 1.25rem !important;
+  }
+
+  .legal-page {
+    padding: 5.8rem 1rem 3.5rem;
+  }
+
+  .legal-page__back {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  .legal-page .section-label {
+    display: block;
+  }
+
+  .legal-page h1 {
+    max-width: 100%;
+    font-size: 2.25rem;
+    overflow-wrap: anywhere;
+  }
+
+  .legal-page__intro {
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+
+  .legal-page__paper {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+  }
+
+  footer {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .book-hero h1 {
+    font-size: 2.35rem;
+  }
+
+  .book-hero__actions {
+    grid-template-columns: 1fr;
+  }
+
+  .book-hero__visual {
+    min-height: 315px;
+  }
+
+  .chapter-projects__heading h2,
+  .letopis-heading h2,
+  .stories-section .section-title,
+  .contact > .section-title {
+    font-size: 2.45rem;
   }
 }

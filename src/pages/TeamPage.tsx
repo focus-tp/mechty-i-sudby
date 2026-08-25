@@ -344,7 +344,7 @@ export function TeamPage() {
           {/* 8. Call to action */}
           <Reveal delay={0.8}>
             <a
-              href="/#contact"
+              href={asset('/#contact')}
               className="team-card-wrapper"
               style={{ display: "block", textDecoration: "none" }}
             >

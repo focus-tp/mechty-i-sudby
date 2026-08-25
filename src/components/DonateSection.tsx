@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { ChevronDown, ExternalLink, FileText, ReceiptText } from 'lucide-react';
 import { Reveal } from './Reveal';
 import { useUI } from '../context/UIContext';
+import { asset } from '../utils';
 
 type Frequency = 'once' | 'monthly';
 
@@ -191,7 +192,7 @@ export function DonateSection() {
                     </div>
                     <label className="consent-label consent-label--light" style={{ display: 'flex' }}>
                       <input type="checkbox" checked={dataAccepted} onChange={(event) => setDataAccepted(event.target.checked)} />
-                      <span>Я даю отдельное <a href="/consent" target="_blank" rel="noreferrer">согласие на обработку персональных данных</a></span>
+                      <span>Я даю отдельное <a href={asset('/consent')} target="_blank" rel="noreferrer">согласие на обработку персональных данных</a></span>
                     </label>
                     <button type="button" className="donate-receipt-action" onClick={prepareReceiptEmail}>Подготовить письмо для квитанции</button>
                   </motion.div>
@@ -202,12 +203,12 @@ export function DonateSection() {
                 {isMonthly && (
                   <label>
                     <input type="checkbox" checked={recurringAccepted} onChange={(event) => setRecurringAccepted(event.target.checked)} />
-                    <span>Я согласен(на) с <a href="/recurring" target="_blank" rel="noreferrer">условиями ежемесячной поддержки</a></span>
+                    <span>Я согласен(на) с <a href={asset('/recurring')} target="_blank" rel="noreferrer">условиями ежемесячной поддержки</a></span>
                   </label>
                 )}
                 <label>
                   <input type="checkbox" checked={offerAccepted} onChange={(event) => setOfferAccepted(event.target.checked)} />
-                  <span>Я принимаю <a href="/offer" target="_blank" rel="noreferrer">публичную оферту о пожертвовании</a></span>
+                  <span>Я принимаю <a href={asset('/offer')} target="_blank" rel="noreferrer">публичную оферту о пожертвовании</a></span>
                 </label>
               </div>
 
@@ -270,7 +271,7 @@ export function DonateSection() {
             <div className="donate-documents__content">
               <div className="donate-documents__list">
                 {documents.map((document) => (
-                  <a key={document.title} href={document.href} target={document.external ? '_blank' : undefined} rel={document.external ? 'noreferrer' : undefined}>
+                  <a key={document.title} href={asset(document.href)} target={document.external ? '_blank' : undefined} rel={document.external ? 'noreferrer' : undefined}>
                     <FileText size={19} />
                     <span><strong>{document.title}</strong><small>{document.meta}</small></span>
                     <ExternalLink size={16} />
