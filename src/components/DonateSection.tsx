@@ -11,11 +11,12 @@ const presetAmounts = [500, 1000, 2500, 5000];
 const documents = [
   { title: 'Реквизиты организации', meta: 'Официальные сведения АНО', href: '/legal' },
   { title: 'Устав АНО', meta: 'Учредительный документ · PDF', href: '/документы/устав НКО.pdf', external: true },
-  { title: 'Лист записи ЕГРЮЛ', meta: 'Государственная регистрация · PDF', href: '/документы/VypZapEGRUL_2a59605fde99468c928039179383f2de.pdf', external: true },
+  { title: 'Лист записи ЕГРЮЛ', meta: 'Государственная регистрация · PDF', href: '/документы/Лист записи ЕГРН.pdf', external: true },
   { title: 'Выписка из ЕГРН', meta: 'Реестр налогоплательщиков · PDF', href: '/документы/Выписка из ЕГРН.pdf', external: true },
   { title: 'Публичная оферта', meta: 'Условия пожертвования', href: '/offer' },
-  { title: 'Политика конфиденциальности', meta: 'Правила обработки данных', href: '/privacy' },
+  { title: 'Политика обработки персональных данных', meta: 'Правила обработки данных', href: '/privacy' },
   { title: 'Согласие на обработку данных', meta: 'Отдельный документ', href: '/consent' },
+  { title: 'Пользовательское соглашение', meta: 'Правила использования сайта', href: '/terms' },
   { title: 'Отчётность организации', meta: 'Порядок публикации отчётов', href: '/reports' },
 ];
 
@@ -33,6 +34,7 @@ export function DonateSection() {
   const [recurringAccepted, setRecurringAccepted] = useState(false);
 
   const isMonthly = frequency === 'monthly';
+  const canPrepareTransfer = offerAccepted && (!isMonthly || recurringAccepted);
 
   const changeFrequency = (value: Frequency) => {
     setFrequency(value);
@@ -80,7 +82,7 @@ export function DonateSection() {
 
     const subject = encodeURIComponent('Квитанция о пожертвовании');
     const body = encodeURIComponent(
-      `Здравствуйте! Прошу направить квитанцию о пожертвовании на сумму ${Number(amount).toLocaleString('ru-RU')} ₽.\n\nИмя: ${donorName || 'не указано'}\nE-mail: ${donorEmail}\n\nОтдельное согласие на обработку указанных персональных данных предоставлено при подготовке письма на сайте.`,
+      `Здравствуйте! Прошу направить квитанцию о пожертвовании на сумму ${Number(amount).toLocaleString('ru-RU')} ₽.\n\nИмя: ${donorName || 'не указано'}\nE-mail: ${donorEmail}\n\nОтдельное согласие на обработку указанных персональных данных (редакция от 25.08.2026) предоставлено при подготовке письма на сайте.`,
     );
     window.location.href = `mailto:mechty.sudby@mail.ru?subject=${subject}&body=${body}`;
   };
@@ -183,18 +185,18 @@ export function DonateSection() {
                     <div className="donate-receipt__fields">
                       <label>
                         <span>Ваше имя</span>
-                        <input value={donorName} onChange={(event) => setDonorName(event.target.value)} placeholder="Необязательно" />
+                        <input autoComplete="name" value={donorName} onChange={(event) => setDonorName(event.target.value)} placeholder="Необязательно" />
                       </label>
                       <label>
                         <span>E-mail для квитанции</span>
-                        <input type="email" value={donorEmail} onChange={(event) => setDonorEmail(event.target.value)} placeholder="email@example.com" />
+                        <input type="email" autoComplete="email" required value={donorEmail} onChange={(event) => setDonorEmail(event.target.value)} placeholder="email@example.com" />
                       </label>
                     </div>
                     <label className="consent-label consent-label--light" style={{ display: 'flex' }}>
                       <input type="checkbox" checked={dataAccepted} onChange={(event) => setDataAccepted(event.target.checked)} />
-                      <span>Я даю отдельное <a href={asset('/consent')} target="_blank" rel="noreferrer">согласие на обработку персональных данных</a></span>
+                      <span><a href={asset('/consent')} target="_blank" rel="noreferrer">Даю согласие на обработку персональных данных</a> в соответствии с <a href={asset('/privacy')} target="_blank" rel="noreferrer">Политикой обработки персональных данных</a>.</span>
                     </label>
-                    <button type="button" className="donate-receipt-action" onClick={prepareReceiptEmail}>Подготовить письмо для квитанции</button>
+                    <button type="button" className="donate-receipt-action" onClick={prepareReceiptEmail} disabled={!dataAccepted}>Подготовить письмо для квитанции</button>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -212,7 +214,7 @@ export function DonateSection() {
                 </label>
               </div>
 
-              <button type="button" className="donate-primary" onClick={prepareTransfer}>
+              <button type="button" className="donate-primary" onClick={prepareTransfer} disabled={!canPrepareTransfer}>
                 {isMonthly ? 'Поддерживать ежемесячно' : 'Поддержать'} <span>{amount ? formattedAmount : ''}</span>
               </button>
               <p className="donate-helper">

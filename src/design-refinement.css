@@ -974,6 +974,23 @@ footer::before {
   line-height: 1.75;
 }
 
+.footer-legal-identity {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 520px;
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.7rem;
+  font-style: normal;
+  line-height: 1.55;
+}
+
+.footer-legal-identity strong {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.68rem;
+  font-weight: 650;
+}
+
 .footer-col h5 {
   margin-bottom: 1.15rem;
   color: rgba(255, 255, 255, 0.92);
@@ -1284,6 +1301,38 @@ footer::before {
 .donate-primary:hover {
   background: var(--purple);
   transform: translateY(-1px);
+}
+
+.donate-primary:disabled,
+.donate-receipt-action:disabled,
+.form-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+  transform: none;
+  box-shadow: none;
+}
+
+.donate-primary:disabled:hover,
+.form-submit:disabled:hover {
+  background: var(--amethyst);
+  transform: none;
+  box-shadow: none;
+}
+
+.form-submit:disabled:hover {
+  background: var(--purple);
+}
+
+.form-submit:disabled::after {
+  content: none;
+}
+
+.form-field-hint {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  line-height: 1.45;
 }
 
 .donate .donate-helper {
@@ -1763,6 +1812,24 @@ footer::before {
 }
 
 /* Permanent legal pages */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10000;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  background: #fff;
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-160%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 .legal-page {
   min-height: 100svh;
   padding: 9rem 5% 6rem;

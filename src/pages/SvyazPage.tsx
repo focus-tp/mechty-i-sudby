@@ -144,7 +144,7 @@ export function SvyazPage() {
             <Reveal type="right">
               {/* VIDEO PLACEHOLDER */}
               <div className="relative w-full aspect-video bg-[#0c3c3c] rounded-xl overflow-hidden shadow-2xl group cursor-pointer border-[6px] border-white/40 hover:border-white transition-all duration-500">
-                <img src={asset('/загородные домики.jpg')} alt="Video placeholder" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-40 transition-all duration-700" />
+                <img src={asset('/загородные домики.jpg')} alt="Загородная встреча семей проекта" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-40 transition-all duration-700" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <div className="w-24 h-24 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center group-hover:bg-[var(--pink)] group-hover:scale-110 transition-all duration-300 shadow-xl border border-white/30">
                     <Play size={48} className="text-white fill-white ml-2" />

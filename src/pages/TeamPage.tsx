@@ -42,6 +42,11 @@ export function TeamPage() {
               <div
                 className={`team-card-inner accent-gradient ${flippedIndex === 0 ? " is-flipped" : ""}`}
                 onClick={() => toggleFlip(0)}
+                onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleFlip(0); } }}
+                role="button"
+                tabIndex={0}
+                aria-pressed={flippedIndex === 0}
+                aria-label="Подробнее о Евгении Ощепковой"
               >
                 <div className="team-front">
                   <div className="badge">Основатель</div>
@@ -90,6 +95,11 @@ export function TeamPage() {
               <div
                 className={`team-card-inner accent-quote ${flippedIndex === 1 ? " is-flipped" : ""}`}
                 onClick={() => toggleFlip(1)}
+                onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleFlip(1); } }}
+                role="button"
+                tabIndex={0}
+                aria-pressed={flippedIndex === 1}
+                aria-label="Подробнее о Светлане Мопити"
               >
                 <div className="team-front">
                   <img
@@ -136,6 +146,11 @@ export function TeamPage() {
               <div
                 className={`team-card-inner ${flippedIndex === 2 ? " is-flipped" : ""}`}
                 onClick={() => toggleFlip(2)}
+                onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleFlip(2); } }}
+                role="button"
+                tabIndex={0}
+                aria-pressed={flippedIndex === 2}
+                aria-label="Подробнее об Айгуль Ермаковой"
               >
                 <div className="team-front">
                   <img
@@ -177,6 +192,11 @@ export function TeamPage() {
               <div
                 className={`team-card-inner ${flippedIndex === 3 ? " is-flipped" : ""}`}
                 onClick={() => toggleFlip(3)}
+                onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleFlip(3); } }}
+                role="button"
+                tabIndex={0}
+                aria-pressed={flippedIndex === 3}
+                aria-label="Подробнее об Александре Бугаевской"
               >
                 <div className="team-front">
                   <img
@@ -222,6 +242,11 @@ export function TeamPage() {
               <div
                 className={`team-card-inner accent-subtle ${flippedIndex === 4 ? " is-flipped" : ""}`}
                 onClick={() => toggleFlip(4)}
+                onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleFlip(4); } }}
+                role="button"
+                tabIndex={0}
+                aria-pressed={flippedIndex === 4}
+                aria-label="Подробнее о Павле Казанцеве"
               >
                 <div className="team-front">
                   <img
@@ -264,6 +289,11 @@ export function TeamPage() {
               <div
                 className={`team-card-inner ${flippedIndex === 5 ? " is-flipped" : ""}`}
                 onClick={() => toggleFlip(5)}
+                onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleFlip(5); } }}
+                role="button"
+                tabIndex={0}
+                aria-pressed={flippedIndex === 5}
+                aria-label="Подробнее о Людмиле Солодовник"
               >
                 <div className="team-front">
                   <img
@@ -305,6 +335,11 @@ export function TeamPage() {
               <div
                 className={`team-card-inner ${flippedIndex === 6 ? " is-flipped" : ""}`}
                 onClick={() => toggleFlip(6)}
+                onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleFlip(6); } }}
+                role="button"
+                tabIndex={0}
+                aria-pressed={flippedIndex === 6}
+                aria-label="Подробнее об Эвелине Литвиновой"
               >
                 <div className="team-front">
                   <img

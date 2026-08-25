@@ -97,11 +97,12 @@ function HomePage() {
 export default function App() {
   return (
     <UIProvider>
+      <a className="skip-link" href="#main-content">Перейти к основному содержанию</a>
       <SmoothScroll />
       <CustomCursor />
       <ScrollToHash />
       <Navbar />
-      <main className="relative">
+      <main id="main-content" className="relative">
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -110,6 +111,7 @@ export default function App() {
             <Route path="/training" element={<TrainingPage />} />
             <Route path="/team" element={<TeamPage />} />
             <Route path="/privacy" element={<LegalPage kind="privacy" />} />
+            <Route path="/terms" element={<LegalPage kind="terms" />} />
             <Route path="/consent" element={<LegalPage kind="consent" />} />
             <Route path="/offer" element={<LegalPage kind="offer" />} />
             <Route path="/recurring" element={<LegalPage kind="recurring" />} />

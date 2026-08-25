@@ -27,7 +27,7 @@ export function ContactSection() {
     }
     const subject = encodeURIComponent(form.topic || 'Обращение с сайта');
     const body = encodeURIComponent(
-      `Здравствуйте!\n\n${form.message || 'Хочу задать вопрос.'}\n\nИмя: ${form.name}\nКонтакт для ответа: ${form.contact}\n\nОтдельное согласие на обработку указанных персональных данных предоставлено при подготовке письма на сайте.`,
+      `Здравствуйте!\n\n${form.message || 'Хочу задать вопрос.'}\n\nИмя: ${form.name}\nКонтакт для ответа: ${form.contact}\n\nОтдельное согласие на обработку указанных персональных данных (редакция от 25.08.2026) предоставлено при подготовке письма на сайте.`,
     );
     window.location.href = `mailto:mechty.sudby@mail.ru?subject=${subject}&body=${body}`;
   };
@@ -87,19 +87,19 @@ export function ContactSection() {
         </Reveal>
 
         <Reveal type="right">
-          <div className="contact-form-card contact-form-letter">
+          <form className="contact-form-card contact-form-letter" onSubmit={(event) => { event.preventDefault(); submitContact(); }}>
             <h3>Напишите нам</h3>
             <div className="form-field">
-              <label>Ваше имя *</label>
-              <input type="text" placeholder="Как вас зовут?" value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} />
+              <label htmlFor="contact-name">Ваше имя *</label>
+              <input id="contact-name" type="text" autoComplete="name" required placeholder="Как вас зовут?" value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} />
             </div>
             <div className="form-field">
-              <label>Телефон или e-mail *</label>
-              <input type="text" placeholder="+7 или email" value={form.contact} onChange={(e) => setForm({...form, contact: e.target.value})} />
+              <label htmlFor="contact-channel">Телефон или e-mail *</label>
+              <input id="contact-channel" type="text" autoComplete="email" required placeholder="+7 или email" value={form.contact} onChange={(e) => setForm({...form, contact: e.target.value})} />
             </div>
             <div className="form-field">
-              <label>Тема обращения</label>
-              <select value={form.topic} onChange={(e) => setForm({...form, topic: e.target.value})}>
+              <label htmlFor="contact-topic">Тема обращения</label>
+              <select id="contact-topic" value={form.topic} onChange={(e) => setForm({...form, topic: e.target.value})}>
                 <option value="">Выберите тему</option>
                 <option>Тренинг КППТ</option>
                 <option>Площадка «Связь»</option>
@@ -111,20 +111,21 @@ export function ContactSection() {
               </select>
             </div>
             <div className="form-field">
-              <label>Сообщение</label>
-              <textarea rows={3} placeholder="Ваш вопрос или пожелание..." value={form.message} onChange={(e) => setForm({...form, message: e.target.value})}></textarea>
+              <label htmlFor="contact-message">Сообщение</label>
+              <textarea id="contact-message" rows={3} aria-describedby="contact-message-hint" placeholder="Ваш вопрос или пожелание..." value={form.message} onChange={(e) => setForm({...form, message: e.target.value})}></textarea>
+              <small id="contact-message-hint" className="form-field-hint">Не указывайте здесь паспортные, медицинские данные и сведения о ребёнке.</small>
             </div>
             <label className="consent-label consent-label--light" style={{ marginBottom: '.75rem', display: 'flex' }}>
               <input type="checkbox" checked={form.consent} onChange={(e) => setForm({...form, consent: e.target.checked})} />
               <span style={{ fontSize: '.8rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
-                Я даю отдельное <a href={asset('/consent')} target="_blank" rel="noreferrer" style={{ color: 'var(--purple)' }}>согласие на обработку персональных данных</a>
+                <a href={asset('/consent')} target="_blank" rel="noreferrer" style={{ color: 'var(--purple)' }}>Даю согласие на обработку персональных данных</a> в соответствии с <a href={asset('/privacy')} target="_blank" rel="noreferrer" style={{ color: 'var(--purple)' }}>Политикой обработки персональных данных</a>.
               </span>
             </label>
-            <button className="form-submit" onClick={submitContact}>Открыть письмо</button>
+            <button type="submit" className="form-submit" disabled={!form.consent}>Открыть письмо</button>
             <p style={{ marginTop: '.65rem', fontSize: '.78rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
               Откроется ваше почтовое приложение. Сообщение будет отправлено только после вашего подтверждения.
             </p>
-          </div>
+          </form>
         </Reveal>
       </div>
     </section>

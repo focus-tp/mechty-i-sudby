@@ -12,6 +12,11 @@ export function Footer() {
             <img src={asset('/logo.png')} alt="Мечты и Судьбы" className="logo-img" />
           </Link>
           <p>АНО «Мечты и судьбы» — центр комплексной поддержки семьи, материнства, отцовства и детства. Команда поддерживает приёмные семьи с 2011 года.</p>
+          <address className="footer-legal-identity">
+            <strong>АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ ЦЕНТР КОМПЛЕКСНОЙ ПОДДЕРЖКИ СЕМЬИ, МАТЕРИНСТВА, ОТЦОВСТВА И ДЕТСТВА «МЕЧТЫ И СУДЬБЫ»</strong>
+            <span>ОГРН 1269600021712 · ИНН 6686173647</span>
+            <span>Юридический адрес: 624090, Свердловская область, г.о. Верхняя Пышма, г. Верхняя Пышма, ул. 40 лет Октября, д. 30</span>
+          </address>
         </div>
         <div className="footer-col">
           <h5>Проекты</h5>
@@ -46,7 +51,8 @@ export function Footer() {
           <Link to="/legal">Реквизиты</Link>
           <Link to="/reports">Отчёты</Link>
           <Link to="/offer">Публичная оферта</Link>
-          <Link to="/privacy">Политика конфиденциальности</Link>
+          <Link to="/privacy">Политика обработки ПДн</Link>
+          <Link to="/terms">Пользовательское соглашение</Link>
           <Link to="/consent">Согласие на обработку данных</Link>
           <Link to="/recurring">Ежемесячная поддержка</Link>
         </nav>
@@ -61,7 +67,7 @@ export function ModalsAndToasts() {
   return (
     <>
       {toastMsg && (
-        <div className="toast show">
+        <div className="toast show" role="status" aria-live="polite">
           {toastMsg}
         </div>
       )}
