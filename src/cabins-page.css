@@ -197,6 +197,62 @@
   transform: rotate(2deg);
 }
 
+.cabins-names {
+  padding: 3.5rem 0;
+  background: #fffaf4;
+  border-top: 1px solid rgba(42, 16, 63, 0.1);
+}
+
+.cabins-names__inner {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  align-items: end;
+  gap: 4rem;
+}
+
+.cabins-names .cabins-kicker {
+  margin-bottom: 0.55rem;
+}
+
+.cabins-names h2 {
+  margin: 0;
+  font-size: clamp(2.6rem, 3.8vw, 4.3rem);
+}
+
+.cabins-names__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(42, 16, 63, 0.18);
+  list-style: none;
+}
+
+.cabins-names__list li {
+  min-width: 0;
+  padding: 1.2rem 1rem 0 0;
+}
+
+.cabins-names__list li + li {
+  padding-left: 1rem;
+  border-left: 1px solid rgba(42, 16, 63, 0.14);
+}
+
+.cabins-names__list span {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #a86432;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.cabins-names__list strong {
+  color: var(--cabins-ink);
+  font-family: "Cormorant", serif;
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  line-height: 1.05;
+}
+
 .cabins-story {
   padding: 8rem 0;
   background: #f2e8dc;
@@ -472,8 +528,13 @@
   }
 
   .cabins-hero__grid,
-  .cabins-story__grid {
+  .cabins-story__grid,
+  .cabins-names__inner {
     grid-template-columns: 1fr;
+  }
+
+  .cabins-names__inner {
+    gap: 2rem;
   }
 
   .cabins-hero__copy,
@@ -604,10 +665,33 @@
   }
 
   .cabins-story,
+  .cabins-names,
   .cabins-inside,
   .cabins-gallery-section,
   .cabins-booking {
     padding: 5rem 0;
+  }
+
+  .cabins-names {
+    padding-block: 3.5rem;
+  }
+
+  .cabins-names__list {
+    grid-template-columns: 1fr;
+  }
+
+  .cabins-names__list li,
+  .cabins-names__list li + li {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-left: 0;
+    border-bottom: 1px solid rgba(42, 16, 63, 0.14);
+  }
+
+  .cabins-names__list span {
+    margin: 0;
   }
 
   .cabins-story__photo {

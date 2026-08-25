@@ -82,6 +82,20 @@ export function CabinsPage() {
         </div>
       </section>
 
+      <section className="cabins-names" aria-labelledby="cabins-names-title">
+        <div className="cabins-shell cabins-names__inner">
+          <div>
+            <span className="cabins-kicker">Три домика — три имени</span>
+            <h2 id="cabins-names-title">У каждого свой <em>характер</em></h2>
+          </div>
+          <ol className="cabins-names__list">
+            <li><span>01</span><strong>Милый дом</strong></li>
+            <li><span>02</span><strong>Домик Любви</strong></li>
+            <li><span>03</span><strong>Домик надежды</strong></li>
+          </ol>
+        </div>
+      </section>
+
       <section className="cabins-story">
         <div className="cabins-shell cabins-story__grid">
           <Reveal type="left">
