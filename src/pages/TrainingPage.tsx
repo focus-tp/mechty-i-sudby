@@ -48,6 +48,21 @@ const outcomes = [
   'Замечать собственное истощение и вовремя восстанавливаться',
 ];
 
+const trainingFlow = [
+  {
+    title: 'Теория в диалоге',
+    text: 'Тренеры объясняют, как травма и потеря влияют на привязанность, эмоции и поведение. Участники задают вопросы и связывают материал со своими ситуациями.',
+  },
+  {
+    title: 'Практика и разбор ситуаций',
+    text: 'В программе много групповых упражнений и инструментов, которые помогают двигаться к надёжной привязанности и поддерживать ребёнка без дополнительной травматизации.',
+  },
+  {
+    title: 'Внимание к взрослому',
+    text: 'Отдельная часть обучения посвящена собственному детскому опыту, заботе о себе, распознаванию выгорания и восстановлению ресурса.',
+  },
+];
+
 export function TrainingPage() {
   useDocumentTitle('Тренинг КППТ');
 
@@ -116,6 +131,58 @@ export function TrainingPage() {
                 </article>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="kpt-format">
+        <div className="kpt-shell">
+          <Reveal>
+            <header className="kpt-heading kpt-format__heading">
+              <span className="kpt-kicker">Как проходит обучение</span>
+              <h2>Три дня не только знаний, но и <em>живого опыта</em></h2>
+              <p>Очный формат помогает сразу обсуждать материал, пробовать новые способы взаимодействия и получать поддержку людей, которые решают похожие задачи.</p>
+            </header>
+          </Reveal>
+
+          <div className="kpt-format__grid">
+            <div className="kpt-format__steps">
+              {trainingFlow.map((item, index) => (
+                <Reveal key={item.title} delay={index * 0.07}>
+                  <article>
+                    <span>0{index + 1}</span>
+                    <div><h3>{item.title}</h3><p>{item.text}</p></div>
+                  </article>
+                </Reveal>
+              ))}
+
+              <Reveal delay={0.18}>
+                <p className="kpt-format__history">
+                  В феврале 2025 года в Екатеринбурге такой очный курс прошла группа приёмных родителей, специалистов и тех, кто заботится об уязвимых детях.
+                </p>
+              </Reveal>
+            </div>
+
+            <div className="kpt-format__gallery" aria-label="Фотографии очного тренинга КППТ">
+              <Reveal type="right">
+                <figure className="kpt-format__photo kpt-format__photo--main">
+                  <img src={asset('/training/theory.jpg')} alt="Тренер объясняет участникам формирование здоровой привязанности" loading="lazy" />
+                  <figcaption>обучение в диалоге</figcaption>
+                </figure>
+              </Reveal>
+              <Reveal type="right" delay={0.08}>
+                <figure className="kpt-format__photo">
+                  <img src={asset('/training/community.jpg')} alt="Плакат участников тренинга из разных городов" loading="lazy" />
+                  <figcaption>сообщество</figcaption>
+                </figure>
+              </Reveal>
+              <Reveal type="right" delay={0.14}>
+                <figure className="kpt-format__photo">
+                  <img src={asset('/training/trainers.jpg')} alt="Команда тренеров КППТ" loading="lazy" />
+                  <figcaption>команда тренеров</figcaption>
+                </figure>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
