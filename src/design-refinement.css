@@ -428,12 +428,16 @@ nav#mainNav .nav-links a.nav-active::after {
   }
 
   .chapter-project__photo,
-  .chapter-project:nth-child(even) .chapter-project__photo,
-  .chapter-project:hover .chapter-project__photo {
+  .chapter-project:nth-child(even) .chapter-project__photo {
     width: 100%;
     height: 170px;
     padding: 0.45rem;
     border: 0;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .chapter-project:hover .chapter-project__photo {
     box-shadow: none;
     transform: none;
   }
