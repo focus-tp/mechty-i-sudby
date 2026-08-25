@@ -107,6 +107,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/svyaz" element={<SvyazPage />} />
+            <Route path="/domiki" element={<CabinsPage />} />
             <Route path="/cabins" element={<CabinsPage />} />
             <Route path="/training" element={<TrainingPage />} />
             <Route path="/team" element={<TeamPage />} />

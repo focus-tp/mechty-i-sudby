@@ -3922,19 +3922,72 @@ footer {
   animation: letopisOverlayIn 0.24s ease-out;
 }
 .letopis-modal {
-  width: min(1120px, 100%);
+  width: min(980px, 100%);
   max-height: calc(100dvh - clamp(2rem, 8vw, 6rem));
-  display: grid;
-  grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.08fr);
+  height: min(820px, calc(100dvh - clamp(2rem, 8vw, 6rem)));
   background:
-    linear-gradient(90deg, rgba(42, 16, 64, 0.08) 0, transparent 1.4rem, transparent calc(50% - 1px), rgba(42, 16, 64, 0.08) 50%, transparent calc(50% + 1.4rem)),
+    linear-gradient(90deg, rgba(42, 16, 64, 0.05), transparent 9%, transparent 91%, rgba(42, 16, 64, 0.05)),
+    linear-gradient(180deg, transparent 0, transparent calc(100% - 4.2rem), rgba(42, 16, 64, 0.035)),
     #fffaf6;
   border: 1px solid rgba(255, 255, 255, 0.78);
   border-radius: 18px;
   box-shadow: 0 32px 110px rgba(11, 10, 15, 0.38);
   overflow: hidden;
   position: relative;
+  perspective: 1600px;
   animation: letopisReaderIn 0.34s cubic-bezier(0.2, 0.9, 0.22, 1);
+}
+.letopis-modal::before {
+  content: "";
+  position: absolute;
+  inset: 0.85rem;
+  z-index: 0;
+  border: 1px solid rgba(42, 16, 64, 0.08);
+  border-radius: 12px;
+  pointer-events: none;
+}
+.letopis-modal::after {
+  content: "";
+  position: absolute;
+  left: 0.95rem;
+  right: 0.95rem;
+  top: 50%;
+  z-index: 3;
+  height: 24px;
+  transform: translateY(-50%);
+  background:
+    linear-gradient(180deg, rgba(42, 16, 64, 0.16), rgba(255, 250, 246, 0.7) 42%, rgba(255, 255, 255, 0.72) 58%, rgba(42, 16, 64, 0.09)),
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7) 14%, rgba(255, 255, 255, 0.25) 86%, transparent);
+  opacity: 0.72;
+  pointer-events: none;
+}
+.letopis-reader__page {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: 50% minmax(0, 1fr);
+  max-height: inherit;
+  height: 100%;
+  overflow: hidden;
+  background: #fffaf6;
+  transform-origin: center bottom;
+  animation: letopisPageTurnNext 0.58s cubic-bezier(0.18, 0.76, 0.24, 1);
+}
+.letopis-reader__page[data-turn="previous"] {
+  transform-origin: center top;
+  animation-name: letopisPageTurnPrevious;
+}
+.letopis-reader__page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background:
+    linear-gradient(180deg, transparent 0 42%, rgba(42, 16, 64, 0.2) 50%, transparent 58%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.34), transparent 24%, transparent 76%, rgba(255, 255, 255, 0.32));
+  opacity: 0;
+  pointer-events: none;
+  animation: letopisPageSheen 0.58s ease-out;
 }
 .letopis-modal-close {
   position: absolute;
@@ -3989,21 +4042,51 @@ footer {
 }
 .letopis-modal-media {
   min-height: 0;
-  height: auto;
   position: relative;
-  background: var(--mist);
+  background:
+    linear-gradient(90deg, rgba(216, 159, 91, 0.08), transparent 18%, transparent 82%, rgba(216, 159, 91, 0.08)),
+    repeating-linear-gradient(90deg, rgba(42, 16, 64, 0.035) 0 1px, transparent 1px 16px),
+    linear-gradient(135deg, rgba(255, 250, 246, 0.95), rgba(236, 230, 223, 0.86)),
+    var(--mist);
+  margin: clamp(0.7rem, 1.35vw, 0.95rem) clamp(0.7rem, 1.35vw, 0.95rem) 0;
+  overflow: hidden;
+  border-radius: 12px 12px 7px 7px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+}
+.letopis-modal-media::before {
+  content: "";
+  position: absolute;
+  inset: clamp(0.75rem, 1.6vw, 1.2rem);
+  z-index: 2;
+  border-radius: 8px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--gold), var(--gold)) left top / 4.2rem 2px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) left top / 2px 4.2rem no-repeat,
+    linear-gradient(var(--gold), var(--gold)) right top / 4.2rem 2px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) right top / 2px 4.2rem no-repeat,
+    linear-gradient(var(--gold), var(--gold)) left bottom / 4.2rem 2px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) left bottom / 2px 4.2rem no-repeat,
+    linear-gradient(var(--gold), var(--gold)) right bottom / 4.2rem 2px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) right bottom / 2px 4.2rem no-repeat;
+  opacity: 0.34;
 }
 .letopis-modal-media img {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
 }
 .letopis-modal-media::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(11, 10, 15, 0.02), rgba(11, 10, 15, 0.26));
+  z-index: 3;
+  background:
+    linear-gradient(180deg, rgba(11, 10, 15, 0.02), rgba(11, 10, 15, 0.18)),
+    radial-gradient(ellipse at center, transparent 56%, rgba(42, 16, 64, 0.08));
   pointer-events: none;
 }
 .letopis-modal-tag {
@@ -4021,16 +4104,20 @@ footer {
   text-transform: uppercase;
 }
 .letopis-modal-body {
-  max-height: calc(100dvh - clamp(2rem, 8vw, 6rem));
-  overflow-y: auto;
-  padding: clamp(2.25rem, 4.5vw, 4.75rem);
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.72fr) minmax(0, 1.28fr);
+  grid-template-rows: auto auto auto minmax(0, 0.72fr) auto minmax(0, 0.28fr);
+  column-gap: clamp(1.5rem, 3.6vw, 2.8rem);
+  align-items: start;
+  min-height: 0;
+  padding: clamp(1.05rem, 2vw, 1.65rem) clamp(1.4rem, 3.2vw, 3rem) clamp(1rem, 2.2vw, 1.55rem);
 }
 .letopis-modal-kicker {
   color: var(--gold);
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 0.16em;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.7rem;
   text-transform: uppercase;
 }
 .letopis-modal-body time {
@@ -4039,12 +4126,12 @@ footer {
   font-family: "Cormorant", serif;
   font-size: 1.05rem;
   font-style: italic;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.65rem;
 }
 .letopis-modal-body h3 {
   color: var(--text);
   font-family: "Cormorant", serif;
-  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-size: clamp(1.9rem, 3.25vw, 2.72rem);
   font-weight: 600;
   line-height: 1.08;
   margin: 0;
@@ -4055,14 +4142,34 @@ footer {
   height: 3px;
   background: var(--gold);
   border-radius: 999px;
-  margin: 1.4rem 0;
+  margin: 1rem 0 0;
 }
 .letopis-modal-body p {
   color: var(--text);
-  font-size: clamp(1rem, 1.2vw, 1.08rem);
-  line-height: 1.9;
+  font-size: clamp(0.96rem, 1.05vw, 1.04rem);
+  line-height: 1.72;
   margin: 0;
   max-width: 66ch;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 0.65rem;
+}
+.letopis-modal-body p,
+.letopis-reader__footer {
+  grid-column: 2;
+}
+.letopis-modal-body p {
+  grid-row: 1 / 5;
+  padding-top: 0.1rem;
+}
+.letopis-reader__footer {
+  grid-row: 5;
+}
+.letopis-modal-kicker,
+.letopis-modal-body time,
+.letopis-modal-body h3,
+.letopis-modal-divider {
+  grid-column: 1;
 }
 @keyframes letopisOverlayIn {
   from { opacity: 0; }
@@ -4076,6 +4183,49 @@ footer {
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+@keyframes letopisPageTurnNext {
+  0% {
+    opacity: 0.25;
+    transform: rotateX(24deg) translateY(24px) scale(0.985);
+    filter: brightness(0.96);
+  }
+  58% {
+    opacity: 1;
+    filter: brightness(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0) translateY(0) scale(1);
+    filter: brightness(1);
+  }
+}
+@keyframes letopisPageTurnPrevious {
+  0% {
+    opacity: 0.25;
+    transform: rotateX(-18deg) translateY(-18px) scale(0.985);
+    filter: brightness(0.96);
+  }
+  58% {
+    opacity: 1;
+    filter: brightness(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0) translateY(0) scale(1);
+    filter: brightness(1);
+  }
+}
+@keyframes letopisPageSheen {
+  0% { opacity: 0; transform: translateY(18%); }
+  32% { opacity: 0.55; }
+  100% { opacity: 0; transform: translateY(-18%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .letopis-reader__page,
+  .letopis-reader__page::before {
+    animation: none;
   }
 }
 @media (max-width: 760px) {
@@ -4102,13 +4252,17 @@ footer {
   }
   .letopis-modal {
     max-height: 92dvh;
-    grid-template-columns: 1fr;
+    height: 92dvh;
     border-radius: 18px 18px 12px 12px;
   }
+  .letopis-reader__page {
+    grid-template-rows: minmax(190px, 30dvh) minmax(0, 1fr);
+    overflow-y: auto;
+  }
   .letopis-modal-media {
-    height: 28dvh;
     min-height: 190px;
     max-height: 260px;
+    margin: 0.75rem 0.75rem 0;
   }
   .letopis-modal-close {
     top: 0.75rem;
@@ -4120,7 +4274,8 @@ footer {
     display: none;
   }
   .letopis-modal-body {
-    max-height: calc(64dvh - 1rem);
+    display: block;
+    overflow: visible;
     padding: 1.5rem;
   }
   .letopis-modal-body h3 {
@@ -4131,6 +4286,8 @@ footer {
   .letopis-modal-body p {
     font-size: 0.98rem;
     line-height: 1.75;
+    overflow: visible;
+    padding-right: 0;
   }
 }
 @media (min-width: 761px) and (max-width: 1020px) {
@@ -4138,7 +4295,10 @@ footer {
     width: min(740px, 100%);
   }
   .letopis-modal {
-    grid-template-columns: 0.8fr 1.2fr;
+    width: min(860px, 100%);
+  }
+  .letopis-modal-body {
+    grid-template-columns: minmax(12rem, 0.75fr) minmax(0, 1.25fr);
   }
 }
 .modal-success {

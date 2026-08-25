@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowLeft, ArrowRight, BookOpen, CalendarDays, X } from 'lucide-react';
+import { ArrowDown, ArrowUp, BookOpen, CalendarDays, X } from 'lucide-react';
 import { Reveal } from './Reveal';
 import { asset } from '../utils';
 
@@ -12,6 +12,7 @@ type Post = {
   stream: Stream;
   image: string;
   date: string;
+  publishedAt: string;
 };
 
 const streamMeta: Record<Stream, { title: string; subtitle: string; note: string }> = {
@@ -29,12 +30,13 @@ const streamMeta: Record<Stream, { title: string; subtitle: string; note: string
 
 const allPosts: Post[] = [
   {
-    id: 'new-support-houses',
-    title: 'Новые домики психологической помощи готовятся к открытию',
-    content: 'Наше волонтёрское движение готовит к открытию новые домики психологической помощи для семей в Свердловской области. Впереди важный этап: обустройство сенсорных комнат, закупка мебели и подготовка кураторов. Присоединяйтесь к благотворительной программе организации.',
+    id: 'kpt-training-2026',
+    title: 'Открыта запись на трёхдневный тренинг КППТ',
+    content: '24, 25 и 26 апреля 2026 года в Екатеринбурге пройдёт очный тренинг «Компетентная помощь при травматизации» для приёмных родителей, социальных работников и специалистов. В программе — 9 модулей, 24 академических часа, практика и разбор ситуаций о том, как понимать ребёнка с травматическим опытом, сохранять контакт и заботиться о себе.',
     stream: 'upcoming',
     image: '/Тренинг RGGN.jpg',
-    date: 'Скоро',
+    date: '24-26 Апр 2026',
+    publishedAt: '2026-04-24',
   },
   {
     id: 'christmas-banquet-2025',
@@ -43,24 +45,32 @@ const allPosts: Post[] = [
     stream: 'past',
     image: '/hero/christmas-banquet.jpg',
     date: '07 Янв 2025',
+    publishedAt: '2025-01-07',
   },
   {
     id: 'svyaz-way-home',
-    title: 'Путь к дому: площадка «Связь» приёмных семей',
-    content: 'Благотворительный проект, группы поддержки, психологический тренинг КППТ и ресурсные домики помогают приёмным семьям найти силы для адаптации детей. Здесь волонтёры движения проводят еженедельные встречи, делятся опытом и поддерживают тех, кто принял ребёнка в семью.',
+    title: 'Прошла очередная ежегодная площадка «Связь»',
+    content: 'С 9 по 11 июля 2026 года прошла очередная ежегодная площадка «Связь» для приёмных семей. Это были три дня живого общения, поддержки, совместных занятий для детей и родителей, отдыха и бережной работы с семейными историями. Такие встречи помогают семьям почувствовать, что они не одни, найти новые силы и сохранить тёплую связь друг с другом.',
     stream: 'past',
     image: '/площадка связь.jpg',
-    date: '12 Апр 2024',
+    date: '9-11 Июл 2026',
+    publishedAt: '2026-07-09',
   },
 ];
 
 export function LetopisSection() {
   const [activeStream, setActiveStream] = useState<Stream | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [pageTurnKey, setPageTurnKey] = useState(0);
+  const [pageTurnDirection, setPageTurnDirection] = useState<'next' | 'previous'>('next');
 
   const postsByStream = useMemo(() => ({
-    upcoming: allPosts.filter((post) => post.stream === 'upcoming'),
-    past: allPosts.filter((post) => post.stream === 'past'),
+    upcoming: allPosts
+      .filter((post) => post.stream === 'upcoming')
+      .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)),
+    past: allPosts
+      .filter((post) => post.stream === 'past')
+      .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)),
   }), []);
 
   const activePosts = activeStream ? postsByStream[activeStream] : [];
@@ -71,15 +81,24 @@ export function LetopisSection() {
     const nextIndex = postId ? Math.max(0, posts.findIndex((post) => post.id === postId)) : 0;
     setActiveStream(stream);
     setActiveIndex(nextIndex);
+    setPageTurnDirection('next');
+    setPageTurnKey((key) => key + 1);
   };
 
   const closeReader = () => setActiveStream(null);
-  const showPrevious = () => setActiveIndex((index) => (
-    index === 0 ? activePosts.length - 1 : index - 1
-  ));
-  const showNext = () => setActiveIndex((index) => (
-    index === activePosts.length - 1 ? 0 : index + 1
-  ));
+  const turnToIndex = (nextIndex: number, direction: 'next' | 'previous') => {
+    setPageTurnDirection(direction);
+    setActiveIndex(nextIndex);
+    setPageTurnKey((key) => key + 1);
+  };
+  const showPrevious = () => turnToIndex(
+    activeIndex === 0 ? activePosts.length - 1 : activeIndex - 1,
+    'previous',
+  );
+  const showNext = () => turnToIndex(
+    activeIndex === activePosts.length - 1 ? 0 : activeIndex + 1,
+    'next',
+  );
 
   useEffect(() => {
     if (!selectedPost) return;
@@ -172,40 +191,46 @@ export function LetopisSection() {
               <span>Закрыть</span>
             </button>
 
-            <div className="letopis-modal-media">
-              <img src={asset(selectedPost.image)} alt={selectedPost.title} />
-            </div>
+            <div
+              key={pageTurnKey}
+              className="letopis-reader__page"
+              data-turn={pageTurnDirection}
+            >
+              <div className="letopis-modal-media">
+                <img src={asset(selectedPost.image)} alt={selectedPost.title} />
+              </div>
 
-            <div className="letopis-modal-body">
-              <div className="letopis-modal-kicker">{streamMeta[activeStream].subtitle}</div>
-              <time>{selectedPost.date}</time>
-              <h3 id="letopis-modal-title">{selectedPost.title}</h3>
-              <div className="letopis-modal-divider" />
-              <p>{selectedPost.content}</p>
+              <div className="letopis-modal-body">
+                <div className="letopis-modal-kicker">{streamMeta[activeStream].subtitle}</div>
+                <time>{selectedPost.date}</time>
+                <h3 id="letopis-modal-title">{selectedPost.title}</h3>
+                <div className="letopis-modal-divider" />
+                <p>{selectedPost.content}</p>
 
-              <div className="letopis-reader__footer">
-                <span>{String(activeIndex + 1).padStart(2, '0')} / {String(activePosts.length).padStart(2, '0')}</span>
-                {activePosts.length > 1 && (
-                  <div className="letopis-reader__controls">
-                    <button type="button" onClick={showPrevious} aria-label="Предыдущая запись">
-                      <ArrowLeft size={19} aria-hidden="true" />
-                    </button>
-                    <div className="letopis-reader__dots" aria-label="Записи раздела">
-                      {activePosts.map((post, index) => (
-                        <button
-                          key={post.id}
-                          type="button"
-                          className={index === activeIndex ? 'is-active' : ''}
-                          onClick={() => setActiveIndex(index)}
-                          aria-label={`Открыть запись ${index + 1}`}
-                        />
-                      ))}
+                <div className="letopis-reader__footer">
+                  <span>{String(activeIndex + 1).padStart(2, '0')} / {String(activePosts.length).padStart(2, '0')}</span>
+                  {activePosts.length > 1 && (
+                    <div className="letopis-reader__controls">
+                      <button type="button" onClick={showPrevious} aria-label="Предыдущая запись">
+                        <ArrowUp size={19} aria-hidden="true" />
+                      </button>
+                      <div className="letopis-reader__dots" aria-label="Записи раздела">
+                        {activePosts.map((post, index) => (
+                          <button
+                            key={post.id}
+                            type="button"
+                            className={index === activeIndex ? 'is-active' : ''}
+                            onClick={() => turnToIndex(index, index > activeIndex ? 'next' : 'previous')}
+                            aria-label={`Открыть запись ${index + 1}`}
+                          />
+                        ))}
+                      </div>
+                      <button type="button" onClick={showNext} aria-label="Следующая запись">
+                        <ArrowDown size={19} aria-hidden="true" />
+                      </button>
                     </div>
-                    <button type="button" onClick={showNext} aria-label="Следующая запись">
-                      <ArrowRight size={19} aria-hidden="true" />
-                    </button>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           </article>

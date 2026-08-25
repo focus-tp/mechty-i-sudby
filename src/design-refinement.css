@@ -622,6 +622,11 @@ nav#mainNav .nav-links a.nav-active::after {
   transition: transform 0.55s ease, filter 0.3s ease;
 }
 
+.letopis-stream-card--past .letopis-stream-card__media img {
+  object-position: center 16%;
+  transform-origin: center 16%;
+}
+
 .letopis-stream-card:hover .letopis-stream-card__media img {
   transform: scale(1.025);
   filter: saturate(0.92) contrast(0.98) brightness(1.02);
@@ -735,8 +740,9 @@ nav#mainNav .nav-links a.nav-active::after {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 2rem;
-  padding-top: 1rem;
+  align-self: end;
+  margin-top: 1.05rem;
+  padding-top: 0.85rem;
   border-top: 1px solid rgba(42, 16, 64, 0.12);
   color: var(--gold);
   font-family: "Cormorant", serif;

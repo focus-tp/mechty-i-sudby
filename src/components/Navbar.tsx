@@ -63,7 +63,11 @@ export function Navbar() {
   // Тёмный режим: Hero видим + находимся на главной
   const isDark = isHeroVisible && location.pathname === '/';
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string | string[]) => (
+    Array.isArray(path)
+      ? path.includes(location.pathname)
+      : location.pathname === path
+  );
 
   const sectionLinkProps = (section: string) => ({
     className: activeSection === section ? 'nav-active' : '',
@@ -92,6 +96,7 @@ export function Navbar() {
         <li><Link to={getHref('#letopis')} {...sectionLinkProps('letopis')} onClick={handleNavClick}>Летопись</Link></li>
         <li><Link to="/training" className={isActive('/training') ? 'nav-active' : ''} onClick={handleNavClick}>Тренинг КППТ</Link></li>
         <li><Link to="/svyaz" className={isActive('/svyaz') ? 'nav-active' : ''} onClick={handleNavClick}>Площадка «Связь»</Link></li>
+        <li><Link to="/domiki" className={isActive(['/domiki', '/cabins']) ? 'nav-active' : ''} onClick={handleNavClick}>Домики</Link></li>
         <li><Link to="/team" className={isActive('/team') ? 'nav-active' : ''} onClick={handleNavClick}>Команда</Link></li>
         <li><Link to={getHref('#contact')} {...sectionLinkProps('contact')} onClick={handleNavClick}>Контакты</Link></li>
         <li className="md:hidden mt-2"><Link to={getHref('#donate')} className="btn-primary w-full justify-center" onClick={handleNavClick}>Поддержать</Link></li>

@@ -46,9 +46,9 @@ const projects: Project[] = [
     title: 'Отдых для семей',
     desc: 'Загородные домики для восстановления сил.',
     detail: 'Возможность выдохнуть, побыть вместе и набраться сил вдали от городского ритма.',
-    link: '/cabins',
+    link: '/domiki',
     linkLabel: 'Посмотреть домики',
-    image: '/загородные домики.jpg',
+    image: '/домики/IMG_6172 — средний размер.jpeg',
   },
   {
     id: 'consult',
@@ -66,7 +66,7 @@ const projects: Project[] = [
     detail: 'Наши тренеры обучают специалистов из России, Турции, Ганы и Кении помогать детям и семьям.',
     link: '#contact',
     linkLabel: 'Стать партнёром',
-    image: '/hero/international-training.jpg',
+    image: '/hero/международное служение.jpg',
   },
 ];
 

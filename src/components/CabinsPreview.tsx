@@ -14,7 +14,7 @@ export function CabinsPreview() {
           <p className="text-gray-600 mb-8 leading-relaxed text-lg">
             Три уютных скандинавских домика со всеми удобствами — место, где можно отдохнуть, зарядиться и побыть собой в тишине на природе.
           </p>
-          <Link to="/cabins" className="btn-primary inline-flex">
+          <Link to="/domiki" className="btn-primary inline-flex">
             <span>Подробнее о домиках &rarr;</span>
           </Link>
         </Reveal>

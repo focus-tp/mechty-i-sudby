@@ -31,7 +31,7 @@ export function Footer() {
             <li><Link to="/svyaz">Площадка «Связь»</Link></li>
             <li><Link to="/training">Тренинг КППТ</Link></li>
             <li><Link to="/#projects">Группы поддержки</Link></li>
-            <li><Link to="/cabins">Домики</Link></li>
+            <li><Link to="/domiki">Домики</Link></li>
           </ul>
         </div>
         <div className="footer-col">
