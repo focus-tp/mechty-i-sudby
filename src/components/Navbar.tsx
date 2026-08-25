@@ -7,6 +7,7 @@ import { asset } from '../utils';
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const location = useLocation();
   const { isHeroVisible } = useUI();
 
@@ -21,6 +22,32 @@ export function Navbar() {
   // Закрываем меню при переходе по роутам
   useEffect(() => {
     setMenuOpen(false);
+  }, [location.pathname, location.hash]);
+
+  useEffect(() => {
+    if (location.pathname !== '/') {
+      setActiveSection('');
+      return;
+    }
+
+    const sectionIds = ['about', 'projects', 'letopis', 'contact'];
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible?.target.id) setActiveSection(visible.target.id);
+      },
+      { rootMargin: '-28% 0px -58% 0px', threshold: [0, 0.05, 0.2, 0.5] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, [location.pathname]);
 
   const handleNavClick = () => {
@@ -37,6 +64,11 @@ export function Navbar() {
   const isDark = isHeroVisible && location.pathname === '/';
 
   const isActive = (path: string) => location.pathname === path;
+
+  const sectionLinkProps = (section: string) => ({
+    className: activeSection === section ? 'nav-active' : '',
+    'aria-current': activeSection === section ? ('location' as const) : undefined,
+  });
 
   const navClass = [
     scrolled ? 'scrolled' : '',
@@ -55,13 +87,13 @@ export function Navbar() {
       </Link>
       
       <ul className={`nav-links ${menuOpen ? 'open' : ''} md:absolute md:left-1/2 md:-translate-x-1/2`}>
-        <li><Link to={getHref('#about')} onClick={handleNavClick}>О нас</Link></li>
-        <li><Link to={getHref('#letopis')} onClick={handleNavClick}>Летопись</Link></li>
-        <li><Link to={getHref('#projects')} onClick={handleNavClick}>Проекты</Link></li>
+        <li><Link to={getHref('#about')} {...sectionLinkProps('about')} onClick={handleNavClick}>О нас</Link></li>
+        <li><Link to={getHref('#projects')} {...sectionLinkProps('projects')} onClick={handleNavClick}>Проекты</Link></li>
+        <li><Link to={getHref('#letopis')} {...sectionLinkProps('letopis')} onClick={handleNavClick}>Летопись</Link></li>
         <li><Link to="/training" className={isActive('/training') ? 'nav-active' : ''} onClick={handleNavClick}>Тренинг КППТ</Link></li>
         <li><Link to="/svyaz" className={isActive('/svyaz') ? 'nav-active' : ''} onClick={handleNavClick}>Площадка «Связь»</Link></li>
         <li><Link to="/team" className={isActive('/team') ? 'nav-active' : ''} onClick={handleNavClick}>Команда</Link></li>
-        <li><Link to={getHref('#contact')} onClick={handleNavClick}>Контакты</Link></li>
+        <li><Link to={getHref('#contact')} {...sectionLinkProps('contact')} onClick={handleNavClick}>Контакты</Link></li>
         <li className="md:hidden mt-2"><Link to={getHref('#donate')} className="btn-primary w-full justify-center" onClick={handleNavClick}>Поддержать</Link></li>
       </ul>
 

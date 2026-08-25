@@ -103,8 +103,12 @@ export function ProjectsSection() {
 
         <div className="chapter-projects__list">
           {projects.map((project, index) => (
-            <Reveal key={project.id} delay={Math.min(index * 0.05, 0.25)}>
-              <article className="chapter-project">
+            <Reveal
+              key={project.id}
+              delay={Math.min(index * 0.05, 0.25)}
+              className={`chapter-project-wrap${index === 0 ? ' chapter-project-wrap--featured' : ''}`}
+            >
+              <article className={`chapter-project${index === 0 ? ' chapter-project--featured' : ''}`}>
                 <span className="chapter-project__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                 <div className="chapter-project__photo">
                   <img src={asset(project.image)} alt={project.title} loading="lazy" />
