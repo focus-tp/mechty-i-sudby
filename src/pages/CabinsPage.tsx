@@ -4,6 +4,8 @@ import {
   BedDouble,
   CookingPot,
   Flame,
+  Sun,
+  ThermometerSun,
   Trees,
   ToyBrick,
 } from 'lucide-react';
@@ -20,6 +22,8 @@ const amenities = [
   { icon: Trees, title: 'Терраса и простор', text: 'Можно завтракать на воздухе, читать или просто смотреть вдаль' },
   { icon: Flame, title: 'Вечер у огня', text: 'Отдельное место для тёплых разговоров и общего семейного вечера' },
   { icon: ToyBrick, title: 'Детям есть где играть', text: 'Свободное пространство на участке и игровая площадка рядом' },
+  { icon: ThermometerSun, title: 'Финская сауна', text: 'Можно хорошо прогреться, расслабиться и восстановить силы' },
+  { icon: Sun, title: 'Большая веранда', text: 'Просторная общая веранда с большими столами для семейных встреч' },
 ];
 
 const gallery = [

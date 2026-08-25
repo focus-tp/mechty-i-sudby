@@ -362,7 +362,7 @@
 
 .cabins-amenities {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   margin-top: 4rem;
   border-top: 1px solid rgba(42, 16, 63, 0.14);
   border-left: 1px solid rgba(42, 16, 63, 0.14);
