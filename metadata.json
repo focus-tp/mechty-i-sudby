@@ -1,0 +1,6 @@
+{
+  "name": "Мечты и судьбы",
+  "description": "Сайт волонтерского служения для приемных семей",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

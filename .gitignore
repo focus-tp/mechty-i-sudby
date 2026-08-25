@@ -1,0 +1,12 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+*.zip
+/assets/.aistudio/
+/тренинги фото/
+/L-J0UlOZAPaxFSqEs8TSTLqWrPkp2RAW0bd-3zEzkey6CZzgAZVeCN8OEM8LhJT0SafdMLeOa_NxIQELOqu5whfx.jpg
