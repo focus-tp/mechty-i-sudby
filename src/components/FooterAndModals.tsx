@@ -9,7 +9,7 @@ export function Footer() {
       <div className="footer-epilogue">
         <div>
           <span className="footer-epilogue__label">послесловие</span>
-          <p>Добрые истории продолжаются,<br />когда рядом есть люди.</p>
+          <p>Добрые истории продолжаются,<br />когда рядом есть люди</p>
         </div>
         <Link className="footer-support" to="/#donate">
           <span>Поддержать семьи</span>
