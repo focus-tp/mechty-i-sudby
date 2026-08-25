@@ -29,7 +29,7 @@ export function ContactSection() {
     const body = encodeURIComponent(
       `Здравствуйте!\n\n${form.message || 'Хочу задать вопрос.'}\n\nИмя: ${form.name}\nКонтакт для ответа: ${form.contact}\n\nОтдельное согласие на обработку указанных персональных данных предоставлено при подготовке письма на сайте.`,
     );
-    window.location.href = `mailto:O.E.U.76@mail.ru?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:mechty.sudby@mail.ru?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -61,7 +61,7 @@ export function ContactSection() {
                 </div>
                 <div className="contact-item-text">
                   <strong>Email</strong>
-                  <a href="mailto:O.E.U.76@mail.ru" style={{ color: 'inherit', textDecoration: 'none' }}>O.E.U.76@mail.ru</a>
+                  <a href="mailto:mechty.sudby@mail.ru" style={{ color: 'inherit', textDecoration: 'none' }}>mechty.sudby@mail.ru</a>
                 </div>
               </div>
               <div className="contact-item">

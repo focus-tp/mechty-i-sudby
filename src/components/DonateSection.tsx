@@ -82,7 +82,7 @@ export function DonateSection() {
     const body = encodeURIComponent(
       `Здравствуйте! Прошу направить квитанцию о пожертвовании на сумму ${Number(amount).toLocaleString('ru-RU')} ₽.\n\nИмя: ${donorName || 'не указано'}\nE-mail: ${donorEmail}\n\nОтдельное согласие на обработку указанных персональных данных предоставлено при подготовке письма на сайте.`,
     );
-    window.location.href = `mailto:O.E.U.76@mail.ru?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:mechty.sudby@mail.ru?subject=${subject}&body=${body}`;
   };
 
   const formattedAmount = amount && Number(amount) >= 0
@@ -233,7 +233,7 @@ export function DonateSection() {
                             <small>Запросите реквизиты и настройте регулярный перевод в приложении своего банка.</small>
                           </div>
                         </div>
-                        <a className="donate-requisites" href="mailto:O.E.U.76@mail.ru?subject=Ежемесячное%20пожертвование">
+                        <a className="donate-requisites" href="mailto:mechty.sudby@mail.ru?subject=Ежемесячное%20пожертвование">
                           Получить реквизиты и инструкцию <ExternalLink size={15} />
                         </a>
                       </>
@@ -246,7 +246,7 @@ export function DonateSection() {
                             <small>Запросите банковские реквизиты организации по электронной почте.</small>
                           </div>
                         </div>
-                        <a className="donate-requisites" href="mailto:O.E.U.76@mail.ru?subject=Запрос%20банковских%20реквизитов">
+                        <a className="donate-requisites" href="mailto:mechty.sudby@mail.ru?subject=Запрос%20банковских%20реквизитов">
                           Запросить банковские реквизиты <ExternalLink size={15} />
                         </a>
                       </>

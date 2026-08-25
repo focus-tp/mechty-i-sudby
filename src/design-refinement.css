@@ -823,6 +823,10 @@ footer::before {
   box-shadow: 0 14px 36px rgba(42, 16, 64, 0.075) !important;
 }
 
+.contact-form-letter {
+  position: relative;
+}
+
 /* Donation: a calm editorial spread with one clear action. */
 .donate {
   padding: 6rem 5% 5rem;
@@ -2097,13 +2101,48 @@ footer::before {
   }
 
   .about-grid {
-    gap: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .about-copy-column,
+  .about-visual-column {
+    display: contents;
+  }
+
+  .about-label-reveal {
+    order: 1;
+  }
+
+  .about-title-reveal {
+    order: 2;
+  }
+
+  .about-lead-reveal {
+    order: 3;
+  }
+
+  .about-photo-reveal {
+    order: 4;
+    width: 100%;
+    margin-top: 1.6rem;
+  }
+
+  .about-quote-reveal {
+    order: 5;
+    width: 100%;
+  }
+
+  .about-secondary-reveal {
+    order: 6;
+    margin-top: 1.65rem;
   }
 
   .about-copy-column .section-title {
-    max-width: 11ch;
+    max-width: 13ch;
     margin-bottom: 1.35rem;
-    font-size: 2.35rem;
+    font-size: 2.25rem;
     line-height: 1;
   }
 
@@ -2123,7 +2162,7 @@ footer::before {
   }
 
   .about-photo-block {
-    margin: 0 auto 1.5rem;
+    margin: 0 auto 1rem;
   }
 
   .about-photo-bg-decor {
@@ -2149,7 +2188,7 @@ footer::before {
 
   .about-founder-note--visual {
     width: 100%;
-    margin: 2rem 0 0;
+    margin: 1.1rem 0 0;
     padding: 1.15rem 1.2rem;
     transform: rotate(0.35deg);
   }
@@ -2168,6 +2207,7 @@ footer::before {
 
   .chapter-projects {
     padding: 3.75rem 1rem 4rem;
+    overflow: hidden;
   }
 
   .chapter-projects__heading {
@@ -2190,22 +2230,85 @@ footer::before {
     line-height: 1.58;
   }
 
+  .chapter-projects__list {
+    width: auto;
+    display: flex;
+    gap: 0.9rem;
+    margin-right: -1rem;
+    padding: 0 1rem 0.8rem 0;
+    border-top: 0;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .chapter-projects__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chapter-projects__list > .reveal {
+    flex: 0 0 min(82vw, 320px);
+    scroll-snap-align: start;
+  }
+
   .chapter-project {
-    grid-template-columns: 2.1rem minmax(0, 1fr);
-    gap: 0.75rem;
-    padding: 1.25rem 0 1.45rem;
+    min-height: 510px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0 0 1.15rem;
+    border: 1px solid rgba(42, 16, 64, 0.12);
+    border-radius: 6px;
+    background: var(--paper-white);
+    box-shadow: 0 14px 32px rgba(42, 16, 64, 0.08);
+    overflow: hidden;
+    position: relative;
   }
 
   .chapter-project__number {
-    font-size: 1.45rem;
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 2;
+    padding: 0.35rem 0.55rem;
+    border-radius: 3px;
+    background: rgba(255, 253, 248, 0.92);
+    font-size: 1.25rem;
+    box-shadow: 0 4px 12px rgba(42, 16, 64, 0.08);
+  }
+
+  .chapter-project__photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    padding: 0.45rem;
+    transform: none;
+  }
+
+  .chapter-project:nth-child(even) .chapter-project__photo,
+  .chapter-project:hover .chapter-project__photo {
+    transform: none;
+  }
+
+  .chapter-project__copy {
+    padding: 1.1rem 1.05rem 0;
   }
 
   .chapter-project__copy h3 {
     font-size: 1.85rem;
   }
 
+  .chapter-project__link {
+    align-self: flex-start;
+    margin: auto 1.05rem 0;
+  }
+
   .letopis-section {
     padding: 3.75rem 1rem 4rem;
+    overflow: hidden;
   }
 
   .letopis-heading {
@@ -2223,7 +2326,28 @@ footer::before {
   }
 
   .letopis-streams {
-    gap: 1rem;
+    width: auto;
+    display: flex;
+    gap: 0.9rem;
+    margin-right: -1rem;
+    padding: 0 1rem 0.8rem 0;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .letopis-streams::-webkit-scrollbar {
+    display: none;
+  }
+
+  .letopis-streams > .reveal {
+    flex: 0 0 min(86vw, 340px);
+    scroll-snap-align: start;
+  }
+
+  .letopis-stream-card {
+    height: 100%;
   }
 
   .letopis-stream-card__media {

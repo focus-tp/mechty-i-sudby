@@ -34,7 +34,7 @@ export function Footer() {
         <div className="footer-col">
           <h5>Связаться</h5>
           <div className="footer-contacts">
-            <a href="mailto:O.E.U.76@mail.ru"><Mail size={17} /><span>O.E.U.76@mail.ru</span></a>
+            <a href="mailto:mechty.sudby@mail.ru"><Mail size={17} /><span>mechty.sudby@mail.ru</span></a>
             <a href="tel:+79321275011"><Phone size={17} /><span>+7 932 127-50-11</span></a>
             <a href="https://t.me/svyaz_ekb" target="_blank" rel="noreferrer"><Send size={17} /><span>Telegram</span></a>
           </div>

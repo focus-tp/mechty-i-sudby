@@ -28,19 +28,23 @@ export function AboutSection() {
     <section className="about relative" id="about">
       <div className="about-grid">
         <div className="about-copy-column">
-          <Reveal>
+          <Reveal className="about-label-reveal">
             <div className="section-label">О служении</div>
           </Reveal>
-          <Reveal>
+          <Reveal className="about-title-reveal">
             <h2 className="section-title">
-              Команда специалистов-волонтёров<br />
-              для <em>уязвимых детей</em>
+              Команда специалистов-волонтёров для <em>уязвимых детей</em>
             </h2>
           </Reveal>
 
-          <Reveal type="left">
-            <div className="about-text">
+          <Reveal type="left" className="about-lead-reveal">
+            <div className="about-text about-text--lead">
               <p>Команда «Мечты и судьбы» помогает приёмным семьям с 2011 года. В 2026 году служение получило статус автономной некоммерческой организации. Тренеры и волонтёры проводят практические занятия для детей и обучение опекунов, учителей и социальных работников.</p>
+            </div>
+          </Reveal>
+
+          <Reveal type="left" className="about-secondary-reveal">
+            <div className="about-text about-text--secondary">
               <p>Мы стремимся создать более здоровую и благоприятную среду для исцеления детей, перенёсших психологическую травму, опыт пренебрежительного отношения и насилия.</p>
               <p>Наш подход основан на международной программе КППТ и ТОВД, которые работают в 59 странах мира.</p>
             </div>
@@ -48,7 +52,7 @@ export function AboutSection() {
         </div>
 
         <div className="about-visual-column">
-          <Reveal type="right">
+          <Reveal type="right" className="about-photo-reveal">
             <div className="about-photo-block">
               <div className="about-photo-frame">
                 <img
@@ -69,7 +73,7 @@ export function AboutSection() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.15}>
+          <Reveal delay={0.15} className="about-quote-reveal">
             <blockquote className="about-founder-note about-founder-note--visual">
               <p>«Каждый ребёнок заслуживает любящую семью.»</p>
               <cite>Евгения Ощепкова, основатель АНО</cite>
