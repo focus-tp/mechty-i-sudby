@@ -4,6 +4,7 @@ import { ButterflySVG } from "./Decorations";
 import { motion, useMotionValue, useSpring } from "motion/react";
 
 export function CustomCursor() {
+  const [isEnabled, setIsEnabled] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -16,6 +17,17 @@ export function CustomCursor() {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    const media = window.matchMedia('(min-width: 1101px) and (hover: hover) and (pointer: fine)');
+    const update = () => setIsEnabled(media.matches);
+
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    if (!isEnabled) return;
+
     const onMouseMove = (e: MouseEvent) => {
       cursorX.set(e.clientX - 16); // Смещение для центрирования бабочки (32px / 2 = 16)
       cursorY.set(e.clientY - 16);
@@ -57,11 +69,13 @@ export function CustomCursor() {
       document.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseout", handleMouseOut);
     };
-  }, [cursorX, cursorY, isVisible]);
+  }, [cursorX, cursorY, isEnabled, isVisible]);
+
+  if (!isEnabled) return null;
 
   return createPortal(
     <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-[9999] w-8 h-8 flex items-center justify-center"
+      className="custom-cursor fixed top-0 left-0 pointer-events-none z-[9999] w-8 h-8 flex items-center justify-center"
       style={{
         x: cursorXSpring,
         y: cursorYSpring,

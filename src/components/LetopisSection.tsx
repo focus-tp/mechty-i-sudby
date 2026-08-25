@@ -41,7 +41,7 @@ const allPosts: Post[] = [
     title: 'Ежегодный Рождественский банкет для приёмных родителей',
     content: 'Служение «Мечты и судьбы» в 12-й раз провело торжественный рождественский банкет для приёмных родителей, опекунов и всех, кто заботится об уязвимых детях. Это благотворительное событие подарило семьям атмосферу праздника, живую музыку, психологическую разгрузку и тёплое общение.',
     stream: 'past',
-    image: '/рождественский банкет.jpg',
+    image: '/hero/christmas-banquet.jpg',
     date: '07 Янв 2025',
   },
   {
@@ -123,7 +123,7 @@ export function LetopisSection() {
                   onClick={() => openStream(stream, latestPost.id)}
                   aria-label={`Открыть запись: ${latestPost.title}`}
                 >
-                  <img src={asset(latestPost.image)} alt={latestPost.title} loading="lazy" />
+                  <img src={asset(latestPost.image)} alt={latestPost.title} loading="eager" decoding="async" />
                 </button>
 
                 <div className="letopis-stream-card__body">
