@@ -113,7 +113,59 @@ export function SvyazPage() {
         </div>
       </section>
 
-      {/* 3. ВЕРНУТЬ ГОЛОС */}
+      {/* 3. ЛАГЕРЬ «СВЯЗЬ» 2026 */}
+      <section className="svyaz-camp" id="camp">
+        <div className="svyaz-camp__inner">
+          <Reveal>
+            <div className="svyaz-camp__heading">
+              <div>
+                <span className="svyaz-camp__eyebrow">Лето 2026</span>
+                <h2>Лагерь <em>«Связь»</em></h2>
+              </div>
+              <p>Выездная программа, где терапевтическая работа соединяется с движением, игрой, отдыхом и временем семьи вместе.</p>
+            </div>
+          </Reveal>
+
+          <div className="svyaz-camp__feature">
+            <Reveal type="left">
+              <figure className="svyaz-camp__sand-photo">
+                <img src={asset('/camp/sand-therapy.jpeg')} alt="Композиция с миниатюрами во время занятия песочной терапией" loading="lazy" />
+                <figcaption>бережный язык образов</figcaption>
+              </figure>
+            </Reveal>
+            <Reveal type="right" delay={0.12}>
+              <div className="svyaz-camp__sand-copy">
+                <span>Одно из направлений</span>
+                <h3>Песочная терапия</h3>
+                <p>На занятиях дети и родители создают истории из песка и миниатюр вместе со специалистом. Такой невербальный формат помогает бережно выражать чувства, замечать внутренние переживания и находить новые способы взаимодействия.</p>
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="svyaz-camp__gallery" aria-label="Фотографии лагеря Связь 2026">
+            <Reveal delay={0.06}>
+              <figure>
+                <img src={asset('/camp/movement.jpeg')} alt="Подвижная игра в лагере Связь" loading="lazy" />
+                <figcaption>движение</figcaption>
+              </figure>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <figure>
+                <img src={asset('/camp/family-connection.jpeg')} alt="Мама и ребёнок во время семейного занятия" loading="lazy" />
+                <figcaption>контакт</figcaption>
+              </figure>
+            </Reveal>
+            <Reveal delay={0.18}>
+              <figure>
+                <img src={asset('/camp/water-play.jpeg')} alt="Ребёнок играет с водой на свежем воздухе" loading="lazy" />
+                <figcaption>свободная игра</figcaption>
+              </figure>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. ВЕРНУТЬ ГОЛОС */}
       <section className="bg-[#b4e6e6] py-24 px-4 md:px-[5%] overflow-hidden relative w-full">
         <div className="absolute top-0 left-0 w-full h-full bg-white opacity-20" style={{ backgroundImage: 'radial-gradient(#1b4b6b 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
@@ -157,7 +209,7 @@ export function SvyazPage() {
         </div>
       </section>
 
-      {/* 4. РАБОТА СО СТРАХАМИ И ДОВЕРИЕМ */}
+      {/* 5. РАБОТА СО СТРАХАМИ И ДОВЕРИЕМ */}
       <section className="py-24 px-4 md:px-[5%] bg-gradient-to-b from-[var(--bg)] to-white w-full">
         <div className="w-full">
           <Reveal>
@@ -228,7 +280,7 @@ export function SvyazPage() {
         </div>
       </section>
 
-      {/* 5. ПОДДЕРЖКА */}
+      {/* 6. ПОДДЕРЖКА */}
       <section className="bg-[var(--purple)] text-white py-24 px-4 md:px-[5%] text-center relative overflow-hidden w-full">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="w-full max-w-6xl mx-auto relative z-10">
