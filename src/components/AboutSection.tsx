@@ -10,7 +10,7 @@ const pillars = [
   },
   {
     title: 'Личный опыт',
-    text: 'Основатель — мама 10 детей, 6 из них приёмные',
+    text: 'Руководитель — мама 10 детей, 6 из них приёмные',
     image: '/team/zenya.jpeg',
     imageAlt: 'Евгения Ощепкова',
     portrait: true,
@@ -76,7 +76,7 @@ export function AboutSection() {
           <Reveal delay={0.15} className="about-quote-reveal">
             <blockquote className="about-founder-note about-founder-note--visual">
               <p>«Каждый ребёнок заслуживает любящую семью.»</p>
-              <cite>Евгения Ощепкова, основатель АНО</cite>
+              <cite>Евгения Ощепкова, руководитель АНО</cite>
             </blockquote>
           </Reveal>
         </div>

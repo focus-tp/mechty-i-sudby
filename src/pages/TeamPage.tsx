@@ -49,7 +49,7 @@ export function TeamPage() {
                 aria-label="Подробнее о Евгении Ощепковой"
               >
                 <div className="team-front">
-                  <div className="badge">Основатель</div>
+                  <div className="badge">Руководитель</div>
                   <img
                     src={asset("/team/zenya.jpeg")}
                     alt="Евгения Ощепкова"
