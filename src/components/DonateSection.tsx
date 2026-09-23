@@ -219,40 +219,50 @@ export function DonateSection() {
               </button>
               <p className="donate-helper">
                 {isMonthly
-                  ? 'До подключения эквайринга автоматических списаний на сайте нет. Покажем способ регулярного перевода через банк.'
-                  : 'До подключения эквайринга предоставим банковские реквизиты по запросу. Деньги на сайте не списываются.'}
+                  ? 'Оплата проходит в приложении вашего банка. Автоматических списаний на сайте нет.'
+                  : 'Оплата проходит по QR-коду в приложении вашего банка. Данные карты на сайте не вводятся.'}
               </p>
 
               <AnimatePresence initial={false}>
                 {showTransfer && (
                   <motion.div className="donate-transfer" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
-                    {isMonthly ? (
-                      <>
-                        <div className="donate-transfer__top">
-                          <div>
-                            <span>Ежемесячная поддержка</span>
-                            <strong>{formattedAmount} в месяц</strong>
-                            <small>Запросите реквизиты и настройте регулярный перевод в приложении своего банка.</small>
-                          </div>
-                        </div>
-                        <a className="donate-requisites" href="mailto:mechty.sudby@mail.ru?subject=Ежемесячное%20пожертвование">
-                          Получить реквизиты и инструкцию <ExternalLink size={15} />
+                    <div className="donate-transfer__top">
+                      <div>
+                        <span>{isMonthly ? 'Ежемесячная поддержка' : 'Разовое пожертвование'}</span>
+                        <strong>{formattedAmount}{isMonthly ? ' в месяц' : ''}</strong>
+                        <small>
+                          {isMonthly
+                            ? 'Отсканируйте код, укажите выбранную сумму и настройте автоплатёж в приложении банка.'
+                            : 'Отсканируйте код в приложении банка и укажите выбранную сумму.'}
+                        </small>
+                      </div>
+                    </div>
+
+                    <div className="donate-qr">
+                      <a
+                        className="donate-qr__image"
+                        href={asset('/payment-code.jpg')}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="Открыть QR-код для пожертвования крупно"
+                      >
+                        <img src={asset('/payment-code.jpg')} alt="QR-код для пожертвования АНО «Мечты и судьбы»" />
+                      </a>
+                      <div className="donate-qr__copy">
+                        <strong>Оплата по QR-коду</strong>
+                        <p>Наведите камеру или сканер QR-кодов в приложении банка.</p>
+                        <a href={asset('/payment-code.jpg')} target="_blank" rel="noreferrer">
+                          Открыть код крупно <ExternalLink size={15} />
                         </a>
-                      </>
-                    ) : (
-                      <>
-                        <div className="donate-transfer__top">
-                          <div>
-                            <span>Разовое пожертвование</span>
-                            <strong>{formattedAmount}</strong>
-                            <small>Запросите банковские реквизиты организации по электронной почте.</small>
-                          </div>
-                        </div>
-                        <a className="donate-requisites" href="mailto:mechty.sudby@mail.ru?subject=Запрос%20банковских%20реквизитов">
-                          Запросить банковские реквизиты <ExternalLink size={15} />
-                        </a>
-                      </>
-                    )}
+                      </div>
+                    </div>
+
+                    <a
+                      className="donate-requisites"
+                      href={`mailto:mechty.sudby@mail.ru?subject=${isMonthly ? 'Ежемесячное%20пожертвование' : 'Запрос%20банковских%20реквизитов'}`}
+                    >
+                      Не получается оплатить? Написать нам <ExternalLink size={15} />
+                    </a>
                   </motion.div>
                 )}
               </AnimatePresence>

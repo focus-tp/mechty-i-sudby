@@ -6,7 +6,7 @@ import { asset } from '../utils';
 
 const heroFacts = [
   { value: '15+', label: 'лет работы команды' },
-  { value: '500+', label: 'семей получили поддержку' },
+  { value: '100+', label: 'семей получили поддержку' },
   { value: '59', label: 'стран применяют КППТ' },
 ];
 
@@ -32,21 +32,22 @@ export function Hero() {
       <div className="book-hero__paper" aria-hidden="true" />
       <div className="book-hero__inner">
         <div className="book-hero__copy">
-          <div className="book-note book-note--top">живая книга поддержки</div>
-
-          <p className="book-hero__eyebrow">АНО «Мечты и судьбы»</p>
+          <div className="book-hero__meta">
+            <div className="book-note book-note--top">живая книга поддержки</div>
+            <p className="book-hero__eyebrow">АНО «Мечты и судьбы»</p>
+          </div>
           <h1>
-            Объединяем сердца <em>детей</em> и родителей, меняя <em>судьбы</em> поколений
+            Объединяем сердца <em>детей</em> и родителей, влияя на <em>судьбы</em> поколений
           </h1>
           <p className="book-hero__lead">
-            Команда помогает приёмным семьям с 2011 года. В 2026 году служение
-            официально зарегистрировано как АНО. Сегодня это консультации, группы
-            поддержки, тренинги КППТ и тёплое сообщество рядом.
+            Бережная поддержка приёмных семей с 2011 года: консультации, группы
+            поддержки и обучение специалистов — чтобы рядом с ребёнком всегда
+            был понимающий взрослый.
           </p>
 
           <div className="book-hero__actions">
             <Link to="/#contact" className="book-hero__primary">
-              Получить помощь
+              Получить поддержку
             </Link>
             <Link to="/#donate" className="book-hero__secondary">
               Поддержать

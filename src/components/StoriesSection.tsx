@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Reveal } from './Reveal';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { asset } from '../utils';
 
 interface Story {
   quote: string;
@@ -59,75 +60,85 @@ export function StoriesSection() {
       {/* Декоративный фон */}
       <div className="stories-bg" aria-hidden="true" />
 
-      <Reveal>
-        <div className="section-label">Истории поддержки</div>
-      </Reveal>
-      <Reveal>
-        <h2 className="section-title">
-          Письма <em>от семей</em>
-        </h2>
-        <p className="stories-intro">О том, как поддержка постепенно становится доверием, близостью и новой семейной историей.</p>
-      </Reveal>
+      <div className="stories-heading">
+        <Reveal>
+          <div className="section-label">Истории поддержки</div>
+        </Reveal>
+        <Reveal>
+          <h2 className="section-title">
+            Письма <em>от семей</em>
+          </h2>
+          <p className="stories-intro">О том, как поддержка постепенно становится доверием, близостью и новой семейной историей.</p>
+        </Reveal>
+      </div>
 
       <Reveal delay={0.2}>
         <div className="stories-card stories-letter">
-          <div className="stories-page-number" aria-hidden="true">
-            письмо {String(current + 1).padStart(2, '0')}
-          </div>
-          {/* Большая кавычка */}
-          <div className="stories-quote-icon">
-            <Quote size={30} strokeWidth={1.2} />
-          </div>
+          <figure className="stories-keepsake">
+            <img src={asset('/hero/hero-smile.jpeg')} alt="Тёплая встреча семьи" loading="lazy" />
+            <figcaption>история, которую хочется сохранить</figcaption>
+          </figure>
 
-          {/* Текст цитаты */}
-          <blockquote className="stories-quote" key={current}>
-            {story.quote}
-          </blockquote>
-
-          {/* Автор */}
-          <div className="stories-author">
-            <div className="stories-author-info">
-              <strong>{story.author}</strong>
-              <span>{story.role}</span>
-              <small>{story.years}</small>
+          <div className="stories-letter__content">
+            <div className="stories-page-number" aria-hidden="true">
+              письмо {String(current + 1).padStart(2, '0')}
             </div>
-          </div>
-
-          <div className="stories-signature" aria-hidden="true">
-            с теплом, {story.author}
-          </div>
-
-          {/* Навигация */}
-          <div className="stories-nav">
-            <button
-              className="stories-page-turn stories-page-turn--previous"
-              onClick={prev}
-              aria-label="Предыдущая история"
-            >
-              <ChevronLeft size={20} />
-              <span>Предыдущее письмо</span>
-            </button>
-
-            {/* Точки */}
-            <div className="stories-dots">
-              {stories.map((_, i) => (
-                <button
-                  key={i}
-                  className={`stories-dot ${i === current ? 'active' : ''}`}
-                  onClick={() => setCurrent(i)}
-                  aria-label={`История ${i + 1}`}
-                />
-              ))}
+            <div className="stories-monogram" aria-hidden="true">{story.initial}</div>
+            {/* Большая кавычка */}
+            <div className="stories-quote-icon">
+              <Quote size={30} strokeWidth={1.2} />
             </div>
 
-            <button
-              className="stories-page-turn stories-page-turn--next"
-              onClick={next}
-              aria-label="Следующая история"
-            >
-              <span>Следующее письмо</span>
-              <ChevronRight size={20} />
-            </button>
+            {/* Текст цитаты */}
+            <blockquote className="stories-quote" key={current}>
+              {story.quote}
+            </blockquote>
+
+            {/* Автор */}
+            <div className="stories-author">
+              <div className="stories-author-info">
+                <strong>{story.author}</strong>
+                <span>{story.role}</span>
+                <small>{story.years}</small>
+              </div>
+            </div>
+
+            <div className="stories-signature" aria-hidden="true">
+              с теплом, {story.author}
+            </div>
+
+            {/* Навигация */}
+            <div className="stories-nav">
+              <button
+                className="stories-page-turn stories-page-turn--previous"
+                onClick={prev}
+                aria-label="Предыдущая история"
+              >
+                <ChevronLeft size={20} />
+                <span>Предыдущее письмо</span>
+              </button>
+
+              {/* Точки */}
+              <div className="stories-dots">
+                {stories.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`stories-dot ${i === current ? 'active' : ''}`}
+                    onClick={() => setCurrent(i)}
+                    aria-label={`История ${i + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                className="stories-page-turn stories-page-turn--next"
+                onClick={next}
+                aria-label="Следующая история"
+              >
+                <span>Следующее письмо</span>
+                <ChevronRight size={20} />
+              </button>
+            </div>
           </div>
         </div>
       </Reveal>

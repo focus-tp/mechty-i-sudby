@@ -92,12 +92,10 @@ export function Navbar() {
       
       <ul className={`nav-links ${menuOpen ? 'open' : ''} md:absolute md:left-1/2 md:-translate-x-1/2`}>
         <li><Link to={getHref('#about')} {...sectionLinkProps('about')} onClick={handleNavClick}>О нас</Link></li>
-        <li><Link to={getHref('#projects')} {...sectionLinkProps('projects')} onClick={handleNavClick}>Проекты</Link></li>
         <li><Link to={getHref('#letopis')} {...sectionLinkProps('letopis')} onClick={handleNavClick}>Летопись</Link></li>
         <li><Link to="/training" className={isActive('/training') ? 'nav-active' : ''} onClick={handleNavClick}>Тренинг КППТ</Link></li>
         <li><Link to="/svyaz" className={isActive('/svyaz') ? 'nav-active' : ''} onClick={handleNavClick}>Площадка «Связь»</Link></li>
         <li><Link to="/domiki" className={isActive(['/domiki', '/cabins']) ? 'nav-active' : ''} onClick={handleNavClick}>Домики</Link></li>
-        <li><Link to="/team" className={isActive('/team') ? 'nav-active' : ''} onClick={handleNavClick}>Команда</Link></li>
         <li><Link to={getHref('#contact')} {...sectionLinkProps('contact')} onClick={handleNavClick}>Контакты</Link></li>
         <li className="md:hidden mt-2"><Link to={getHref('#donate')} className="btn-primary w-full justify-center" onClick={handleNavClick}>Поддержать</Link></li>
       </ul>

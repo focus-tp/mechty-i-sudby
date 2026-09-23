@@ -4,7 +4,7 @@ import { Reveal } from './Reveal';
 
 const facts = [
   { icon: HeartHandshake, num: '15+', label: 'лет рядом с семьями', color: '#c9547a' },
-  { icon: Users,          num: '500+', label: 'семей прошли через помощь', color: '#9b6bc0' },
+  { icon: Users,          num: '100+', label: 'семей прошли через помощь', color: '#9b6bc0' },
   { icon: Globe,          num: '59',   label: 'стран применяют КППТ', color: '#d89f5b' },
   { icon: GraduationCap,  num: '3',    label: 'города присутствия', color: '#6b3fa0' },
 ];

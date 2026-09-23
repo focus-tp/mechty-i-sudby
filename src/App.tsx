@@ -4,7 +4,7 @@
  */
 
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect, lazy, Suspense, useState } from 'react';
 import Lenis from 'lenis';
 import { UIProvider } from './context/UIContext';
 import { Navbar } from './components/Navbar';
@@ -18,6 +18,7 @@ import { useDocumentTitle } from './hooks/useDocumentTitle';
 
 import { AboutSection } from './components/AboutSection';
 import { ContactSection } from './components/ContactSection';
+import { ImpactSection } from './components/ImpactSection';
 import { StoriesSection } from './components/StoriesSection';
 import { LegalPage } from './pages/LegalPage';
 
@@ -82,16 +83,58 @@ function PageLoader() {
 function HomePage() {
   useDocumentTitle(); // устанавливает title для главной страницы
   return (
-    <>
+    <div className="warm-editorial-home">
       <Hero />
       <AboutSection />
       <ProjectsSection />
       <LetopisSection />
       <StoriesSection />
+      <ImpactSection />
       <DonateSection />
       <ContactSection />
-    </>
+    </div>
   );
+}
+
+function ChapterRail() {
+  const location = useLocation();
+  const [activeSection, setActiveSection] = useState('about');
+
+  useEffect(() => {
+    if (location.pathname !== '/') return;
+    const ids = ['about', 'projects', 'letopis', 'stories', 'donate', 'contact'];
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible?.target.id) setActiveSection(visible.target.id);
+    }, { rootMargin: '-38% 0px -50% 0px', threshold: [0, 0.1, 0.35] });
+    ids.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+    return () => observer.disconnect();
+  }, [location.pathname]);
+
+  if (location.pathname !== '/') return null;
+  const links = [
+    ['about', 'О служении'], ['projects', 'Помощь семьям'], ['letopis', 'Летопись'],
+    ['stories', 'Истории'], ['donate', 'Поддержать'], ['contact', 'Контакты'],
+  ];
+  return (
+    <nav className="chapter-rail" aria-label="Разделы страницы">
+      {links.map(([id, label], index) => (
+        <a key={id} href={`#${id}`} className={activeSection === id ? 'is-active' : ''} aria-current={activeSection === id ? 'location' : undefined}>
+          {String(index + 1).padStart(2, '0')} <span>{label}</span>
+        </a>
+      ))}
+    </nav>
+  );
+}
+
+function MobileHelpCta() {
+  const location = useLocation();
+  if (location.pathname !== '/') return null;
+  return <a className="mobile-help-cta" href="#contact">Получить поддержку</a>;
 }
 
 export default function App() {
@@ -102,6 +145,8 @@ export default function App() {
       <CustomCursor />
       <ScrollToHash />
       <Navbar />
+      <ChapterRail />
+      <MobileHelpCta />
       <main id="main-content" className="relative">
         <Suspense fallback={<PageLoader />}>
           <Routes>

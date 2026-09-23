@@ -100,7 +100,7 @@ export function AboutSection() {
 
       <Reveal delay={0.22}>
         <div className="about-directions-action">
-          <a href="#projects" className="btn-primary">
+          <a href="#projects" className="editorial-link">
             <span>Наши направления →</span>
           </a>
         </div>

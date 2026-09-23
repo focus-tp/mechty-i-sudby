@@ -34,36 +34,29 @@ export function ContactSection() {
 
   return (
     <section className="contact" id="contact">
-      <Reveal>
-        <div className="section-label">Связаться с нами</div>
-      </Reveal>
-      <Reveal>
-        <h2 className="section-title">Мы <em>рядом</em></h2>
-      </Reveal>
+      <div className="contact-heading">
+        <Reveal>
+          <div className="section-label">Связаться с нами</div>
+        </Reveal>
+        <Reveal>
+          <h2 className="section-title">Мы <em>рядом</em></h2>
+        </Reveal>
+      </div>
       
       <div className="contact-grid">
         <Reveal type="left">
           <div className="contact-info">
-            <p>Если у вас есть вопросы о тренингах, площадке «Связь», домиках или вы хотите стать волонтёром — напишите нам. Ответим в течение рабочего дня.</p>
+            <p>Если у вас есть вопросы о тренингах, площадке «Связь», домиках или вы хотите стать волонтёром — напишите нам удобным способом.</p>
+            <div className="contact-quick-actions" aria-label="Быстрые способы связи">
+              <a className="contact-quick-action" href="tel:+79321275011">Позвонить</a>
+              <a className="contact-quick-action" href="https://t.me/svyaz_ekb" target="_blank" rel="noreferrer">Telegram</a>
+              <a className="contact-quick-action" href="mailto:mechty.sudby@mail.ru">Написать на почту</a>
+            </div>
+            <div className="contact-reassurance">
+              <img src={asset('/team/zenya.jpeg')} alt="Евгения Ощепкова, руководитель АНО" loading="lazy" />
+              <span><strong>Ответит живая команда</strong>Обычно мы отвечаем в течение рабочего дня.</span>
+            </div>
             <div className="contact-items">
-              <div className="contact-item">
-                <div className="contact-item-icon">
-                  <img src={asset('/icons/phone.png')} alt="" className="w-full h-full object-contain" />
-                </div>
-                <div className="contact-item-text">
-                  <strong>WhatsApp / Телефон</strong>
-                  <a href="tel:+79321275011" style={{ color: 'inherit', textDecoration: 'none' }}>+7 932-127-50-11</a>
-                </div>
-              </div>
-              <div className="contact-item">
-                <div className="contact-item-icon">
-                  <img src={asset('/icons/email.png')} alt="" className="w-full h-full object-contain" />
-                </div>
-                <div className="contact-item-text">
-                  <strong>Email</strong>
-                  <a href="mailto:mechty.sudby@mail.ru" style={{ color: 'inherit', textDecoration: 'none' }}>mechty.sudby@mail.ru</a>
-                </div>
-              </div>
               <div className="contact-item">
                 <div className="contact-item-icon">
                   <img src={asset('/icons/location.png')} alt="" className="w-full h-full object-contain" />
@@ -73,16 +66,11 @@ export function ContactSection() {
                   <span>624090, Свердловская обл., г. Верхняя Пышма, ул. 40 лет Октября, д. 30</span>
                 </div>
               </div>
-              <div className="contact-item">
-                <div className="contact-item-icon">
-                  <img src={asset('/icons/consult.png')} alt="" className="w-full h-full object-contain" />
-                </div>
-                <div className="contact-item-text">
-                  <strong>Telegram</strong>
-                  <a href="https://t.me/svyaz_ekb" target="_blank" rel="noreferrer">Канал «Связь»</a>
-                </div>
-              </div>
             </div>
+            <figure className="contact-closing-photo">
+              <img src={asset('/hero/hero-smile.jpeg')} alt="Тёплая встреча сообщества «Мечты и судьбы»" loading="lazy" />
+              <figcaption>рядом с семьями с 2011 года</figcaption>
+            </figure>
           </div>
         </Reveal>
 
@@ -94,8 +82,8 @@ export function ContactSection() {
               <input id="contact-name" type="text" autoComplete="name" required placeholder="Как вас зовут?" value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} />
             </div>
             <div className="form-field">
-              <label htmlFor="contact-channel">Телефон или e-mail *</label>
-              <input id="contact-channel" type="text" autoComplete="email" required placeholder="+7 или email" value={form.contact} onChange={(e) => setForm({...form, contact: e.target.value})} />
+              <label htmlFor="contact-channel">Как с вами связаться? *</label>
+              <input id="contact-channel" type="text" autoComplete="email" required placeholder="Телефон или e-mail" value={form.contact} onChange={(e) => setForm({...form, contact: e.target.value})} />
             </div>
             <div className="form-field">
               <label htmlFor="contact-topic">Тема обращения</label>
