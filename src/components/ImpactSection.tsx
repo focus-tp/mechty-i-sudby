@@ -1,10 +1,9 @@
 import { Reveal } from './Reveal';
-import { asset } from '../utils';
 
 const examples = [
-  { image: '/placeholders/support-group.png', label: 'Семьи', value: '100+', text: 'семей получили поддержку команды' },
-  { image: '/placeholders/family-workshop.png', label: 'Занятия', value: '28', text: 'занятий провела команда' },
-  { image: '/placeholders/training-team.png', label: 'Обучение', value: '40', text: 'человек прошли обучение' },
+  { label: 'Семьи', value: '100+', text: 'семей получили поддержку команды' },
+  { label: 'Занятия', value: '28', text: 'занятий провела команда' },
+  { label: 'Обучение', value: '40', text: 'человек прошли обучение' },
 ];
 
 export function ImpactSection() {
@@ -19,7 +18,6 @@ export function ImpactSection() {
         {examples.map((item, index) => (
           <Reveal key={item.label} delay={index * 0.08} className="impact-card-wrap">
             <article className="impact-card">
-              <img src={asset(item.image)} alt="" loading="lazy" />
               <div className="impact-card__body">
                 <span>{item.label}</span>
                 <strong>{item.value}</strong>

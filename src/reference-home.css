@@ -613,6 +613,28 @@ body:has(.warm-editorial-home) nav#mainNav .btn-primary,
 }
 
 /* Family diary */
+.warm-editorial-home .stories-keepsake.stories-keepsake--illustration {
+  background: #faf6f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.warm-editorial-home .stories-keepsake.stories-keepsake--illustration img {
+  height: auto;
+  max-height: 440px;
+  object-fit: contain;
+}
+
+.warm-editorial-home .stories-keepsake.stories-keepsake--illustration figcaption {
+  position: static;
+  align-self: center;
+  text-align: center;
+  background: transparent;
+  color: #735f66;
+}
+
 .warm-editorial-home .stories-section {
   background: #fff;
 }
@@ -2596,6 +2618,143 @@ body:has(.warm-editorial-home) .site-footer { background: #f5eafc; }
   }
 }
 
+/* ── Editorial polish: a single reading grid and calmer hierarchy ── */
+.warm-editorial-home {
+  --page-gutter: clamp(1.25rem, 3.2vw, 4.5rem);
+  --content-width: 1440px;
+}
+
+.warm-editorial-home :is(.book-hero__inner, .about-grid, .chapter-projects__inner,
+  .letopis-heading, .stories-card, .impact__inner, .donate-inner, .contact-grid) {
+  max-width: var(--content-width);
+}
+
+.warm-editorial-home :is(.about, .chapter-projects, .letopis-section, .stories-section,
+  .impact, .donate, .contact) {
+  padding-inline: var(--page-gutter);
+}
+
+/* Keep every chapter title on the same left edge; the asymmetry lives in the cards. */
+.warm-editorial-home :is(.about-copy-column, .chapter-projects__heading, .letopis-heading,
+  .stories-heading, .impact__heading, .donate-heading, .contact-heading) {
+  text-align: left;
+}
+
+.warm-editorial-home :is(.section-label, .chapter-projects__eyebrow, .book-hero__eyebrow) {
+  margin-left: 0;
+}
+
+@media (min-width: 901px) {
+  .warm-editorial-home .book-hero {
+    padding-top: 7rem;
+    padding-bottom: 4.25rem;
+  }
+
+  .warm-editorial-home .book-hero__inner {
+    grid-template-columns: minmax(0, 1.06fr) minmax(420px, .94fr);
+    gap: clamp(1.75rem, 3vw, 3.5rem);
+  }
+
+  .warm-editorial-home .book-hero__copy {
+    padding-right: clamp(0rem, 1vw, 1rem);
+  }
+
+  .warm-editorial-home .book-hero h1 {
+    max-width: 18ch;
+    font-size: clamp(3.35rem, 4.15vw, 5rem);
+    line-height: .98;
+  }
+
+  .warm-editorial-home .book-hero__lead {
+    max-width: 40rem;
+    font-size: 1.2rem;
+  }
+
+  .warm-editorial-home .book-hero__visual {
+    width: min(100%, 540px);
+    justify-self: end;
+  }
+
+  .warm-editorial-home .book-photo--main {
+    transform: rotate(1deg);
+  }
+
+  .warm-editorial-home .about-grid {
+    grid-template-columns: minmax(0, 1.03fr) minmax(420px, .97fr);
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+}
+
+/* Make the visual language feel intentional: quiet surfaces, one accent per card. */
+.warm-editorial-home .chapter-project,
+.warm-editorial-home .stories-card,
+.warm-editorial-home .impact-card,
+.warm-editorial-home .contact-form-letter {
+  border-color: rgba(74, 43, 110, .13);
+  box-shadow: 0 16px 42px -24px rgba(74, 43, 110, .32);
+}
+
+.warm-editorial-home :is(.chapter-project, .impact-card, .stories-card, .contact-form-letter):focus-within {
+  outline: 3px solid rgba(232, 122, 93, .25);
+  outline-offset: 3px;
+}
+
+.warm-editorial-home .chapter-project__link,
+.warm-editorial-home .stories-page-turn,
+.warm-editorial-home .contact-quick-action {
+  transition: transform .2s ease, color .2s ease, background .2s ease;
+}
+
+.warm-editorial-home :is(.chapter-project__link, .stories-page-turn, .contact-quick-action):hover {
+  transform: translateY(-2px);
+}
+
+.warm-editorial-home .stories-keepsake.stories-keepsake--illustration img {
+  width: min(82%, 420px);
+  max-height: 430px;
+  object-fit: contain;
+  filter: none;
+}
+
+@media (max-width: 900px) {
+  .warm-editorial-home .book-hero {
+    padding-top: 6.75rem;
+  }
+
+  .warm-editorial-home .book-hero__inner {
+    gap: 2rem;
+  }
+
+  .warm-editorial-home .book-hero h1 {
+    max-width: 19ch;
+  }
+}
+
+@media (max-width: 680px) {
+  .warm-editorial-home {
+    --page-gutter: 1rem;
+  }
+
+  .warm-editorial-home :is(.about, .chapter-projects, .letopis-section, .stories-section,
+    .impact, .donate, .contact) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .warm-editorial-home .book-hero h1 {
+    max-width: 100%;
+    font-size: clamp(2.8rem, 12vw, 4rem);
+  }
+
+  .warm-editorial-home .book-hero__lead {
+    font-size: 1.08rem;
+  }
+
+  .warm-editorial-home .stories-keepsake.stories-keepsake--illustration img {
+    width: min(88%, 340px);
+  }
+}
+
 /* Never let a grid item force a wider canvas or overlap adjacent copy. */
 .warm-editorial-home :is(.book-hero__copy, .about-copy-column, .about-visual-column,
   .chapter-projects__heading, .chapter-project__copy, .stories-heading,
@@ -2680,6 +2839,55 @@ body:has(.warm-editorial-home) .site-footer { background: #f5eafc; }
   }
 }
 
+/* Requested chapter layout: the last programme belongs to the three-card row. */
+@media (min-width: 901px) {
+  .warm-editorial-home .chapter-project-wrap:nth-child(3) { grid-column: span 8; }
+  .warm-editorial-home .chapter-project-wrap:nth-child(4),
+  .warm-editorial-home .chapter-project-wrap:nth-child(5),
+  .warm-editorial-home .chapter-project-wrap:nth-child(6) { grid-column: span 4; }
+}
+
+/* All chapter intros share one reading edge, including the impact section. */
+.warm-editorial-home .impact__heading {
+  max-width: 100%;
+  margin-inline: 0;
+  text-align: left;
+}
+
+.warm-editorial-home .impact__heading .section-label,
+.warm-editorial-home .impact__heading > p {
+  margin-inline: 0;
+}
+
+.warm-editorial-home .impact__heading > p { max-width: 58ch; }
+
+/* The contact image is an editorial symbol, not a generic stock photo. */
+.warm-editorial-home .contact-closing-photo {
+  display: grid;
+  min-height: 220px;
+  place-items: center;
+}
+
+.warm-editorial-home .contact-closing-photo img {
+  width: min(78%, 360px);
+  height: 220px;
+  padding: .65rem;
+  object-fit: contain;
+  filter: none;
+}
+
+@media (max-width: 900px) {
+  .warm-editorial-home .chapter-project-wrap:nth-child(3),
+  .warm-editorial-home .chapter-project-wrap:nth-child(4),
+  .warm-editorial-home .chapter-project-wrap:nth-child(5),
+  .warm-editorial-home .chapter-project-wrap:nth-child(6) { grid-column: span 6; }
+}
+
+@media (max-width: 680px) {
+  .warm-editorial-home .chapter-project-wrap:nth-child(n) { grid-column: 1; }
+  .warm-editorial-home .impact__heading { text-align: left; }
+}
+
 @media (max-width: 680px) {
   .warm-editorial-home .book-hero__meta {
     margin-bottom: 1rem;
@@ -2742,4 +2950,299 @@ body:has(.warm-editorial-home) :is(.footer-epilogue, .footer-grid, .footer-colop
     justify-self: center;
     transform: none;
   }
+}
+
+/* Final cascade: keep the hero proportions consistent with the rest of the grid. */
+@media (min-width: 901px) {
+  .warm-editorial-home .book-hero__inner {
+    grid-template-columns: minmax(0, 1.06fr) minmax(420px, .94fr);
+    gap: clamp(1.75rem, 3vw, 3.5rem);
+  }
+
+  .warm-editorial-home .book-hero h1 {
+    max-width: 18ch;
+    font-size: clamp(3.35rem, 4.15vw, 5rem);
+    line-height: .98;
+  }
+
+  .warm-editorial-home .book-hero__lead {
+    max-width: 40rem;
+  }
+
+  .warm-editorial-home .book-hero__visual {
+    width: min(100%, 540px);
+    justify-self: end;
+  }
+}
+
+/* Programmes: a clean 3 × 2 editorial grid, with hierarchy in content rather than size tricks. */
+.warm-editorial-home .chapter-projects__heading {
+  display: block;
+  width: min(100%, 780px);
+  margin: 0 0 2.4rem;
+}
+
+.warm-editorial-home .chapter-projects__heading > *:nth-child(-n + 2) { display: block; }
+
+.warm-editorial-home .chapter-projects__heading h2 {
+  max-width: 14ch;
+  margin-top: .8rem;
+  font-size: clamp(3.1rem, 4.15vw, 4.7rem);
+  line-height: .98;
+}
+
+.warm-editorial-home .chapter-projects__heading > p {
+  display: block;
+  max-width: 52ch;
+  margin: 1rem 0 0;
+  padding: 0;
+  border: 0;
+  color: #5e5364;
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+.warm-editorial-home .chapter-projects__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.warm-editorial-home .chapter-project-wrap:nth-child(n) {
+  grid-column: span 1;
+  grid-row: auto;
+}
+
+.warm-editorial-home .chapter-project-wrap:nth-child(n) .chapter-project {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+  grid-template-columns: none;
+  grid-template-rows: none;
+}
+
+.warm-editorial-home .chapter-project-wrap:nth-child(n) .chapter-project__photo {
+  width: 100%;
+  height: auto;
+  grid-row: auto;
+}
+
+.warm-editorial-home .chapter-project-wrap:nth-child(n) .chapter-project__photo img {
+  display: block;
+  width: 100%;
+  height: clamp(190px, 15vw, 230px);
+  min-height: 0;
+  object-fit: cover;
+}
+
+.warm-editorial-home .chapter-project-wrap:nth-child(n) .chapter-project__copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.35rem 1.35rem 0;
+}
+
+.warm-editorial-home .chapter-project-wrap:nth-child(n) .chapter-project__copy h3 {
+  font-size: clamp(1.55rem, 1.75vw, 1.9rem);
+  line-height: 1.05;
+}
+
+.warm-editorial-home .chapter-project-wrap:nth-child(n) .chapter-project__detail {
+  -webkit-line-clamp: 3;
+}
+
+.warm-editorial-home .chapter-project-wrap:nth-child(n) .chapter-project__link {
+  width: fit-content;
+  margin: 1.1rem 1.35rem 1.35rem;
+  white-space: normal;
+}
+
+/* A horizontal illustration keeps the contact card calm and deliberately framed. */
+.warm-editorial-home .contact-closing-photo {
+  min-height: 0;
+  aspect-ratio: 16 / 7;
+}
+
+.warm-editorial-home .contact-closing-photo img {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .warm-editorial-home .chapter-projects__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .warm-editorial-home .chapter-project-wrap:nth-child(n) { grid-column: span 1; }
+}
+
+@media (max-width: 680px) {
+  .warm-editorial-home .chapter-projects__heading h2 { max-width: 12ch; }
+  .warm-editorial-home .chapter-projects__list { grid-template-columns: 1fr; }
+  .warm-editorial-home .chapter-project-wrap:nth-child(n) { grid-column: 1; }
+  .warm-editorial-home .chapter-project-wrap:nth-child(n) .chapter-project__photo img { height: 215px; }
+}
+
+/* Final visual pass: clearer hierarchy and fewer competing ornaments. */
+@media (min-width: 901px) {
+  .warm-editorial-home .book-hero__inner {
+    grid-template-columns: minmax(0, 1.12fr) minmax(420px, .88fr);
+    gap: clamp(1.5rem, 2.5vw, 3rem);
+  }
+
+  .warm-editorial-home .book-hero h1 {
+    max-width: 20ch;
+    font-size: clamp(3.15rem, 3.6vw, 4.35rem);
+    line-height: 1;
+  }
+
+  .warm-editorial-home .donate-editorial {
+    grid-template-columns: minmax(370px, .88fr) minmax(480px, 1.12fr);
+  }
+}
+
+.warm-editorial-home .donate-story .section-title {
+  max-width: 9ch;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.warm-editorial-home .about-founder-note--visual {
+  margin-top: 1.35rem;
+  padding-top: 1.55rem;
+}
+
+.warm-editorial-home .about-founder-note--visual::before {
+  display: none;
+}
+
+.warm-editorial-home .about-founder-note--visual p {
+  position: relative;
+  z-index: 1;
+}
+
+.warm-editorial-home .about-photo-caption,
+.warm-editorial-home .book-photo-stamp,
+.warm-editorial-home .donate-note {
+  display: none;
+}
+
+.warm-editorial-home .chapter-projects__heading > p,
+.warm-editorial-home .impact__heading > p,
+.warm-editorial-home .stories-intro {
+  max-width: 56ch;
+  color: #62586a;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.warm-editorial-home .impact {
+  background: #fffdf9;
+}
+
+.warm-editorial-home .impact__heading {
+  max-width: 740px;
+  margin-bottom: 1.8rem;
+}
+
+.warm-editorial-home .impact__grid {
+  max-width: 100%;
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid rgba(74, 43, 110, .12);
+  border-radius: 1.45rem;
+  background: rgba(74, 43, 110, .12);
+  box-shadow: none;
+}
+
+.warm-editorial-home .impact-card {
+  min-height: 230px;
+  border: 0;
+  border-radius: 0;
+  background: #fffdf9;
+  box-shadow: none;
+}
+
+.warm-editorial-home .impact-card:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.warm-editorial-home .impact-card__body {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 2.1rem;
+}
+
+.warm-editorial-home .impact-card__body strong {
+  margin: .25rem 0 .5rem;
+  font-size: clamp(3.6rem, 5.2vw, 5.2rem);
+}
+
+.warm-editorial-home .impact-card__body p {
+  max-width: 21ch;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.warm-editorial-home .impact-card__body small {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.warm-editorial-home .contact-grid {
+  gap: 0;
+  border: 1px solid rgba(74, 43, 110, .12);
+  background: #f3ebf8;
+  box-shadow: 0 18px 42px -28px rgba(74, 43, 110, .3);
+}
+
+.warm-editorial-home .contact-grid > div:first-child {
+  color: var(--text);
+  background: #eee3f6;
+}
+
+.warm-editorial-home .contact-info > p,
+.warm-editorial-home .contact-item-text strong,
+.warm-editorial-home .contact-item-text span,
+.warm-editorial-home .contact-reassurance strong,
+.warm-editorial-home .contact-reassurance span {
+  color: var(--text);
+}
+
+.warm-editorial-home .contact-quick-action {
+  color: var(--amethyst);
+  border-color: rgba(74, 43, 110, .16);
+  background: rgba(255, 255, 255, .68);
+}
+
+.warm-editorial-home .contact-quick-action:first-child {
+  color: #fff;
+  background: var(--amethyst);
+}
+
+.warm-editorial-home .contact-reassurance,
+.warm-editorial-home .contact-item,
+.warm-editorial-home .contact-closing-photo {
+  border-color: rgba(74, 43, 110, .11);
+  background: rgba(255, 255, 255, .58);
+}
+
+@media (max-width: 1500px) {
+  .chapter-rail { display: none; }
+}
+
+@media (max-width: 680px) {
+  .warm-editorial-home .impact__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .warm-editorial-home .impact-card { min-height: 190px; }
+  .warm-editorial-home .impact-card__body { padding: 1.5rem; }
+  .warm-editorial-home .donate-story .section-title { max-width: 100%; }
 }

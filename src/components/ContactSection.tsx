@@ -68,7 +68,7 @@ export function ContactSection() {
               </div>
             </div>
             <figure className="contact-closing-photo">
-              <img src={asset('/hero/hero-smile.jpeg')} alt="Тёплая встреча сообщества «Мечты и судьбы»" loading="lazy" />
+              <img src={asset('/contact-illustration.png')} alt="Открытое письмо и символы тёплой связи" loading="lazy" />
               <figcaption>рядом с семьями с 2011 года</figcaption>
             </figure>
           </div>

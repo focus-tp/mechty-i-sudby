@@ -74,8 +74,8 @@ export function StoriesSection() {
 
       <Reveal delay={0.2}>
         <div className="stories-card stories-letter">
-          <figure className="stories-keepsake">
-            <img src={asset('/hero/hero-smile.jpeg')} alt="Тёплая встреча семьи" loading="lazy" />
+          <figure className="stories-keepsake stories-keepsake--illustration">
+            <img src={asset('/letters-illustration.png')} alt="Бумажный конверт с письмами, сердцем и бабочкой" loading="lazy" />
             <figcaption>история, которую хочется сохранить</figcaption>
           </figure>
 
