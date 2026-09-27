@@ -23,7 +23,8 @@ export function SvyazPage() {
         <div className="svyaz-shell svyaz-hero__grid">
           <div className="svyaz-hero__copy">
             <Reveal>
-              <span className="svyaz-kicker">Семейная терапевтическая площадка</span>
+              <span className="svyaz-kicker">Семейная программа поддержки</span>
+              <span className="project-chapter">Программа 02</span>
               <h1>Площадка <em>Связь</em></h1>
               <p className="svyaz-hero__subtitle">На связи от сердца к сердцу</p>
             </Reveal>
@@ -123,7 +124,7 @@ export function SvyazPage() {
                 <span className="svyaz-camp__eyebrow">Лето 2026</span>
                 <h2>Лагерь <em>«Связь»</em></h2>
               </div>
-              <p>Выездная программа, где терапевтическая работа соединяется с движением, игрой, отдыхом и временем семьи вместе.</p>
+              <p>Выездная программа, где занятия, движение, игра, отдых и время семьи соединяются в одном бережном пространстве.</p>
             </div>
           </Reveal>
 

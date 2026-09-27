@@ -57,6 +57,7 @@ export function CabinsPage() {
           <div className="cabins-hero__copy">
             <Reveal>
               <span className="cabins-kicker">Отдых для приёмных семей</span>
+              <span className="project-chapter">Программа 03</span>
               <h1>Место, где можно просто <em>быть вместе</em></h1>
             </Reveal>
             <Reveal delay={0.1}>
@@ -74,7 +75,7 @@ export function CabinsPage() {
           <Reveal type="right" delay={0.16}>
             <div className="cabins-hero__visual">
               <figure className="cabins-hero__main-photo">
-                <img src={asset('/cabins/hero-exterior.jpeg')} alt="Загородные домики и просторная зелёная территория" />
+                <img src={asset('/cabins/domiki-evening-exterior.jpeg')} alt="Уютный загородный домик с освещённой террасой вечером" />
                 <figcaption>тишина, воздух и время друг для друга</figcaption>
               </figure>
               <figure className="cabins-hero__family-photo">
@@ -104,7 +105,11 @@ export function CabinsPage() {
         <div className="cabins-shell cabins-story__grid">
           <Reveal type="left">
             <figure className="cabins-story__photo">
-              <img src={asset('/cabins/evening.jpeg')} alt="Домик на фоне спокойного вечернего неба" loading="lazy" />
+              <img
+                src={asset('/домики/IMG_6170 — средний размер.jpeg')}
+                alt="Уютный интерьер домика с цветами и семейным посланием на деревянной стене"
+                loading="lazy"
+              />
               <figcaption>когда день становится тише</figcaption>
             </figure>
           </Reveal>
@@ -126,6 +131,32 @@ export function CabinsPage() {
         </div>
       </section>
 
+      <section className="cabins-practical" aria-labelledby="cabins-practical-title">
+        <div className="cabins-shell">
+          <Reveal>
+            <header className="cabins-practical__heading">
+              <span className="cabins-kicker">Перед поездкой</span>
+              <h2 id="cabins-practical-title">Всё, что важно <em>знать заранее</em></h2>
+              <p>Домики находятся в черте Екатеринбурга — можно выбраться из города, не тратя много времени на дорогу.</p>
+            </header>
+          </Reveal>
+
+          <div className="cabins-practical__grid">
+            <article><span>Место</span><strong>Горный Щит, Екатеринбург</strong><p>ДНП «Аэродром», ул. Туманная, 3.</p></article>
+            <article><span>Вместимость</span><strong>До 5 гостей</strong><p>Подходит для спокойного семейного отдыха.</p></article>
+            <article><span>Условия</span><strong>Бесплатно для приёмных семей</strong><p>Перед поездкой команда уточнит детали размещения.</p></article>
+            <article><span>Бронирование</span><strong>Через команду</strong><p>Напишите нам, чтобы узнать о свободных датах и выбрать домик.</p></article>
+          </div>
+
+          <Reveal delay={0.12}>
+            <div className="cabins-practical__action">
+              {bookingLink('cabins-primary-action')}
+              <span>Онлайн-запись появится здесь позже.</span>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="cabins-inside" id="cabins-inside">
         <div className="cabins-shell">
           <Reveal>
@@ -137,18 +168,16 @@ export function CabinsPage() {
           </Reveal>
 
           <div className="cabins-amenities">
-            {amenities.map((item, index) => {
+            {amenities.map((item) => {
               const Icon = item.icon;
               return (
-                <Reveal key={item.title} delay={index * 0.05}>
-                  <article className="cabins-amenity">
-                    <span className="cabins-amenity__icon"><Icon size={23} strokeWidth={1.6} aria-hidden="true" /></span>
-                    <div>
-                      <h3>{item.title}</h3>
-                      <p>{item.text}</p>
-                    </div>
-                  </article>
-                </Reveal>
+                <article className="cabins-amenity" key={item.title}>
+                  <span className="cabins-amenity__icon"><Icon size={23} strokeWidth={1.6} aria-hidden="true" /></span>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
+                </article>
               );
             })}
           </div>

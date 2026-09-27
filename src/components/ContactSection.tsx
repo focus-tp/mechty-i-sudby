@@ -54,7 +54,7 @@ export function ContactSection() {
             </div>
             <div className="contact-reassurance">
               <img src={asset('/team/zenya.jpeg')} alt="Евгения Ощепкова, руководитель АНО" loading="lazy" />
-              <span><strong>Ответит живая команда</strong>Обычно мы отвечаем в течение рабочего дня.</span>
+              <span><strong>На связи команда АНО</strong>Обычно отвечаем в течение 1–2 рабочих дней.</span>
             </div>
             <div className="contact-items">
               <div className="contact-item">

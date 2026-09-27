@@ -1,9 +1,9 @@
 import { Reveal } from './Reveal';
 
 const examples = [
-  { label: 'Семьи', value: '100+', text: 'семей получили поддержку команды' },
-  { label: 'Занятия', value: '28', text: 'занятий провела команда' },
-  { label: 'Обучение', value: '40', text: 'человек прошли обучение' },
+  { label: 'Семьи', value: '100+', text: 'семей участвовали хотя бы в одной программе в 2011–2025 годах' },
+  { label: 'Занятия', value: '≈28', text: 'групповых и семейных занятий в 2025 году' },
+  { label: 'Обучение', value: '≈40', text: 'участников прошли обучение в 2025 году' },
 ];
 
 export function ImpactSection() {
@@ -12,7 +12,7 @@ export function ImpactSection() {
       <div className="impact__heading">
         <Reveal><div className="section-label">Поддержка в цифрах</div></Reveal>
         <Reveal><h2 id="impact-title" className="section-title">Поддержка, которую можно <em>почувствовать</em></h2></Reveal>
-        <Reveal><p>Эти цифры отражают многолетнюю работу команды с 2011 года. Отдельная отчётность АНО будет опубликована после первого года работы.</p></Reveal>
+        <Reveal><p>Ориентировочные данные внутреннего учёта команды за 2011–2025 годы. Отдельная отчётность АНО будет опубликована после первого года работы.</p></Reveal>
       </div>
       <div className="impact__grid">
         {examples.map((item, index) => (
@@ -22,7 +22,7 @@ export function ImpactSection() {
                 <span>{item.label}</span>
                 <strong>{item.value}</strong>
                 <p>{item.text}</p>
-                <small>Данные команды</small>
+                <small>Ориентировочные данные команды</small>
               </div>
             </article>
           </Reveal>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { ChevronDown, ExternalLink, FileText, ReceiptText } from 'lucide-react';
+import { ChevronDown, Copy, ExternalLink, FileText, ReceiptText } from 'lucide-react';
 import { Reveal } from './Reveal';
 import { useUI } from '../context/UIContext';
 import { asset } from '../utils';
@@ -19,6 +19,23 @@ const documents = [
   { title: 'Пользовательское соглашение', meta: 'Правила использования сайта', href: '/terms' },
   { title: 'Отчётность организации', meta: 'Порядок публикации отчётов', href: '/reports' },
 ];
+
+const bankDetails = {
+  recipient: 'АНО «Мечты и судьбы»',
+  account: '40703810311940000002',
+  bank: 'АО «Альфа-Банк»',
+  bik: '044525593',
+  correspondentAccount: '30101810200000000593',
+};
+
+const bankDetailsText = `Получатель: ${bankDetails.recipient}
+ИНН: 6686173647
+КПП: 668601001
+Расчётный счёт: ${bankDetails.account}
+Банк: ${bankDetails.bank}
+БИК: ${bankDetails.bik}
+Корреспондентский счёт: ${bankDetails.correspondentAccount}
+Назначение платежа: добровольное пожертвование на уставную деятельность.`;
 
 export function DonateSection() {
   const { showToast } = useUI();
@@ -85,6 +102,15 @@ export function DonateSection() {
       `Здравствуйте! Прошу направить квитанцию о пожертвовании на сумму ${Number(amount).toLocaleString('ru-RU')} ₽.\n\nИмя: ${donorName || 'не указано'}\nE-mail: ${donorEmail}\n\nОтдельное согласие на обработку указанных персональных данных (редакция от 25.08.2026) предоставлено при подготовке письма на сайте.`,
     );
     window.location.href = `mailto:mechty.sudby@mail.ru?subject=${subject}&body=${body}`;
+  };
+
+  const copyBankDetails = async () => {
+    try {
+      await navigator.clipboard.writeText(bankDetailsText);
+      showToast('Реквизиты скопированы');
+    } catch {
+      showToast('Не удалось скопировать реквизиты. Выделите их вручную.');
+    }
   };
 
   const formattedAmount = amount && Number(amount) >= 0
@@ -215,12 +241,12 @@ export function DonateSection() {
               </div>
 
               <button type="button" className="donate-primary" onClick={prepareTransfer} disabled={!canPrepareTransfer}>
-                {isMonthly ? 'Поддерживать ежемесячно' : 'Поддержать'} <span>{amount ? formattedAmount : ''}</span>
+                Показать способы перевода <span>{amount ? formattedAmount : ''}</span>
               </button>
               <p className="donate-helper">
                 {isMonthly
-                  ? 'Оплата проходит в приложении вашего банка. Автоматических списаний на сайте нет.'
-                  : 'Оплата проходит по QR-коду в приложении вашего банка. Данные карты на сайте не вводятся.'}
+                  ? 'Настройка ежемесячного перевода происходит в приложении вашего банка. Автоматических списаний на сайте нет.'
+                  : 'Перевод проходит в приложении вашего банка. Данные карты на сайте не вводятся.'}
               </p>
 
               <AnimatePresence initial={false}>
@@ -232,8 +258,8 @@ export function DonateSection() {
                         <strong>{formattedAmount}{isMonthly ? ' в месяц' : ''}</strong>
                         <small>
                           {isMonthly
-                            ? 'Отсканируйте код, укажите выбранную сумму и настройте автоплатёж в приложении банка.'
-                            : 'Отсканируйте код в приложении банка и укажите выбранную сумму.'}
+                            ? `Выбрано: ${formattedAmount} в месяц. Отсканируйте код, укажите эту сумму и настройте автоплатёж в приложении банка.`
+                            : `Выбрано: ${formattedAmount}. Отсканируйте код в приложении банка и укажите эту сумму.`}
                         </small>
                       </div>
                     </div>
@@ -250,16 +276,31 @@ export function DonateSection() {
                       </a>
                       <div className="donate-qr__copy">
                         <strong>Оплата по QR-коду</strong>
-                        <p>Наведите камеру или сканер QR-кодов в приложении банка.</p>
+                        <p>Откройте приложение банка, отсканируйте код и проверьте получателя перед переводом.</p>
                         <a href={asset('/payment-code.jpg')} target="_blank" rel="noreferrer">
                           Открыть код крупно <ExternalLink size={15} />
                         </a>
                       </div>
                     </div>
 
+                    <div className="donate-bank-details" aria-label="Банковские реквизиты для пожертвования">
+                      <strong>Или переведите по реквизитам</strong>
+                      <dl>
+                        <div><dt>Получатель</dt><dd>{bankDetails.recipient}</dd></div>
+                        <div><dt>Счёт</dt><dd>{bankDetails.account}</dd></div>
+                        <div><dt>Банк</dt><dd>{bankDetails.bank}</dd></div>
+                        <div><dt>БИК</dt><dd>{bankDetails.bik}</dd></div>
+                        <div><dt>Кор. счёт</dt><dd>{bankDetails.correspondentAccount}</dd></div>
+                      </dl>
+                      <small>Назначение платежа: добровольное пожертвование на уставную деятельность.</small>
+                      <button type="button" className="donate-bank-details__copy" onClick={copyBankDetails}>
+                        <Copy size={15} aria-hidden="true" /> Скопировать реквизиты
+                      </button>
+                    </div>
+
                     <a
                       className="donate-requisites"
-                      href={`mailto:mechty.sudby@mail.ru?subject=${isMonthly ? 'Ежемесячное%20пожертвование' : 'Запрос%20банковских%20реквизитов'}`}
+                      href={`mailto:mechty.sudby@mail.ru?subject=${isMonthly ? 'Ежемесячное%20пожертвование' : 'Вопрос%20о%20пожертвовании'}`}
                     >
                       Не получается оплатить? Написать нам <ExternalLink size={15} />
                     </a>

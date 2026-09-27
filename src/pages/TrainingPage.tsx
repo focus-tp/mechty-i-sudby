@@ -73,6 +73,7 @@ export function TrainingPage() {
           <div className="kpt-hero__copy">
             <Reveal>
               <span className="kpt-kicker">Международная обучающая программа</span>
+              <span className="project-chapter">Программа 01</span>
               <h1>Тренинг <em>КППТ</em></h1>
               <p className="kpt-hero__name">Компетентная помощь при травматизации</p>
             </Reveal>

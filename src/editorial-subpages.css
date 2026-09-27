@@ -1,0 +1,946 @@
+/* Shared visual system for the three project pages.
+   Loaded last so the pages inherit the calmer, wider language of the homepage. */
+
+:is(.kpt-page, .svyaz-page, .cabins-page) {
+  --project-ink: #1f1926;
+  --project-muted: #6e6577;
+  --project-purple: #44206a;
+  --project-coral: #e87a5d;
+  --project-lavender: #e4d7f5;
+  --project-cream: #fffdf9;
+  --project-pink: #fff7ff;
+  --project-sage: #eef1ec;
+  --project-border: rgba(74, 43, 110, 0.12);
+  --project-shadow: 0 24px 60px -22px rgba(68, 32, 106, 0.22);
+  padding-top: 80px;
+  overflow: clip;
+  color: var(--project-ink);
+  background: var(--project-pink);
+}
+
+body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) {
+  --project-ink: #1f1926;
+  --project-muted: #6e6577;
+  --project-purple: #44206a;
+  --project-coral: #e87a5d;
+  --project-lavender: #e4d7f5;
+  --project-cream: #fffdf9;
+  --project-pink: #fff7ff;
+  --project-sage: #eef1ec;
+  --project-border: rgba(74, 43, 110, 0.12);
+  background: var(--project-pink);
+}
+
+body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav {
+  height: 80px;
+  padding-inline: max(1.5rem, calc((100vw - 1240px) / 2));
+  border-bottom: 1px solid rgba(74, 43, 110, 0.06);
+  background: rgba(255, 247, 255, 0.92);
+  box-shadow: 0 1px 10px rgba(74, 43, 110, 0.04);
+  backdrop-filter: blur(18px);
+}
+
+body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav.scrolled {
+  height: 70px;
+  background: rgba(255, 247, 255, 0.97);
+}
+
+body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav .nav-links {
+  gap: 0.15rem;
+}
+
+body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav .nav-links a {
+  padding: 0.56rem 0.72rem;
+  border-radius: 999px;
+  color: #4b444f;
+  font-size: 0.79rem;
+}
+
+body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav .nav-links a:hover,
+body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav .nav-links a.nav-active {
+  color: var(--project-purple);
+  background: var(--project-lavender);
+}
+
+body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav .nav-links a::after {
+  display: none;
+}
+
+body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav .btn-primary {
+  border: 0;
+  border-radius: 999px;
+  background: var(--project-purple);
+  box-shadow: 0 8px 24px -6px rgba(68, 32, 106, 0.32);
+}
+
+:is(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid var(--project-coral, var(--bloom, #c9547a));
+  outline-offset: 3px;
+}
+
+:is(.kpt-shell, .svyaz-shell, .cabins-shell) {
+  width: min(1240px, calc(100% - 3rem));
+  margin-inline: auto;
+}
+
+:is(.kpt-kicker, .svyaz-kicker, .cabins-kicker) {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 28px;
+  align-items: center;
+  margin-bottom: 0.85rem;
+  padding: 0.28rem 0.72rem;
+  border-radius: 999px;
+  color: var(--project-purple);
+  background: var(--project-lavender);
+  font-family: inherit;
+  font-size: 0.69rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-chapter {
+  display: block;
+  margin: 0.1rem 0 0.45rem 0.15rem;
+  color: var(--project-coral);
+  font-family: "Sweet Mavka", cursive;
+  font-size: 1.32rem;
+  line-height: 1;
+  transform: rotate(-2deg);
+}
+
+:is(.kpt-page, .svyaz-page, .cabins-page) h1,
+:is(.kpt-page, .svyaz-page, .cabins-page) h2 {
+  color: var(--project-ink);
+  letter-spacing: -0.025em;
+}
+
+:is(.kpt-page, .svyaz-page, .cabins-page) h1 em,
+:is(.kpt-page, .svyaz-page, .cabins-page) h2 em {
+  color: var(--project-coral);
+}
+
+/* Unified heroes */
+:is(.kpt-hero, .svyaz-hero, .cabins-hero) {
+  min-height: 0;
+  padding: 4.75rem 0 5.5rem;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(228, 215, 245, 0.62), transparent 30rem),
+    radial-gradient(circle at 92% 40%, rgba(255, 180, 161, 0.2), transparent 26rem),
+    linear-gradient(rgba(74, 43, 110, 0.025) 1px, transparent 1px),
+    var(--project-pink);
+  background-size: auto, auto, 100% 34px, auto;
+}
+
+:is(.kpt-hero, .svyaz-hero, .cabins-hero)::after {
+  display: none;
+}
+
+:is(.kpt-hero__grid, .svyaz-hero__grid, .cabins-hero__grid) {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(430px, 0.92fr);
+  gap: clamp(1.75rem, 3vw, 3.25rem);
+  align-items: center;
+}
+
+:is(.kpt-hero h1, .svyaz-hero__copy h1, .cabins-hero__copy h1) {
+  max-width: 13ch;
+  margin: 0.45rem 0 0;
+  font-size: clamp(3.65rem, 5vw, 5.15rem);
+  font-weight: 520;
+  line-height: 0.96;
+}
+
+:is(.kpt-hero h1 em, .svyaz-hero__copy h1 em, .cabins-hero__copy h1 em) {
+  display: inline;
+  margin: 0;
+  font-size: 0.92em;
+  white-space: normal;
+}
+
+:is(.kpt-hero__lead, .svyaz-hero__lead, .cabins-hero__lead) {
+  max-width: 58ch;
+  margin-top: 1.25rem;
+  color: var(--project-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+:is(.kpt-hero__name, .svyaz-hero__subtitle) {
+  margin-top: 1.15rem;
+  color: var(--project-purple);
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+}
+
+:is(.kpt-hero__photo, .svyaz-hero__photo) {
+  margin: 0;
+  padding: 0.72rem;
+  border: 1px solid var(--project-border);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--project-shadow);
+  transform: none;
+}
+
+:is(.kpt-hero__photo, .svyaz-hero__photo)::before {
+  display: none;
+}
+
+:is(.kpt-hero__photo img, .svyaz-hero__photo > img:first-child) {
+  border-radius: 1rem;
+}
+
+:is(.kpt-hero__photo figcaption, .svyaz-hero__photo figcaption) {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1;
+  display: block;
+  margin: 0;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  color: var(--project-purple);
+  background: rgba(255, 253, 249, 0.94);
+  box-shadow: 0 8px 20px rgba(68, 32, 106, 0.12);
+  font-family: "Sweet Mavka", cursive;
+  font-size: 1.1rem;
+  line-height: 1;
+  transform: rotate(-2deg);
+}
+
+.svyaz-hero__project-logo {
+  left: 1.6rem;
+  bottom: 1.6rem;
+  max-width: 220px;
+  border-radius: 0.85rem;
+  box-shadow: 0 12px 28px rgba(68, 32, 106, 0.14);
+  transform: none;
+}
+
+.svyaz-hero__purpose {
+  max-width: 62ch;
+  margin-top: 1.65rem;
+  padding: 1.2rem 1.35rem;
+  border: 1px solid var(--project-border);
+  border-radius: 1.15rem;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.svyaz-hero__purpose span {
+  color: var(--project-coral);
+}
+
+.kpt-facts {
+  overflow: hidden;
+  margin-top: 1.75rem;
+  border: 1px solid var(--project-border);
+  border-radius: 1.15rem;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.kpt-facts > div {
+  padding: 1rem;
+}
+
+.kpt-primary-link,
+.kpt-cta__actions > a:first-child,
+.svyaz-cta a,
+.cabins-primary-action {
+  min-height: 52px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--project-purple);
+  box-shadow: 0 8px 24px -8px rgba(68, 32, 106, 0.35);
+}
+
+.kpt-primary-link:hover,
+.kpt-cta__actions > a:first-child:hover,
+.svyaz-cta a:hover,
+.cabins-primary-action:hover {
+  background: #572d80;
+  transform: translateY(-2px);
+}
+
+/* Shared section rhythm and headings */
+:is(.kpt-audience, .kpt-program, .svyaz-foundations, .cabins-inside, .cabins-practical) {
+  padding: 6.5rem 0;
+  background: var(--project-cream);
+}
+
+:is(.kpt-format, .svyaz-process, .cabins-story) {
+  padding: 6.5rem 0;
+  background: #f5eef9;
+}
+
+:is(.kpt-outcomes, .svyaz-voice, .cabins-gallery-section) {
+  padding: 6.5rem 0;
+  background: var(--project-sage);
+}
+
+:is(.kpt-heading, .svyaz-section-heading, .cabins-section-heading, .cabins-gallery-heading) {
+  max-width: 900px;
+}
+
+.cabins-practical__heading {
+  max-width: 800px;
+}
+
+.cabins-practical__heading h2 {
+  margin-top: 0.55rem;
+  font-size: clamp(3rem, 5vw, 4.75rem);
+  font-weight: 520;
+  line-height: 0.98;
+}
+
+.cabins-practical__heading > p {
+  max-width: 58ch;
+  margin-top: 1.2rem;
+  color: var(--project-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.cabins-practical__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  margin-top: 3rem;
+  border: 1px solid var(--project-border);
+  border-radius: 1.4rem;
+  background: var(--project-border);
+}
+
+.cabins-practical__grid article {
+  min-height: 194px;
+  padding: 1.55rem;
+  background: var(--project-cream);
+}
+
+.cabins-practical__grid span,
+.cabins-practical__grid strong,
+.cabins-practical__grid p {
+  display: block;
+}
+
+.cabins-practical__grid span {
+  color: var(--project-coral);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cabins-practical__grid strong {
+  margin-top: 1.35rem;
+  color: var(--project-ink);
+  font-family: "Cormorant", serif;
+  font-size: 1.55rem;
+  line-height: 1.05;
+}
+
+.cabins-practical__grid p {
+  margin: 0.65rem 0 0;
+  color: var(--project-muted);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.cabins-practical__action {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.cabins-practical__action > span {
+  color: var(--project-muted);
+  font-size: 0.85rem;
+}
+
+:is(
+  .kpt-heading h2,
+  .kpt-outcomes__content h2,
+  .svyaz-section-heading h2,
+  .svyaz-voice__copy h2,
+  .cabins-story__copy h2,
+  .cabins-section-heading h2,
+  .cabins-gallery-heading h2
+) {
+  margin-top: 0.55rem;
+  font-size: clamp(3rem, 5vw, 4.75rem);
+  font-weight: 520;
+  line-height: 0.98;
+}
+
+:is(.kpt-heading > p, .svyaz-section-heading > p, .cabins-section-heading > p) {
+  max-width: 58ch;
+  margin-top: 1.2rem;
+  color: var(--project-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* Lists read as one coherent family of cards. */
+:is(.kpt-audience__list, .svyaz-foundations__list) {
+  gap: 1px;
+  overflow: hidden;
+  margin-top: 3rem;
+  border: 1px solid var(--project-border);
+  border-radius: 1.4rem;
+  background: var(--project-border);
+}
+
+:is(.kpt-audience__list, .svyaz-foundations__list) > div + div {
+  border-left: 0;
+}
+
+:is(.kpt-audience__list article, .svyaz-foundations__list article) {
+  height: 100%;
+  min-height: 240px;
+  padding: 1.8rem;
+  background: var(--project-cream);
+}
+
+:is(.kpt-audience__list h3, .svyaz-foundations__list h3) {
+  margin-top: 2.25rem;
+}
+
+:is(.kpt-format__grid, .svyaz-process__grid, .kpt-outcomes__grid, .svyaz-voice__grid, .cabins-story__grid) {
+  gap: clamp(2.5rem, 5vw, 5rem);
+}
+
+:is(.kpt-format__photo, .kpt-experience figure, .svyaz-process__photo, .svyaz-video, .cabins-story__photo) {
+  overflow: hidden;
+  border: 1px solid var(--project-border);
+  border-radius: 1.35rem;
+  box-shadow: var(--project-shadow);
+  transform: none;
+}
+
+:is(.kpt-format__photo, .kpt-experience figure, .svyaz-process__photo, .cabins-story__photo)::before,
+:is(.kpt-format__photo figcaption, .kpt-experience figure figcaption, .svyaz-process__photo figcaption, .cabins-story__photo figcaption) {
+  display: none;
+}
+
+.kpt-quote {
+  border-radius: 1.25rem;
+  transform: none;
+}
+
+.kpt-program__days {
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.kpt-day {
+  border-color: var(--project-border);
+  border-radius: 1.35rem;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 40px -32px rgba(68, 32, 106, 0.32);
+}
+
+/* Cabins keeps its nature accent, but follows the same proportions. */
+.cabins-page {
+  --cabins-ink: var(--project-ink);
+  --cabins-berry: var(--project-coral);
+  background: var(--project-pink);
+}
+
+.cabins-hero__grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(440px, 0.95fr);
+}
+
+.cabins-hero__visual {
+  min-height: 500px;
+}
+
+.cabins-hero__visual::before {
+  inset: 2.5rem 0 0 2rem;
+  border: 0;
+  border-radius: 1.6rem;
+  background: var(--project-lavender);
+  transform: none;
+}
+
+.cabins-hero__main-photo {
+  inset: 0 0 2.5rem;
+  overflow: hidden;
+  padding: 0.72rem;
+  border: 1px solid var(--project-border);
+  border-radius: 1.5rem;
+  box-shadow: var(--project-shadow);
+  transform: none;
+}
+
+.cabins-hero__main-photo img {
+  border-radius: 1rem;
+}
+
+.cabins-hero__main-photo figcaption {
+  position: absolute;
+  left: 1.35rem;
+  bottom: 1.35rem;
+  z-index: 1;
+  display: block;
+  margin: 0;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  color: var(--project-purple);
+  background: rgba(255, 253, 249, 0.94);
+  box-shadow: 0 8px 20px rgba(68, 32, 106, 0.12);
+  font-family: "Sweet Mavka", cursive;
+  font-size: 1.1rem;
+  line-height: 1;
+  transform: rotate(-2deg);
+}
+
+.cabins-hand-note {
+  display: none;
+}
+
+.cabins-hero__family-photo {
+  right: 1rem;
+  bottom: -1rem;
+  overflow: hidden;
+  width: 34%;
+  border-radius: 1.15rem;
+  box-shadow: 0 18px 42px rgba(55, 35, 26, 0.15);
+  transform: none;
+}
+
+.cabins-names {
+  padding: 3.5rem 0;
+  border-color: var(--project-border);
+  background: var(--project-cream);
+}
+
+.cabins-names__list {
+  overflow: hidden;
+  border: 1px solid var(--project-border);
+  border-radius: 1.15rem;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.cabins-names__list li,
+.cabins-names__list li + li {
+  padding: 1.15rem;
+}
+
+.cabins-amenities {
+  gap: 1px;
+  overflow: hidden;
+  margin-top: 3rem;
+  border: 1px solid var(--project-border);
+  border-radius: 1.4rem;
+  background: var(--project-border);
+}
+
+.cabins-amenity {
+  min-height: 170px;
+  border: 0;
+  background: var(--project-cream);
+}
+
+.cabins-gallery {
+  gap: 0.8rem;
+}
+
+.cabins-gallery__item {
+  border-radius: 1.2rem;
+}
+
+.cabins-gallery__item figcaption {
+  border-radius: 999px;
+  color: var(--project-purple);
+  background: rgba(255, 253, 249, 0.92);
+}
+
+:is(.kpt-cta, .svyaz-cta, .cabins-booking) {
+  padding: 5.5rem 0;
+  color: #fff;
+  background: var(--project-purple);
+}
+
+:is(.kpt-cta h2, .svyaz-cta h2, .cabins-booking h2) {
+  color: #fff;
+  font-size: clamp(2.65rem, 4.5vw, 4.3rem);
+  line-height: 1;
+}
+
+.cabins-primary-action--light,
+.kpt-cta__actions > a:first-child {
+  color: var(--project-purple);
+  background: #fff;
+}
+
+@media (max-width: 980px) {
+  :is(.kpt-hero__grid, .svyaz-hero__grid, .cabins-hero__grid) {
+    grid-template-columns: minmax(0, 1fr) minmax(380px, 0.9fr);
+    gap: 2rem;
+  }
+
+  :is(.kpt-hero h1, .svyaz-hero__copy h1, .cabins-hero__copy h1) {
+    font-size: clamp(3.25rem, 7vw, 4.35rem);
+  }
+}
+
+@media (max-width: 760px) {
+  :is(.kpt-page, .svyaz-page, .cabins-page) {
+    padding-top: 72px;
+  }
+
+  :is(.kpt-shell, .svyaz-shell, .cabins-shell) {
+    width: min(100% - 2rem, 1240px);
+  }
+
+  :is(.kpt-hero, .svyaz-hero, .cabins-hero) {
+    padding: 3.75rem 0 4.5rem;
+  }
+
+  :is(.kpt-hero__grid, .svyaz-hero__grid, .cabins-hero__grid) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  :is(.kpt-hero h1, .svyaz-hero__copy h1, .cabins-hero__copy h1) {
+    max-width: 11ch;
+    font-size: clamp(3.2rem, 14vw, 4.4rem);
+  }
+
+  .cabins-hero__copy {
+    text-align: left;
+  }
+
+  .cabins-hero__actions {
+    justify-content: flex-start;
+  }
+
+  :is(.kpt-audience, .kpt-program, .svyaz-foundations, .cabins-inside, .cabins-practical,
+      .kpt-format, .svyaz-process, .cabins-story,
+      .kpt-outcomes, .svyaz-voice, .cabins-gallery-section) {
+    padding: 4.75rem 0;
+  }
+
+  :is(.kpt-heading h2, .kpt-outcomes__content h2, .svyaz-section-heading h2,
+      .svyaz-voice__copy h2, .cabins-story__copy h2, .cabins-section-heading h2,
+      .cabins-gallery-heading h2) {
+    font-size: clamp(2.75rem, 12vw, 3.8rem);
+  }
+
+  .cabins-hero__visual {
+    min-height: 390px;
+  }
+
+  .cabins-practical__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  :is(.kpt-audience__list, .svyaz-foundations__list) {
+    grid-template-columns: 1fr;
+  }
+
+  :is(.kpt-audience__list article, .svyaz-foundations__list article) {
+    min-height: 0;
+    padding: 1.5rem;
+  }
+
+  .kpt-audience__list > div + div,
+  .svyaz-foundations__list > div + div {
+    border-top: 1px solid var(--project-border);
+  }
+
+  .cabins-gallery {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 250px);
+  }
+
+  .cabins-practical__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cabins-practical__grid article {
+    min-height: 0;
+  }
+
+  .cabins-practical__action {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cabins-gallery > div:first-child {
+    grid-column: auto;
+  }
+}
+
+/* Cabins CSS is loaded with the lazy page chunk, so these selectors deliberately
+   carry one extra class of specificity to keep the shared system authoritative. */
+.cabins-page .cabins-shell {
+  width: min(1240px, calc(100% - 3rem));
+}
+
+.cabins-page .cabins-kicker {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 28px;
+  align-items: center;
+  margin-bottom: 0.85rem;
+  padding: 0.28rem 0.72rem;
+  border-radius: 999px;
+  color: var(--project-purple);
+  background: var(--project-lavender);
+  font-family: inherit;
+  font-size: 0.69rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+}
+
+.cabins-page .cabins-hero {
+  min-height: 0;
+  padding: 4.75rem 0 5.5rem;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(228, 215, 245, 0.62), transparent 30rem),
+    radial-gradient(circle at 92% 40%, rgba(255, 180, 161, 0.2), transparent 26rem),
+    linear-gradient(rgba(74, 43, 110, 0.025) 1px, transparent 1px),
+    var(--project-pink);
+  background-size: auto, auto, 100% 34px, auto;
+}
+
+.cabins-page .cabins-hero__grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(440px, 0.95fr);
+  gap: clamp(1.75rem, 3vw, 3.25rem);
+}
+
+.cabins-page .cabins-hero__copy h1 {
+  max-width: 13ch;
+  margin-top: 0.45rem;
+  font-size: clamp(3.65rem, 5vw, 5.15rem);
+  font-weight: 520;
+  line-height: 0.96;
+}
+
+.cabins-page .cabins-hero__copy h1 em {
+  display: inline;
+  margin: 0;
+  font-size: 0.92em;
+  white-space: normal;
+}
+
+.cabins-page .cabins-hero__lead {
+  max-width: 58ch;
+  margin-top: 1.25rem;
+  color: var(--project-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.cabins-page .cabins-primary-action {
+  min-height: 52px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--project-purple);
+  box-shadow: 0 8px 24px -8px rgba(68, 32, 106, 0.35);
+}
+
+.cabins-page .cabins-hero__visual::before {
+  inset: 2.5rem 0 0 2rem;
+  border: 0;
+  border-radius: 1.6rem;
+  background: var(--project-lavender);
+  transform: none;
+}
+
+.cabins-page .cabins-hero__main-photo {
+  inset: 0 0 2.5rem;
+  overflow: hidden;
+  padding: 0.72rem;
+  border: 1px solid var(--project-border);
+  border-radius: 1.5rem;
+  box-shadow: var(--project-shadow);
+  transform: none;
+}
+
+.cabins-page .cabins-hero__main-photo img {
+  border-radius: 1rem;
+}
+
+.cabins-page .cabins-hero__main-photo figcaption {
+  position: absolute;
+  left: 1.35rem;
+  bottom: 1.35rem;
+  z-index: 1;
+  display: block;
+  margin: 0;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  color: var(--project-purple);
+  background: rgba(255, 253, 249, 0.94);
+  box-shadow: 0 8px 20px rgba(68, 32, 106, 0.12);
+  font-family: "Sweet Mavka", cursive;
+  font-size: 1.1rem;
+  line-height: 1;
+  transform: rotate(-2deg);
+}
+
+.cabins-page .cabins-hand-note {
+  display: none;
+}
+
+.cabins-page .cabins-hero__family-photo {
+  right: 1rem;
+  bottom: -1rem;
+  overflow: hidden;
+  width: 34%;
+  border-radius: 1.15rem;
+  transform: none;
+}
+
+.cabins-page .cabins-story,
+.cabins-page .cabins-inside,
+.cabins-page .cabins-gallery-section {
+  padding: 6.5rem 0;
+}
+
+.cabins-page .cabins-story { background: #f5eef9; }
+.cabins-page .cabins-inside { background: var(--project-cream); }
+.cabins-page .cabins-gallery-section { background: var(--project-sage); }
+
+.cabins-page :is(.cabins-story__copy h2, .cabins-section-heading h2, .cabins-gallery-heading h2) {
+  font-size: clamp(3rem, 5vw, 4.75rem);
+  font-weight: 520;
+  line-height: 0.98;
+}
+
+.cabins-page .cabins-story__photo {
+  overflow: hidden;
+  border-radius: 1.35rem;
+  box-shadow: var(--project-shadow);
+  transform: none;
+}
+
+.cabins-page .cabins-story__photo::before,
+.cabins-page .cabins-story__photo figcaption {
+  display: none;
+}
+
+.cabins-page .cabins-amenities {
+  gap: 1px;
+  overflow: hidden;
+  margin-top: 2.5rem;
+  border: 1px solid var(--project-border);
+  border-radius: 1.4rem;
+  background: var(--project-border);
+}
+
+.cabins-page .cabins-section-heading {
+  grid-template-columns: minmax(0, 1.75fr) minmax(260px, 0.55fr);
+  column-gap: clamp(2rem, 4vw, 4rem);
+  align-items: end;
+}
+
+.cabins-page .cabins-section-heading h2 {
+  max-width: 930px;
+  font-size: clamp(3rem, 4.2vw, 4.25rem);
+}
+
+.cabins-page .cabins-section-heading h2 em {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.cabins-page .cabins-section-heading > p {
+  max-width: 34ch;
+  margin: 0 0 0.45rem;
+}
+
+.cabins-page .cabins-amenity {
+  min-height: 154px;
+  padding: 1.6rem 1.35rem;
+  border: 0;
+  background: var(--project-cream);
+  transition: background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.cabins-page .cabins-amenity:hover {
+  background: #fffdf9;
+  box-shadow: inset 0 0 0 1px rgba(68, 32, 106, 0.1);
+}
+
+.cabins-page .cabins-amenity__icon {
+  background: #6f8574;
+}
+
+.cabins-page .cabins-gallery__item {
+  border-radius: 1.2rem;
+}
+
+.cabins-page .cabins-booking {
+  padding: 5.5rem 0;
+  background: var(--project-purple);
+}
+
+.cabins-page .cabins-primary-action--light {
+  color: var(--project-purple);
+  background: #fff;
+}
+
+@media (max-width: 980px) {
+  .cabins-page .cabins-section-heading {
+    grid-template-columns: 1fr;
+    gap: 1.35rem;
+  }
+
+  .cabins-page .cabins-section-heading > p {
+    max-width: 42ch;
+    margin: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .cabins-page .cabins-shell {
+    width: min(100% - 2rem, 1240px);
+  }
+
+  .cabins-page .cabins-hero {
+    padding: 3.75rem 0 4.5rem;
+  }
+
+  .cabins-page .cabins-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .cabins-page .cabins-hero__copy {
+    text-align: left;
+  }
+
+  .cabins-page .cabins-hero__copy h1 {
+    max-width: 11ch;
+    font-size: clamp(3.2rem, 14vw, 4.4rem);
+  }
+
+  .cabins-page .cabins-hero__actions {
+    justify-content: flex-start;
+  }
+
+  .cabins-page :is(.cabins-story, .cabins-inside, .cabins-gallery-section) {
+    padding: 4.75rem 0;
+  }
+
+  .cabins-page .cabins-section-heading {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .cabins-page .cabins-section-heading h2 em {
+    white-space: normal;
+  }
+
+  .cabins-page .cabins-section-heading > p {
+    max-width: 38ch;
+    margin: 0;
+  }
+}
