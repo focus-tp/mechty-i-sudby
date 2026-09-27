@@ -3318,8 +3318,8 @@ body:has(.warm-editorial-home) :is(.footer-epilogue, .footer-grid, .footer-colop
 
 /* One final reading grid for the home page and its transition from hero to chapters. */
 .warm-editorial-home {
-  --page-gutter: max(1.5rem, calc((100vw - 1180px) / 2));
-  --content-width: 1180px;
+  --page-gutter: max(1.5rem, calc((100vw - 1320px) / 2));
+  --content-width: 1320px;
 }
 
 body:has(.warm-editorial-home) nav#mainNav,
@@ -3343,9 +3343,22 @@ body:has(.warm-editorial-home) :is(.footer-epilogue, .footer-grid, .footer-colop
   margin-inline: auto;
 }
 
+.warm-editorial-home .impact__grid {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+}
+
 @media (min-width: 901px) {
+  .warm-editorial-home .book-hero {
+    min-height: min(calc(100svh - 80px), 920px);
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    align-items: flex-start;
+  }
+
   .warm-editorial-home .about-visual-column {
-    width: min(92%, 500px);
+    width: min(96%, 560px);
     margin-left: auto;
     transform: translateY(1.5rem);
   }

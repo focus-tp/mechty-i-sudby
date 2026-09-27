@@ -4,27 +4,34 @@
 /* Global frame: header and footer share the same reading axis on every route. */
 nav#mainNav,
 footer.site-footer {
-  padding-inline: max(1.5rem, calc((100vw - 1180px) / 2));
+  padding-inline: max(1.5rem, calc((100vw - 1320px) / 2));
 }
 
+/* Keep the visible desktop header edges on the same grid in both its regular
+   and scrolled states. Earlier shorthand padding rules otherwise win here. */
 @media (min-width: 1181px) {
+  nav#mainNav,
+  nav#mainNav.scrolled {
+    padding-inline: 0 !important;
+  }
+
   nav#mainNav > .nav-logo {
-    margin-left: clamp(0.75rem, 1.5vw, 1.5rem);
+    margin-left: max(1.5rem, calc((100vw - 1320px) / 2));
   }
 
   nav#mainNav > .hidden.md\:flex {
-    margin-right: clamp(0.75rem, 1.5vw, 1.5rem);
+    margin-right: max(1.5rem, calc((100vw - 1320px) / 2));
   }
 }
 
 footer.site-footer :is(.footer-epilogue, .footer-grid, .footer-colophon, .footer-bottom) {
   width: 100%;
-  max-width: 1180px;
+  max-width: 1320px;
   margin-inline: auto;
 }
 
 section.team {
-  padding-inline: max(1.5rem, calc((100vw - 1180px) / 2));
+  padding-inline: max(1.5rem, calc((100vw - 1320px) / 2));
 }
 
 :is(.kpt-page, .svyaz-page, .cabins-page) {
@@ -59,7 +66,7 @@ body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) {
 
 body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav {
   height: 80px;
-  padding-inline: max(1.5rem, calc((100vw - 1180px) / 2));
+  padding-inline: max(1.5rem, calc((100vw - 1320px) / 2));
   border-bottom: 1px solid rgba(74, 43, 110, 0.06);
   background: rgba(255, 247, 255, 0.92);
   box-shadow: 0 1px 10px rgba(74, 43, 110, 0.04);
@@ -105,7 +112,7 @@ body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav .btn-primary {
 }
 
 :is(.kpt-shell, .svyaz-shell, .cabins-shell) {
-  width: min(1180px, calc(100% - 3rem));
+  width: min(1320px, calc(100% - 3rem));
   margin-inline: auto;
 }
 
@@ -705,7 +712,7 @@ body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav .btn-primary {
 /* Cabins CSS is loaded with the lazy page chunk, so these selectors deliberately
    carry one extra class of specificity to keep the shared system authoritative. */
 .cabins-page .cabins-shell {
-  width: min(1180px, calc(100% - 3rem));
+  width: min(1320px, calc(100% - 3rem));
 }
 
 .cabins-page .cabins-kicker {
@@ -935,7 +942,7 @@ body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav .btn-primary {
 
 @media (max-width: 760px) {
   .cabins-page .cabins-shell {
-    width: min(100% - 2rem, 1180px);
+    width: min(100% - 2rem, 1320px);
   }
 
   .cabins-page .cabins-hero {
