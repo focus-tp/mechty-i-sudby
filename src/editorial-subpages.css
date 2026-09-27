@@ -1,6 +1,32 @@
 /* Shared visual system for the three project pages.
    Loaded last so the pages inherit the calmer, wider language of the homepage. */
 
+/* Global frame: header and footer share the same reading axis on every route. */
+nav#mainNav,
+footer.site-footer {
+  padding-inline: max(1.5rem, calc((100vw - 1180px) / 2));
+}
+
+@media (min-width: 1181px) {
+  nav#mainNav > .nav-logo {
+    margin-left: clamp(0.75rem, 1.5vw, 1.5rem);
+  }
+
+  nav#mainNav > .hidden.md\:flex {
+    margin-right: clamp(0.75rem, 1.5vw, 1.5rem);
+  }
+}
+
+footer.site-footer :is(.footer-epilogue, .footer-grid, .footer-colophon, .footer-bottom) {
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+}
+
+section.team {
+  padding-inline: max(1.5rem, calc((100vw - 1180px) / 2));
+}
+
 :is(.kpt-page, .svyaz-page, .cabins-page) {
   --project-ink: #1f1926;
   --project-muted: #6e6577;
@@ -33,7 +59,7 @@ body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) {
 
 body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav {
   height: 80px;
-  padding-inline: max(1.5rem, calc((100vw - 1240px) / 2));
+  padding-inline: max(1.5rem, calc((100vw - 1180px) / 2));
   border-bottom: 1px solid rgba(74, 43, 110, 0.06);
   background: rgba(255, 247, 255, 0.92);
   box-shadow: 0 1px 10px rgba(74, 43, 110, 0.04);
@@ -79,7 +105,7 @@ body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav .btn-primary {
 }
 
 :is(.kpt-shell, .svyaz-shell, .cabins-shell) {
-  width: min(1240px, calc(100% - 3rem));
+  width: min(1180px, calc(100% - 3rem));
   margin-inline: auto;
 }
 
@@ -679,7 +705,7 @@ body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav .btn-primary {
 /* Cabins CSS is loaded with the lazy page chunk, so these selectors deliberately
    carry one extra class of specificity to keep the shared system authoritative. */
 .cabins-page .cabins-shell {
-  width: min(1240px, calc(100% - 3rem));
+  width: min(1180px, calc(100% - 3rem));
 }
 
 .cabins-page .cabins-kicker {
@@ -710,8 +736,9 @@ body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav .btn-primary {
 }
 
 .cabins-page .cabins-hero__grid {
-  grid-template-columns: minmax(0, 1.05fr) minmax(440px, 0.95fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(430px, 0.92fr);
   gap: clamp(1.75rem, 3vw, 3.25rem);
+  align-items: center;
 }
 
 .cabins-page .cabins-hero__copy h1 {
@@ -720,6 +747,13 @@ body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav .btn-primary {
   font-size: clamp(3.65rem, 5vw, 5.15rem);
   font-weight: 520;
   line-height: 0.96;
+}
+
+.cabins-page .cabins-hero__copy h1,
+.cabins-page .cabins-hero__copy h1 em {
+  font-family: "Cormorant", serif !important;
+  font-style: normal;
+  letter-spacing: -0.025em;
 }
 
 .cabins-page .cabins-hero__copy h1 em {
@@ -901,7 +935,7 @@ body:has(:is(.kpt-page, .svyaz-page, .cabins-page)) nav#mainNav .btn-primary {
 
 @media (max-width: 760px) {
   .cabins-page .cabins-shell {
-    width: min(100% - 2rem, 1240px);
+    width: min(100% - 2rem, 1180px);
   }
 
   .cabins-page .cabins-hero {

@@ -2690,6 +2690,14 @@ body:has(.warm-editorial-home) .site-footer { background: #f5eafc; }
   max-width: var(--content-width);
 }
 
+.warm-editorial-home :is(.about-trust-row, .about-directions-action,
+  .letopis-reading-room, .contact-heading) {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .warm-editorial-home :is(.about, .chapter-projects, .letopis-section, .stories-section,
   .impact, .donate, .contact) {
   padding-inline: var(--page-gutter);
@@ -2972,12 +2980,12 @@ body:has(.warm-editorial-home) nav#mainNav.scrolled {
 }
 
 .warm-editorial-home :is(.about-grid, .chapter-projects__inner, .donate-inner, .contact-grid) {
-  width: min(1440px, 100%);
-  max-width: 1440px;
+  width: min(1180px, 100%);
+  max-width: 1180px;
 }
 
-.warm-editorial-home .stories-card { max-width: 1280px; }
-.warm-editorial-home .impact__grid { max-width: 1320px; }
+.warm-editorial-home .stories-card { max-width: 1180px; }
+.warm-editorial-home .impact__grid { max-width: 1180px; }
 
 body:has(.warm-editorial-home) .site-footer {
   padding-inline: clamp(1.25rem, 3.3vw, 4.5rem);
@@ -3306,4 +3314,39 @@ body:has(.warm-editorial-home) :is(.footer-epilogue, .footer-grid, .footer-colop
   .warm-editorial-home .impact-card { min-height: 190px; }
   .warm-editorial-home .impact-card__body { padding: 1.5rem; }
   .warm-editorial-home .donate-story .section-title { max-width: 100%; }
+}
+
+/* One final reading grid for the home page and its transition from hero to chapters. */
+.warm-editorial-home {
+  --page-gutter: max(1.5rem, calc((100vw - 1180px) / 2));
+  --content-width: 1180px;
+}
+
+body:has(.warm-editorial-home) nav#mainNav,
+body:has(.warm-editorial-home) nav#mainNav.scrolled,
+body:has(.warm-editorial-home) .site-footer,
+.warm-editorial-home :is(.book-hero, .about, .chapter-projects, .letopis-section,
+  .stories-section, .impact, .donate, .contact) {
+  padding-inline: var(--page-gutter);
+}
+
+.warm-editorial-home :is(.book-hero__inner, .about-grid, .chapter-projects__inner,
+  .letopis-heading, .stories-card, .impact__inner, .donate-inner, .contact-grid) {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+}
+
+body:has(.warm-editorial-home) :is(.footer-epilogue, .footer-grid, .footer-colophon, .footer-bottom) {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+}
+
+@media (min-width: 901px) {
+  .warm-editorial-home .about-visual-column {
+    width: min(92%, 500px);
+    margin-left: auto;
+    transform: translateY(1.5rem);
+  }
 }
