@@ -106,7 +106,7 @@ export function CabinsPage() {
           <Reveal type="left">
             <figure className="cabins-story__photo">
               <img
-                src={asset('/домики/IMG_6170 — средний размер.jpeg')}
+                src={asset('/cabins/family-time.jpeg')}
                 alt="Уютный интерьер домика с цветами и семейным посланием на деревянной стене"
                 loading="lazy"
               />

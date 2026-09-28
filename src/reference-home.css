@@ -3349,12 +3349,59 @@ body:has(.warm-editorial-home) :is(.footer-epilogue, .footer-grid, .footer-colop
   margin-inline: auto;
 }
 
+/* The chapter rail stays quiet, but remains legible on the wide screens where it appears. */
+.chapter-rail::before {
+  background: rgba(107, 63, 160, 0.24);
+}
+
+.chapter-rail a {
+  color: #806f87;
+  opacity: 0.86;
+}
+
 @media (min-width: 901px) {
   .warm-editorial-home .book-hero {
-    min-height: min(calc(100svh - 80px), 920px);
+    min-height: 100svh;
     padding-top: 6rem;
     padding-bottom: 4rem;
     align-items: flex-start;
+  }
+
+  .warm-editorial-home .book-hero__meta {
+    margin-bottom: 2rem;
+  }
+
+  .warm-editorial-home .book-hero__lead {
+    margin-top: 2.75rem;
+  }
+
+  .warm-editorial-home .book-hero__actions {
+    margin-top: 2.5rem;
+  }
+
+  .warm-editorial-home .book-hero h1 em::after {
+    display: none;
+  }
+
+  .warm-editorial-home .book-hero__facts {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: none;
+    gap: 0;
+    margin-top: 0;
+    padding-top: 1.5rem;
+  }
+
+  .warm-editorial-home .book-hero__facts > div {
+    padding-inline: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .warm-editorial-home .book-hero__facts > div:first-child {
+    padding-left: 0;
+  }
+
+  .warm-editorial-home .book-hero__facts > div + div {
+    border-left: 1px solid var(--warm-border);
   }
 
   .warm-editorial-home .about-visual-column {

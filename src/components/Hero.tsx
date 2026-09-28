@@ -33,8 +33,7 @@ export function Hero() {
       <div className="book-hero__inner">
         <div className="book-hero__copy">
           <div className="book-hero__meta">
-            <div className="book-note book-note--top">живая книга поддержки</div>
-            <p className="book-hero__eyebrow">АНО «Мечты и судьбы»</p>
+            <p className="book-hero__eyebrow">АНО «Мечты и судьбы» · рядом с семьями с 2011 года</p>
           </div>
           <h1>
             Объединяем <em>сердца</em> детей и родителей, влияя на <em>судьбы</em> поколений.
@@ -48,18 +47,9 @@ export function Hero() {
             <Link to="/#contact" className="book-hero__primary">
               Получить поддержку
             </Link>
-            <Link to="/#donate" className="book-hero__secondary">
-              Поддержать
+            <Link to="/#projects" className="book-hero__secondary">
+              Наши программы
             </Link>
-          </div>
-
-          <div className="book-hero__facts" aria-label="Ключевые факты">
-            {heroFacts.map((fact) => (
-              <div key={fact.label}>
-                <strong>{fact.value}</strong>
-                <span>{fact.label}</span>
-              </div>
-            ))}
           </div>
         </div>
 
@@ -73,6 +63,15 @@ export function Hero() {
           </figure>
           <div className="book-note book-note--photo">история заботы</div>
           <span className="book-photo-stamp" aria-hidden="true">с любовью<br />к семьям</span>
+        </div>
+
+        <div className="book-hero__facts" aria-label="Ключевые факты">
+          {heroFacts.map((fact) => (
+            <div key={fact.label}>
+              <strong>{fact.value}</strong>
+              <span>{fact.label}</span>
+            </div>
+          ))}
         </div>
       </div>
       <a className="book-hero__next" href="#about" aria-label="Перейти к следующей главе">
