@@ -28,7 +28,7 @@ export function Navbar() {
   useEffect(() => {
     document.body.classList.toggle('mobile-menu-open', menuOpen);
     const main = document.getElementById('main-content');
-    const footer = document.querySelector<HTMLElement>('.site-footer');
+    const footer = document.querySelector<HTMLElement>('footer');
     if (main) main.inert = menuOpen;
     if (footer) footer.inert = menuOpen;
 

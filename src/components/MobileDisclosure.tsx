@@ -1,5 +1,11 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useCompactLayout } from '../hooks/useCompactLayout';
+
+export function ResponsiveDetails({ title, children }: { title: string; children: ReactNode }) {
+  const compact = useCompactLayout();
+  return compact ? <MobileDisclosure title={title}>{children}</MobileDisclosure> : <>{children}</>;
+}
 
 export function MobileDisclosure({ title, hint, anchor, children }: {
   title: string; hint?: string; anchor?: string; children: ReactNode;

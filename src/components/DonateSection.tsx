@@ -99,7 +99,7 @@ export function DonateSection() {
 
     const subject = encodeURIComponent('Квитанция о пожертвовании');
     const body = encodeURIComponent(
-      `Здравствуйте! Прошу направить квитанцию о пожертвовании на сумму ${Number(amount).toLocaleString('ru-RU')} ₽.\n\nИмя: ${donorName || 'не указано'}\nE-mail: ${donorEmail}\n\nОтдельное согласие на обработку указанных персональных данных (редакция от 25.08.2026) предоставлено при подготовке письма на сайте.`,
+      `Здравствуйте! Прошу направить квитанцию о пожертвовании на сумму ${Number(amount).toLocaleString('ru-RU')} ₽.\n\nИмя: ${donorName || 'не указано'}\nE-mail: ${donorEmail}\n\nОтправляя это письмо, я подтверждаю согласие на обработку указанных персональных данных для подготовки и направления квитанции. Версия согласия — 25.08.2026.`,
     );
     window.location.href = `mailto:mechty.sudby@mail.ru?subject=${subject}&body=${body}`;
   };

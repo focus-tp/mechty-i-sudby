@@ -32,7 +32,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
     }
     const subject = encodeURIComponent(form.topic || 'Обращение с сайта');
     const body = encodeURIComponent(
-      `Здравствуйте!\n\n${form.message || 'Хочу задать вопрос.'}\n\nИмя: ${form.name}\nКонтакт для ответа: ${form.contact}\n\nОтдельное согласие на обработку указанных персональных данных (редакция от 25.08.2026) предоставлено при подготовке письма на сайте.`,
+      `Здравствуйте!\n\n${form.message || 'Хочу задать вопрос.'}\n\nИмя: ${form.name}\nКонтакт для ответа: ${form.contact}\n\nОтправляя это письмо, я подтверждаю согласие на обработку указанных персональных данных для ответа на моё обращение. Версия согласия — 25.08.2026.`,
     );
     window.location.href = `mailto:mechty.sudby@mail.ru?subject=${subject}&body=${body}`;
   };

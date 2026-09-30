@@ -2,6 +2,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { asset } from '../utils';
+import { ResponsiveDetails } from '../components/MobileDisclosure';
 
 const audience = [
   { title: 'Приёмные родители и опекуны', text: 'Для взрослых, которые растят ребёнка с опытом утраты, пренебрежения или разрыва привязанности.' },
@@ -232,6 +233,7 @@ export function TrainingPage() {
           <div className="kpt-program__days">
             {trainingDays.map((day, index) => (
               <Reveal key={day.day} delay={index * 0.08}>
+                <ResponsiveDetails title={`${day.day}: ${day.title}`}>
                 <article className="kpt-day">
                   <span className="kpt-day__label">{day.day}</span>
                   <h3>{day.title}</h3>
@@ -244,6 +246,7 @@ export function TrainingPage() {
                     ))}
                   </ol>
                 </article>
+                </ResponsiveDetails>
               </Reveal>
             ))}
           </div>

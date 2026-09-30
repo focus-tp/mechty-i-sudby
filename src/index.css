@@ -3670,14 +3670,6 @@ footer {
     radial-gradient(circle at 90% 12%, rgba(201, 84, 122, 0.12), transparent 28%),
     var(--mist);
 }
-.letopis-section::before {
-  content: "";
-  position: absolute;
-  inset: 2rem 5%;
-  border: 1px solid rgba(42, 16, 64, 0.07);
-  border-radius: 28px;
-  pointer-events: none;
-}
 .letopis-heading {
   width: min(760px, 100%);
   margin: 0 auto clamp(2.5rem, 5vw, 4rem);
@@ -4231,10 +4223,6 @@ footer {
 @media (max-width: 760px) {
   .letopis-section {
     padding: 4.5rem 1rem;
-  }
-  .letopis-section::before {
-    inset: 1rem;
-    border-radius: 18px;
   }
   .letopis-shelf {
     width: min(390px, 100%);

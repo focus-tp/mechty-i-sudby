@@ -88,6 +88,14 @@ function ProjectLink({ project }: { project: Project }) {
 }
 
 export function ProjectsSection() {
+  const mobileDescriptions: Record<string, string> = {
+    svyaz: 'Занятия для детей и родителей.',
+    training: 'Обучение помощи при травматизации.',
+    'support-groups': 'Еженедельные встречи родителей.',
+    cabins: 'Бесплатный отдых для приёмных семей.',
+    consult: 'Индивидуальная поддержка семьи.',
+    world: 'Обмен опытом и обучение за рубежом.',
+  };
   return (
     <section className="chapter-projects" id="projects">
       <div className="chapter-projects__inner">
@@ -130,7 +138,7 @@ export function ProjectsSection() {
                 </div>
                 <div className="chapter-project__copy">
                   <h3>{project.title}</h3>
-                  <p className="chapter-project__summary">{project.desc}</p>
+                  <p className="chapter-project__summary"><span className="hero-copy--desktop">{project.desc}</span><span className="hero-copy--mobile">{mobileDescriptions[project.id]}</span></p>
                   <p className="chapter-project__detail">{project.detail}</p>
                 </div>
                 <ProjectLink project={project} />

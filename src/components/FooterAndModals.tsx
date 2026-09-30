@@ -2,8 +2,26 @@ import { useUI } from '../context/UIContext';
 import { Link } from 'react-router-dom';
 import { asset } from '../utils';
 import { ArrowUpRight, Mail, Phone, Send } from 'lucide-react';
+import { useCompactLayout } from '../hooks/useCompactLayout';
+import { MobileDisclosure } from './MobileDisclosure';
 
 export function Footer() {
+  const compact = useCompactLayout();
+  if (compact) return (
+    <footer className="compact-footer">
+      <Link to="/" aria-label="Мечты и судьбы — на главную"><img src={asset('/logo.png')} alt="Мечты и судьбы" width="160" /></Link>
+      <div className="compact-footer__contacts"><a href="tel:+79321275011">+7 932 127-50-11</a><a href="https://t.me/svyaz_ekb" target="_blank" rel="noreferrer">Telegram ↗</a></div>
+      <MobileDisclosure title="Документы и реквизиты">
+        <div className="compact-footer__documents">
+          <Link to="/legal">Реквизиты организации</Link><Link to="/reports">Отчёты</Link>
+          <Link to="/offer">Публичная оферта</Link><Link to="/privacy">Политика обработки ПДн</Link>
+          <Link to="/terms">Пользовательское соглашение</Link><Link to="/consent">Согласие на обработку данных</Link>
+          <Link to="/recurring">Ежемесячная поддержка</Link>
+        </div>
+      </MobileDisclosure>
+      <p>© 2026 АНО «Мечты и судьбы»</p>
+    </footer>
+  );
   return (
     <footer className="site-footer">
       <div className="footer-epilogue">

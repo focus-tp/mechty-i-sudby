@@ -1,6 +1,7 @@
 import { Reveal } from '../components/Reveal';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { asset } from '../utils';
+import { ResponsiveDetails } from '../components/MobileDisclosure';
 
 const foundations = [
   { title: 'Эмоциональная связь', text: 'Сосредоточенность на построении доверия и ощущения безопасности.' },
@@ -60,11 +61,13 @@ export function SvyazPage() {
           <div className="svyaz-foundations__list">
             {foundations.map((item, index) => (
               <Reveal key={item.title} delay={index * 0.08}>
+                <ResponsiveDetails title={item.title}>
                 <article>
                   <span className="svyaz-foundations__number">0{index + 1}</span>
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>
                 </article>
+                </ResponsiveDetails>
               </Reveal>
             ))}
           </div>
