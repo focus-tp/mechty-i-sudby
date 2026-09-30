@@ -13,7 +13,6 @@ import { Link } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { asset } from '../utils';
-import '../cabins-page.css';
 
 const amenities = [
   { icon: BedDouble, title: 'Место для отдыха', text: 'Уютные спальные места, постельное бельё и спокойный интерьер' },
@@ -75,7 +74,15 @@ export function CabinsPage() {
           <Reveal type="right" delay={0.16}>
             <div className="cabins-hero__visual">
               <figure className="cabins-hero__main-photo">
-                <img src={asset('/cabins/domiki-evening-exterior.jpeg')} alt="Уютный загородный домик с освещённой террасой вечером" />
+                <img
+                  src={asset('/cabins/domiki-evening-exterior.jpeg')}
+                  srcSet={`${asset('/cabins/domiki-evening-exterior-720.jpg')} 720w, ${asset('/cabins/domiki-evening-exterior.jpeg')} 2400w`}
+                  sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1100px) 80vw, 620px"
+                  width="2400"
+                  height="1800"
+                  alt="Уютный загородный домик с освещённой террасой вечером"
+                  fetchPriority="high"
+                />
                 <figcaption>тишина, воздух и время друг для друга</figcaption>
               </figure>
               <figure className="cabins-hero__family-photo">

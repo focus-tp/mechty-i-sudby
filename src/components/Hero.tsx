@@ -5,9 +5,9 @@ import { useUI } from '../context/UIContext';
 import { asset } from '../utils';
 
 const heroFacts = [
-  { value: '15', label: 'лет опыта команды' },
-  { value: '100+', label: 'семей в программах · 2011–2025' },
-  { value: '≈40', label: 'участников обучения · 2025' },
+  { value: '15', label: 'лет опыта команды', mobileLabel: 'лет опыта' },
+  { value: '100+', label: 'семей в программах · 2011–2025', mobileLabel: 'семей' },
+  { value: '≈40', label: 'участников обучения · 2025', mobileLabel: 'участников · 2025' },
 ];
 
 export function Hero() {
@@ -33,22 +33,32 @@ export function Hero() {
       <div className="book-hero__inner">
         <div className="book-hero__copy">
           <div className="book-hero__meta">
-            <p className="book-hero__eyebrow">АНО «Мечты и судьбы» · рядом с семьями с 2011 года</p>
+            <p className="book-hero__eyebrow">
+              <span className="hero-copy--desktop">АНО «Мечты и судьбы» · рядом с семьями с 2011 года</span>
+              <span className="hero-copy--mobile">Рядом с семьями с 2011 года</span>
+            </p>
           </div>
           <h1>
             Объединяем <em>сердца</em> детей и родителей, влияя на <em>судьбы</em> поколений.
           </h1>
           <p className="book-hero__lead">
-            С 2011 года команда проводит семейные программы, группы поддержки
-            и обучение специалистов — чтобы рядом с ребёнком был понимающий взрослый.
+            <span className="hero-copy--desktop">
+              С 2011 года команда проводит семейные программы, группы поддержки
+              и обучение специалистов — чтобы рядом с ребёнком был понимающий взрослый.
+            </span>
+            <span className="hero-copy--mobile">
+              Поддерживаем семьи и обучаем специалистов — чтобы рядом с ребёнком был понимающий взрослый.
+            </span>
           </p>
 
           <div className="book-hero__actions">
             <Link to="/#contact" className="book-hero__primary">
-              Получить поддержку
+              <span className="hero-copy--desktop">Получить поддержку</span>
+              <span className="hero-copy--mobile">Нужна помощь</span>
             </Link>
             <Link to="/#projects" className="book-hero__secondary">
-              Наши программы
+              <span className="hero-copy--desktop">Наши программы</span>
+              <span className="hero-copy--mobile">Программы</span>
             </Link>
           </div>
         </div>
@@ -58,7 +68,15 @@ export function Hero() {
             <span className="book-photo-tape" />
           </div>
           <figure className="book-photo book-photo--main">
-            <img src={asset('/hero/hero-embrace.jpeg')} alt="Мама и мальчик в тёплом объятии на встрече сообщества" />
+            <img
+              src={asset('/hero/hero-embrace.jpeg')}
+              srcSet={`${asset('/hero/hero-embrace-720.jpg')} 720w, ${asset('/hero/hero-embrace.jpeg')} 1280w`}
+              sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1100px) 70vw, 510px"
+              width="1280"
+              height="768"
+              alt="Мама и мальчик в тёплом объятии на встрече сообщества"
+              fetchPriority="high"
+            />
             <figcaption>истории, которые продолжаются</figcaption>
           </figure>
           <div className="book-note book-note--photo">история заботы</div>
@@ -69,7 +87,8 @@ export function Hero() {
           {heroFacts.map((fact) => (
             <div key={fact.label}>
               <strong>{fact.value}</strong>
-              <span>{fact.label}</span>
+              <span className="hero-copy--desktop">{fact.label}</span>
+              <span className="hero-copy--mobile">{fact.mobileLabel}</span>
             </div>
           ))}
         </div>

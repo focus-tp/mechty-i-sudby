@@ -11,6 +11,7 @@ interface Project {
   link: string;
   linkLabel: string;
   image: string;
+  mobileImage?: string;
 }
 
 const projects: Project[] = [
@@ -22,6 +23,7 @@ const projects: Project[] = [
     link: '/svyaz',
     linkLabel: 'О площадке',
     image: '/hero/svyaz-project.jpeg',
+    mobileImage: '/hero/svyaz-project-720.jpg',
   },
   {
     id: 'training',
@@ -31,6 +33,7 @@ const projects: Project[] = [
     link: '/training',
     linkLabel: 'О тренинге',
     image: '/Тренинг RGGN.jpg',
+    mobileImage: '/training-project-720.jpg',
   },
   {
     id: 'support-groups',
@@ -40,6 +43,7 @@ const projects: Project[] = [
     link: '#contact',
     linkLabel: 'Записаться',
     image: '/hero/support-groups.jpg',
+    mobileImage: '/hero/support-groups-720.jpg',
   },
   {
     id: 'cabins',
@@ -58,6 +62,7 @@ const projects: Project[] = [
     link: '#contact',
     linkLabel: 'Записаться',
     image: '/hero/consultations.jpeg',
+    mobileImage: '/hero/consultations-720.jpg',
   },
   {
     id: 'world',
@@ -67,6 +72,7 @@ const projects: Project[] = [
     link: '#contact',
     linkLabel: 'Стать партнёром',
     image: '/hero/международное служение.jpg',
+    mobileImage: '/hero/international-720.jpg',
   },
 ];
 
@@ -91,7 +97,8 @@ export function ProjectsSection() {
           </Reveal>
           <Reveal>
             <h2>
-              Шесть направлений <em>поддержки</em> семей
+              <span className="hero-copy--desktop">Шесть направлений <em>поддержки</em> семей</span>
+              <span className="hero-copy--mobile">Чем можем <em>помочь</em></span>
             </h2>
           </Reveal>
           <Reveal>
@@ -111,7 +118,15 @@ export function ProjectsSection() {
               <article className={`chapter-project${index === 0 ? ' chapter-project--featured' : ''}`}>
                 <span className="chapter-project__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                 <div className="chapter-project__photo">
-                  <img src={asset(project.image)} alt={project.title} loading="lazy" />
+                  <picture>
+                    {project.mobileImage && <source media="(max-width: 900px)" srcSet={asset(project.mobileImage)} />}
+                    <img
+                      src={asset(project.image)}
+                      alt={project.title}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
                 </div>
                 <div className="chapter-project__copy">
                   <h3>{project.title}</h3>

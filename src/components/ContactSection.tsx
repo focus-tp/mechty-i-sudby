@@ -2,8 +2,13 @@ import { useState } from 'react';
 import { useUI } from '../context/UIContext';
 import { Reveal } from './Reveal';
 import { asset } from '../utils';
+import { MobileDisclosure } from './MobileDisclosure';
 
-export function ContactSection() {
+function FormContainer({ compact, children }: { compact: boolean; children: import('react').ReactNode }) {
+  return compact ? <MobileDisclosure title="Написать письмо">{children}</MobileDisclosure> : <>{children}</>;
+}
+
+export function ContactSection({ compact = false }: { compact?: boolean }) {
   const { showToast } = useUI();
   const [form, setForm] = useState({ name: '', contact: '', topic: '', message: '', consent: false });
 
@@ -75,15 +80,16 @@ export function ContactSection() {
         </Reveal>
 
         <Reveal type="right">
+          <FormContainer compact={compact}>
           <form className="contact-form-card contact-form-letter" onSubmit={(event) => { event.preventDefault(); submitContact(); }}>
             <h3>Напишите нам</h3>
             <div className="form-field">
               <label htmlFor="contact-name">Ваше имя *</label>
-              <input id="contact-name" type="text" autoComplete="name" required placeholder="Как вас зовут?" value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} />
+              <input id="contact-name" type="text" autoComplete="name" enterKeyHint="next" required placeholder="Как вас зовут?" value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} />
             </div>
             <div className="form-field">
               <label htmlFor="contact-channel">Как с вами связаться? *</label>
-              <input id="contact-channel" type="text" autoComplete="email" required placeholder="Телефон или e-mail" value={form.contact} onChange={(e) => setForm({...form, contact: e.target.value})} />
+              <input id="contact-channel" type="text" autoComplete="off" enterKeyHint="next" required placeholder="Телефон или e-mail" value={form.contact} onChange={(e) => setForm({...form, contact: e.target.value})} />
             </div>
             <div className="form-field">
               <label htmlFor="contact-topic">Тема обращения</label>
@@ -100,7 +106,7 @@ export function ContactSection() {
             </div>
             <div className="form-field">
               <label htmlFor="contact-message">Сообщение</label>
-              <textarea id="contact-message" rows={3} aria-describedby="contact-message-hint" placeholder="Ваш вопрос или пожелание..." value={form.message} onChange={(e) => setForm({...form, message: e.target.value})}></textarea>
+              <textarea id="contact-message" rows={3} enterKeyHint="send" aria-describedby="contact-message-hint" placeholder="Ваш вопрос или пожелание..." value={form.message} onChange={(e) => setForm({...form, message: e.target.value})}></textarea>
               <small id="contact-message-hint" className="form-field-hint">Не указывайте здесь паспортные, медицинские данные и сведения о ребёнке.</small>
             </div>
             <label className="consent-label consent-label--light" style={{ marginBottom: '.75rem', display: 'flex' }}>
@@ -114,6 +120,7 @@ export function ContactSection() {
               Откроется ваше почтовое приложение. Сообщение будет отправлено только после вашего подтверждения.
             </p>
           </form>
+          </FormContainer>
         </Reveal>
       </div>
     </section>

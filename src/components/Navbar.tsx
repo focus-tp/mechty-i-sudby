@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useUI } from '../context/UIContext';
@@ -8,6 +8,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const location = useLocation();
   const { isHeroVisible } = useUI();
 
@@ -23,6 +24,33 @@ export function Navbar() {
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname, location.hash]);
+
+  useEffect(() => {
+    document.body.classList.toggle('mobile-menu-open', menuOpen);
+    const main = document.getElementById('main-content');
+    const footer = document.querySelector<HTMLElement>('.site-footer');
+    if (main) main.inert = menuOpen;
+    if (footer) footer.inert = menuOpen;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    if (menuOpen) {
+      document.addEventListener('keydown', closeOnEscape);
+      requestAnimationFrame(() => {
+        document.querySelector<HTMLAnchorElement>('#mobile-navigation a')?.focus();
+      });
+    }
+    return () => {
+      document.body.classList.remove('mobile-menu-open');
+      document.removeEventListener('keydown', closeOnEscape);
+      if (main) main.inert = false;
+      if (footer) footer.inert = false;
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     if (location.pathname !== '/') {
@@ -90,7 +118,7 @@ export function Navbar() {
         <img src={asset('/logo.png')} alt="Мечты и судьбы" className="logo-img" />
       </Link>
       
-      <ul className={`nav-links ${menuOpen ? 'open' : ''} md:absolute md:left-1/2 md:-translate-x-1/2`}>
+      <ul id="mobile-navigation" className={`nav-links ${menuOpen ? 'open' : ''} md:absolute md:left-1/2 md:-translate-x-1/2`}>
         <li><Link to={getHref('#about')} {...sectionLinkProps('about')} onClick={handleNavClick}>О нас</Link></li>
         <li><Link to={getHref('#letopis')} {...sectionLinkProps('letopis')} onClick={handleNavClick}>Летопись</Link></li>
         <li><Link to="/training" className={isActive('/training') ? 'nav-active' : ''} onClick={handleNavClick}>Тренинг КППТ</Link></li>
@@ -105,10 +133,12 @@ export function Navbar() {
       </div>
 
       <button
+        ref={menuButtonRef}
         className="mobile-menu-btn md:hidden ml-auto"
+        type="button"
         aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
         aria-expanded={menuOpen}
-        aria-controls="mainNav"
+        aria-controls="mobile-navigation"
         onClick={() => setMenuOpen(!menuOpen)}
       >
         {menuOpen ? <X size={28} color="var(--purple)" /> : <Menu size={28} color="var(--purple)" />}

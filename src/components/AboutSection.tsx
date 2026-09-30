@@ -1,5 +1,6 @@
 import { Reveal } from './Reveal';
 import { asset } from '../utils';
+import { MobileDisclosure } from './MobileDisclosure';
 
 const pillars = [
   {
@@ -23,7 +24,22 @@ const pillars = [
   },
 ];
 
-export function AboutSection() {
+export function AboutSection({ compact = false }: { compact?: boolean }) {
+  if (compact) return (
+    <section className="mobile-about" id="about">
+      <img src={asset('/hero/team-specialists.jpeg')} alt="Команда специалистов и волонтёров «Мечты и судьбы»" loading="lazy" />
+      <div className="mobile-about__copy">
+        <span className="section-label">Давайте знакомиться</span>
+        <h2>Рядом — <em>свои люди</em></h2>
+        <p>С 2011 года поддерживаем приёмные семьи. В нашей команде — родители, специалисты и волонтёры.</p>
+        <MobileDisclosure title="Подробнее о нас">
+          <p>В 2026 году команда зарегистрирована как АНО «Мечты и судьбы». Мы проводим семейные занятия, группы поддержки и обучение родителей и специалистов.</p>
+          <p>Используем инструменты КППТ и ТОВД, адаптируя занятия к запросу конкретной семьи. Руководитель Евгения Ощепкова — мама десяти детей, шесть из них приёмные.</p>
+          <a className="editorial-link" href={asset('/team')}>Познакомиться с командой →</a>
+        </MobileDisclosure>
+      </div>
+    </section>
+  );
   return (
     <section className="about relative" id="about">
       <div className="about-grid">

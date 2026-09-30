@@ -6,7 +6,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, lazy, Suspense, useState } from 'react';
 import Lenis from 'lenis';
-import { UIProvider } from './context/UIContext';
+import { UIProvider, useUI } from './context/UIContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { LetopisSection } from './components/LetopisSection';
@@ -21,6 +21,8 @@ import { ContactSection } from './components/ContactSection';
 import { ImpactSection } from './components/ImpactSection';
 import { StoriesSection } from './components/StoriesSection';
 import { LegalPage } from './pages/LegalPage';
+import { useCompactLayout } from './hooks/useCompactLayout';
+import { MobileDisclosure } from './components/MobileDisclosure';
 
 // Ленивая загрузка — страницы загружаются только при переходе на них
 // Уменьшает инициальный JS-бандл и ускоряет первую загрузку
@@ -33,16 +35,17 @@ function ScrollToHash() {
   const location = useLocation();
 
   useEffect(() => {
+    const behavior: ScrollBehavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
     if (location.hash) {
       setTimeout(() => {
         const id = location.hash.replace('#', '');
         const element = document.getElementById(id);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({ behavior });
         }
       }, 100);
     } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior });
     }
   }, [location]);
 
@@ -51,6 +54,9 @@ function ScrollToHash() {
 
 function SmoothScroll() {
   useEffect(() => {
+    const nativeScrollPreferred = window.matchMedia('(pointer: coarse), (prefers-reduced-motion: reduce)').matches;
+    if (nativeScrollPreferred) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -82,6 +88,21 @@ function PageLoader() {
 
 function HomePage() {
   useDocumentTitle(); // устанавливает title для главной страницы
+  const compact = useCompactLayout();
+  if (compact) return (
+    <div className="warm-editorial-home compact-home">
+      <Hero />
+      <ProjectsSection />
+      <AboutSection compact />
+      <StoriesSection />
+      <ContactSection compact />
+      <div className="mobile-more">
+        <MobileDisclosure title="Летопись" hint="Встречи, события и жизнь сообщества" anchor="letopis"><LetopisSection /></MobileDisclosure>
+        <MobileDisclosure title="Результаты нашей работы" hint="Участие семей и обучение специалистов"><ImpactSection /></MobileDisclosure>
+        <MobileDisclosure title="Поддержать семьи" hint="Помочь нашим программам продолжаться" anchor="donate"><DonateSection /></MobileDisclosure>
+      </div>
+    </div>
+  );
   return (
     <div className="warm-editorial-home">
       <Hero />
@@ -133,8 +154,29 @@ function ChapterRail() {
 
 function MobileHelpCta() {
   const location = useLocation();
+  const { isHeroVisible } = useUI();
+  const [contactVisible, setContactVisible] = useState(false);
+
+  useEffect(() => {
+    if (location.pathname !== '/') return;
+    const contact = document.getElementById('contact');
+    if (!contact) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setContactVisible(entry.isIntersecting),
+      { threshold: 0.08 },
+    );
+    observer.observe(contact);
+    return () => observer.disconnect();
+  }, [location.pathname]);
+
   if (location.pathname !== '/') return null;
-  return <a className="mobile-help-cta" href="#contact">Получить поддержку</a>;
+  const visible = !isHeroVisible && !contactVisible;
+  return (
+    <a className={`mobile-help-cta${visible ? ' is-visible' : ''}`} href="#contact">
+      Получить поддержку
+    </a>
+  );
 }
 
 export default function App() {
