@@ -28,7 +28,7 @@ const projects: Project[] = [
   {
     id: 'training',
     title: 'Тренинг КППТ',
-    desc: 'Международная программа помощи при травматизации.',
+    desc: 'Программа помощи при травматизации.',
     detail: 'Три дня практики, девять модулей и опыт, который помогает специалистам бережно работать с семьями.',
     link: '/training',
     linkLabel: 'О тренинге',
@@ -48,10 +48,10 @@ const projects: Project[] = [
   {
     id: 'cabins',
     title: 'Отдых для семей',
-    desc: 'Загородные домики для восстановления сил.',
+    desc: 'Загородные дома для восстановления сил.',
     detail: 'Возможность выдохнуть, побыть вместе и набраться сил вдали от городского ритма.',
     link: '/domiki',
-    linkLabel: 'Посмотреть домики',
+    linkLabel: 'Посмотреть дома',
     image: '/cabins/family-interior.jpeg',
   },
   {
@@ -63,16 +63,6 @@ const projects: Project[] = [
     linkLabel: 'Записаться',
     image: '/hero/consultations.jpeg',
     mobileImage: '/hero/consultations-720.jpg',
-  },
-  {
-    id: 'world',
-    title: 'Международное обучение',
-    desc: 'Опыт и знания, которые выходят за границы одного города.',
-    detail: 'Наши тренеры обучают специалистов из России, Турции, Ганы и Кении помогать детям и семьям.',
-    link: '#contact',
-    linkLabel: 'Стать партнёром',
-    image: '/hero/международное служение.jpg',
-    mobileImage: '/hero/international-720.jpg',
   },
 ];
 
@@ -94,7 +84,6 @@ export function ProjectsSection() {
     'support-groups': 'Еженедельные встречи родителей.',
     cabins: 'Бесплатный отдых для приёмных семей.',
     consult: 'Индивидуальная поддержка семьи.',
-    world: 'Обмен опытом и обучение за рубежом.',
   };
   return (
     <section className="chapter-projects" id="projects">
@@ -105,13 +94,13 @@ export function ProjectsSection() {
           </Reveal>
           <Reveal>
             <h2>
-              <span className="hero-copy--desktop">Шесть направлений <em>поддержки</em> семей</span>
+              <span className="hero-copy--desktop">Пять направлений <em>поддержки</em> семей</span>
               <span className="hero-copy--mobile">Чем можем <em>помочь</em></span>
             </h2>
           </Reveal>
           <Reveal>
             <p>
-              Мы работаем комплексно - от еженедельных групп поддержки до международного обучения специалистов.
+              Мы работаем комплексно — от еженедельных групп поддержки до индивидуального сопровождения семей.
             </p>
           </Reveal>
         </div>

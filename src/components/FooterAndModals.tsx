@@ -10,7 +10,7 @@ export function Footer() {
   if (compact) return (
     <footer className="compact-footer">
       <Link to="/" aria-label="Мечты и судьбы — на главную"><img src={asset('/logo.png')} alt="Мечты и судьбы" width="160" /></Link>
-      <div className="compact-footer__contacts"><a href="tel:+79321275011">+7 932 127-50-11</a><a href="https://t.me/svyaz_ekb" target="_blank" rel="noreferrer">Telegram ↗</a></div>
+      <div className="compact-footer__contacts"><a href="tel:+79538206888">+7 953 820-68-88</a><a href="https://t.me/svyaz_ekb" target="_blank" rel="noreferrer">Telegram ↗</a></div>
       <MobileDisclosure title="Документы и реквизиты">
         <div className="compact-footer__documents">
           <Link to="/legal">Реквизиты организации</Link><Link to="/reports">Отчёты</Link>
@@ -49,7 +49,7 @@ export function Footer() {
             <li><Link to="/svyaz">Площадка «Связь»</Link></li>
             <li><Link to="/training">Тренинг КППТ</Link></li>
             <li><Link to="/#projects">Группы поддержки</Link></li>
-            <li><Link to="/domiki">Домики</Link></li>
+            <li><Link to="/domiki">Дома</Link></li>
           </ul>
         </div>
         <div className="footer-col">
@@ -65,7 +65,7 @@ export function Footer() {
           <h5>Связаться</h5>
           <div className="footer-contacts">
             <a href="mailto:mechty.sudby@mail.ru"><Mail size={17} /><span>mechty.sudby@mail.ru</span></a>
-            <a href="tel:+79321275011"><Phone size={17} /><span>+7 932 127-50-11</span></a>
+            <a href="tel:+79538206888"><Phone size={17} /><span>+7 953 820-68-88</span></a>
             <a href="https://t.me/svyaz_ekb" target="_blank" rel="noreferrer"><Send size={17} /><span>Telegram</span></a>
           </div>
         </div>
@@ -76,7 +76,7 @@ export function Footer() {
         <div className="footer-colophon__grid">
           <strong>АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ ЦЕНТР КОМПЛЕКСНОЙ ПОДДЕРЖКИ СЕМЬИ, МАТЕРИНСТВА, ОТЦОВСТВА И ДЕТСТВА «МЕЧТЫ И СУДЬБЫ»</strong>
           <p><span>ОГРН 1269600021712</span><span>ИНН 6686173647</span></p>
-          <address><span className="footer-colophon__item-label">Юридический адрес</span>624090, Свердловская область, г.о. Верхняя Пышма, г. Верхняя Пышма, ул. 40 лет Октября, д. 30</address>
+          <address><span className="footer-colophon__item-label">Юридический адрес</span>620902, Свердловская область, г.о. Екатеринбург, г. Екатеринбург, Полевской тракт, д. 22/45Ж</address>
         </div>
       </section>
 

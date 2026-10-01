@@ -73,7 +73,7 @@ export function TrainingPage() {
         <div className="kpt-shell kpt-hero__grid">
           <div className="kpt-hero__copy">
             <Reveal>
-              <span className="kpt-kicker">Международная обучающая программа</span>
+              <span className="kpt-kicker">Обучающая программа</span>
               <span className="project-chapter">Программа 01</span>
               <h1>Тренинг <em>КППТ</em></h1>
               <p className="kpt-hero__name">Компетентная помощь при травматизации</p>
@@ -273,7 +273,7 @@ export function TrainingPage() {
                 Оставить заявку
                 <ArrowUpRight size={18} aria-hidden="true" />
               </a>
-              <a href="tel:+79321275011">+7 932 127-50-11</a>
+              <a href="tel:+79538206888">+7 953 820-68-88</a>
             </div>
           </Reveal>
         </div>

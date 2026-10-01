@@ -230,7 +230,7 @@
 
 .cabins-names__list li {
   min-width: 0;
-  padding: 1.2rem 1rem 0 0;
+  padding: 1.2rem 1rem 0;
 }
 
 .cabins-names__list li + li {

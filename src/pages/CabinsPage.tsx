@@ -17,7 +17,7 @@ import { asset } from '../utils';
 const amenities = [
   { icon: BedDouble, title: 'Место для отдыха', text: 'Уютные спальные места, постельное бельё и спокойный интерьер' },
   { icon: CookingPot, title: 'Кухня и посуда', text: 'Всё необходимое, чтобы готовить привычную семейную еду' },
-  { icon: Bath, title: 'Удобства в домике', text: 'Душ, санузел и горячая вода находятся внутри' },
+  { icon: Bath, title: 'Удобства в доме', text: 'Душ, санузел и горячая вода находятся внутри' },
   { icon: Trees, title: 'Терраса и простор', text: 'Можно завтракать на воздухе, читать или просто смотреть вдаль' },
   { icon: Flame, title: 'Вечер у огня', text: 'Отдельное место для тёплых разговоров и общего семейного вечера' },
   { icon: ToyBrick, title: 'Детям есть где играть', text: 'Свободное пространство на участке и игровая площадка рядом' },
@@ -26,16 +26,16 @@ const amenities = [
 ];
 
 const gallery = [
-  { src: '/cabins/bedroom.jpeg', alt: 'Подготовленная кровать в деревянном интерьере домика', label: 'отдых' },
-  { src: '/cabins/table.jpeg', alt: 'Сервированный стол на кухне домика', label: 'вместе за столом' },
+  { src: '/cabins/bedroom.jpeg', alt: 'Подготовленная кровать в деревянном интерьере дома', label: 'отдых' },
+  { src: '/cabins/table.jpeg', alt: 'Сервированный стол на кухне дома', label: 'вместе за столом' },
   { src: '/cabins/hammock.jpeg', alt: 'Гостья отдыхает в подвесном кресле на террасе', label: 'тишина' },
-  { src: '/cabins/kitchen.jpeg', alt: 'Оборудованная кухня внутри домика', label: 'как дома' },
-  { src: '/cabins/fire.jpeg', alt: 'Огонь в уличной чаше рядом с домиками', label: 'вечером' },
+  { src: '/cabins/kitchen.jpeg', alt: 'Оборудованная кухня внутри дома', label: 'как дома' },
+  { src: '/cabins/fire.jpeg', alt: 'Огонь в уличной чаше рядом с домами', label: 'вечером' },
   { src: '/cabins/playground.jpeg', alt: 'Детская площадка на зелёной территории', label: 'простор для детей' },
 ];
 
 export function CabinsPage() {
-  useDocumentTitle('Домики для семей');
+  useDocumentTitle('Дома для семей');
 
   const bookingUrl = import.meta.env.VITE_CABIN_BOOKING_URL?.trim();
   const bookingLabel = bookingUrl ? 'Выбрать даты' : 'Уточнить свободные даты';
@@ -61,7 +61,7 @@ export function CabinsPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <p className="cabins-hero__lead">
-                Три уютных загородных домика, где семья может сменить обстановку,
+                Три уютных загородных дома, где семья может сменить обстановку,
                 выдохнуть и провести время друг с другом без спешки
               </p>
               <div className="cabins-hero__actions">
@@ -80,13 +80,13 @@ export function CabinsPage() {
                   sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1100px) 80vw, 620px"
                   width="2400"
                   height="1800"
-                  alt="Уютный загородный домик с освещённой террасой вечером"
+                  alt="Уютный загородный дом с освещённой террасой вечером"
                   fetchPriority="high"
                 />
                 <figcaption>тишина, воздух и время друг для друга</figcaption>
               </figure>
               <figure className="cabins-hero__family-photo">
-                <img src={asset('/cabins/family-rest.jpeg')} alt="Мама и сын отдыхают вместе в домике" />
+                <img src={asset('/cabins/family-rest.jpeg')} alt="Мама и сын отдыхают вместе в доме" />
               </figure>
               <span className="cabins-hand-note">семейная пауза</span>
             </div>
@@ -97,13 +97,13 @@ export function CabinsPage() {
       <section className="cabins-names" aria-labelledby="cabins-names-title">
         <div className="cabins-shell cabins-names__inner">
           <div>
-            <span className="cabins-kicker">Три домика — три имени</span>
+            <span className="cabins-kicker">Три дома — три имени</span>
             <h2 id="cabins-names-title">У каждого свой <em>характер</em></h2>
           </div>
           <ol className="cabins-names__list">
             <li><span>01</span><strong>Милый дом</strong></li>
-            <li><span>02</span><strong>Домик Любви</strong></li>
-            <li><span>03</span><strong>Домик надежды</strong></li>
+            <li><span>02</span><strong>Дом Любви</strong></li>
+            <li><span>03</span><strong>Дом надежды</strong></li>
           </ol>
         </div>
       </section>
@@ -114,7 +114,7 @@ export function CabinsPage() {
             <figure className="cabins-story__photo">
               <img
                 src={asset('/cabins/family-time.jpeg')}
-                alt="Уютный интерьер домика с цветами и семейным посланием на деревянной стене"
+                alt="Уютный интерьер дома с цветами и семейным посланием на деревянной стене"
                 loading="lazy"
               />
               <figcaption>когда день становится тише</figcaption>
@@ -144,7 +144,7 @@ export function CabinsPage() {
             <header className="cabins-practical__heading">
               <span className="cabins-kicker">Перед поездкой</span>
               <h2 id="cabins-practical-title">Всё, что важно <em>знать заранее</em></h2>
-              <p>Домики находятся в черте Екатеринбурга — можно выбраться из города, не тратя много времени на дорогу.</p>
+              <p>Дома находятся в черте Екатеринбурга — можно выбраться из города, не тратя много времени на дорогу.</p>
             </header>
           </Reveal>
 
@@ -152,7 +152,7 @@ export function CabinsPage() {
             <article><span>Место</span><strong>Горный Щит, Екатеринбург</strong><p>ДНП «Аэродром», ул. Туманная, 3.</p></article>
             <article><span>Вместимость</span><strong>До 5 гостей</strong><p>Подходит для спокойного семейного отдыха.</p></article>
             <article><span>Условия</span><strong>Бесплатно для приёмных семей</strong><p>Перед поездкой команда уточнит детали размещения.</p></article>
-            <article><span>Бронирование</span><strong>Через команду</strong><p>Напишите нам, чтобы узнать о свободных датах и выбрать домик.</p></article>
+            <article><span>Бронирование</span><strong>Через команду</strong><p>Напишите нам, чтобы узнать о свободных датах и выбрать дом.</p></article>
           </div>
 
           <Reveal delay={0.12}>
@@ -196,10 +196,10 @@ export function CabinsPage() {
           <Reveal>
             <header className="cabins-gallery-heading">
               <span className="cabins-kicker">Живая книга отдыха</span>
-              <h2>Несколько страниц <em>из жизни домиков</em></h2>
+              <h2>Несколько страниц <em>из жизни домов</em></h2>
             </header>
           </Reveal>
-          <div className="cabins-gallery" aria-label="Фотографии домиков для приёмных семей">
+          <div className="cabins-gallery" aria-label="Фотографии домов для приёмных семей">
             {gallery.map((photo, index) => (
               <Reveal key={photo.src} delay={(index % 3) * 0.06}>
                 <figure className={`cabins-gallery__item cabins-gallery__item--${index + 1}`}>
@@ -220,7 +220,7 @@ export function CabinsPage() {
               <h2>Запланировать <em>небольшую паузу</em></h2>
               <p>
                 Напишите команде, чтобы узнать о свободных датах, условиях размещения
-                и выбрать подходящий домик
+                и выбрать подходящий дом
               </p>
             </div>
           </Reveal>

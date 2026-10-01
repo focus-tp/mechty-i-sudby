@@ -32,7 +32,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
     }
     const subject = encodeURIComponent(form.topic || 'Обращение с сайта');
     const body = encodeURIComponent(
-      `Здравствуйте!\n\n${form.message || 'Хочу задать вопрос.'}\n\nИмя: ${form.name}\nКонтакт для ответа: ${form.contact}\n\nОтправляя это письмо, я подтверждаю согласие на обработку указанных персональных данных для ответа на моё обращение. Версия согласия — 25.08.2026.`,
+      `Здравствуйте!\n\n${form.message || 'Хочу задать вопрос.'}\n\nИмя: ${form.name}\nКонтакт для ответа: ${form.contact}\n\nОтправляя это письмо, я подтверждаю согласие на обработку указанных персональных данных для ответа на моё обращение. Версия согласия — 01.10.2026.`,
     );
     window.location.href = `mailto:mechty.sudby@mail.ru?subject=${subject}&body=${body}`;
   };
@@ -51,9 +51,9 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
       <div className="contact-grid">
         <Reveal type="left">
           <div className="contact-info">
-            <p>Если у вас есть вопросы о тренингах, площадке «Связь», домиках или вы хотите стать волонтёром — напишите нам удобным способом.</p>
+            <p>Если у вас есть вопросы о тренингах, площадке «Связь», домах или вы хотите стать волонтёром — напишите нам удобным способом.</p>
             <div className="contact-quick-actions" aria-label="Быстрые способы связи">
-              <a className="contact-quick-action" href="tel:+79321275011">Позвонить</a>
+              <a className="contact-quick-action" href="tel:+79538206888">Позвонить</a>
               <a className="contact-quick-action" href="https://t.me/svyaz_ekb" target="_blank" rel="noreferrer">Telegram</a>
               <a className="contact-quick-action" href="mailto:mechty.sudby@mail.ru">Написать на почту</a>
             </div>
@@ -68,7 +68,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
                 </div>
                 <div className="contact-item-text">
                   <strong>Адрес</strong>
-                  <span>624090, Свердловская обл., г. Верхняя Пышма, ул. 40 лет Октября, д. 30</span>
+                  <span>620902, Свердловская обл., г. Екатеринбург, Полевской тракт, д. 22/45Ж</span>
                 </div>
               </div>
             </div>
@@ -97,7 +97,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
                 <option value="">Выберите тему</option>
                 <option>Тренинг КППТ</option>
                 <option>Площадка «Связь»</option>
-                <option>Домики для семей</option>
+                <option>Дома для семей</option>
                 <option>Группа поддержки</option>
                 <option>Стать волонтёром</option>
                 <option>Пожертвование</option>

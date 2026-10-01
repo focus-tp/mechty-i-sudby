@@ -30,7 +30,7 @@ const bankDetails = {
 
 const bankDetailsText = `Получатель: ${bankDetails.recipient}
 ИНН: 6686173647
-КПП: 668601001
+КПП: 667901001
 Расчётный счёт: ${bankDetails.account}
 Банк: ${bankDetails.bank}
 БИК: ${bankDetails.bik}
@@ -99,7 +99,7 @@ export function DonateSection() {
 
     const subject = encodeURIComponent('Квитанция о пожертвовании');
     const body = encodeURIComponent(
-      `Здравствуйте! Прошу направить квитанцию о пожертвовании на сумму ${Number(amount).toLocaleString('ru-RU')} ₽.\n\nИмя: ${donorName || 'не указано'}\nE-mail: ${donorEmail}\n\nОтправляя это письмо, я подтверждаю согласие на обработку указанных персональных данных для подготовки и направления квитанции. Версия согласия — 25.08.2026.`,
+      `Здравствуйте! Прошу направить квитанцию о пожертвовании на сумму ${Number(amount).toLocaleString('ru-RU')} ₽.\n\nИмя: ${donorName || 'не указано'}\nE-mail: ${donorEmail}\n\nОтправляя это письмо, я подтверждаю согласие на обработку указанных персональных данных для подготовки и направления квитанции. Версия согласия — 01.10.2026.`,
     );
     window.location.href = `mailto:mechty.sudby@mail.ru?subject=${subject}&body=${body}`;
   };
@@ -331,7 +331,7 @@ export function DonateSection() {
                   </a>
                 ))}
               </div>
-              <p className="donate-documents__details">АНО «Мечты и судьбы» · ИНН 6686173647 · КПП 668601001 · ОГРН 1269600021712</p>
+              <p className="donate-documents__details">АНО «Мечты и судьбы» · ИНН 6686173647 · КПП 667901001 · ОГРН 1269600021712</p>
             </div>
           </details>
         </Reveal>

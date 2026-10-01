@@ -14,10 +14,10 @@ export function CabinsSection() {
         <div className="section-label">Отдых и восстановление</div>
       </Reveal>
       <Reveal>
-        <h2 className="section-title">Домики для <em>приёмных семей</em></h2>
+        <h2 className="section-title">Дома для <em>приёмных семей</em></h2>
       </Reveal>
       <Reveal>
-        <p className="section-subtitle">Три уютных скандинавских домика со всеми удобствами — место, где можно отдохнуть, зарядиться и побыть собой.</p>
+        <p className="section-subtitle">Три уютных скандинавских дома со всеми удобствами — место, где можно отдохнуть, зарядиться и побыть собой.</p>
       </Reveal>
 
       <div className="cabins-grid">
@@ -26,7 +26,7 @@ export function CabinsSection() {
             <div className="cabin-visual"><span className="cabin-emoji">🌸</span></div>
             <div className="cabin-body">
               <h3>Милый дом</h3>
-              <p>Уютный домик для семьи с детьми. Терраса, природа, полная тишина и покой.</p>
+              <p>Уютный дом для семьи с детьми. Терраса, природа, полная тишина и покой.</p>
               <a className="cabin-btn" href={bookingHref} target={bookingUrl ? '_blank' : undefined} rel={bookingUrl ? 'noreferrer' : undefined}>
                 <span>{bookingLabel}</span>
               </a>
@@ -37,7 +37,7 @@ export function CabinsSection() {
           <div className="cabin-card c2">
             <div className="cabin-visual"><span className="cabin-emoji">🌿</span></div>
             <div className="cabin-body">
-              <h3>Домик Любви</h3>
+              <h3>Дом Любви</h3>
               <p>Идеально для мамы и папы, которым нужна перезагрузка. Отдых без суеты.</p>
               <a className="cabin-btn" href={bookingHref} target={bookingUrl ? '_blank' : undefined} rel={bookingUrl ? 'noreferrer' : undefined}>
                 <span>{bookingLabel}</span>
@@ -49,7 +49,7 @@ export function CabinsSection() {
           <div className="cabin-card c3">
             <div className="cabin-visual"><span className="cabin-emoji">🌻</span></div>
             <div className="cabin-body">
-              <h3>Домик надежды</h3>
+              <h3>Дом надежды</h3>
               <p>Просторный вариант для большой семьи. Всё для комфортного совместного отдыха.</p>
               <a className="cabin-btn" href={bookingHref} target={bookingUrl ? '_blank' : undefined} rel={bookingUrl ? 'noreferrer' : undefined}>
                 <span>{bookingLabel}</span>
@@ -87,7 +87,7 @@ export function TrainingSection() {
               <span>Зарегистрироваться</span>
             </a>
             <p style={{ marginTop: '.75rem', fontSize: '.8rem', color: 'rgba(255,255,255,.5)' }}>
-              Трудности с оплатой — звоните: +7 932-127-50-11
+              Трудности с оплатой — звоните: +7 953 820-68-88
             </p>
           </div>
         </Reveal>

@@ -10,12 +10,12 @@ export function CabinsPreview() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
         <Reveal type="left" className="flex-1">
           <div className="section-label">Отдых и восстановление</div>
-          <h2 className="section-title text-left">Домики для<br/><em>приёмных семей</em></h2>
+          <h2 className="section-title text-left">Дома для<br/><em>приёмных семей</em></h2>
           <p className="text-gray-600 mb-8 leading-relaxed text-lg">
-            Три уютных скандинавских домика со всеми удобствами — место, где можно отдохнуть, зарядиться и побыть собой в тишине на природе.
+            Три уютных скандинавских дома со всеми удобствами — место, где можно отдохнуть, зарядиться и побыть собой в тишине на природе.
           </p>
           <Link to="/domiki" className="btn-primary inline-flex">
-            <span>Подробнее о домиках &rarr;</span>
+            <span>Подробнее о домах &rarr;</span>
           </Link>
         </Reveal>
 
