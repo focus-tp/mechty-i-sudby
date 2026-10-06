@@ -406,6 +406,7 @@ section.team {
   .family-story-cover-bottom { grid-template-columns: minmax(0, 1fr) 5.7rem; gap: .35rem; margin-top: 1.2rem; }
   .family-story-pullquote { padding-left: .8rem; font-size: clamp(1.5rem, 6.3vw, 1.9rem); }
   .family-story-cover-doodle { width: 5.7rem; }
+  .family-story-cover-doodle img { filter: contrast(1.36) saturate(.62); }
   .family-story-body { padding-top: 1.3rem; }
   .family-story-prose p { font-size: 1.05rem; line-height: 1.7; }
   .family-story-prose__chapter { font-size: 1.8rem; }
