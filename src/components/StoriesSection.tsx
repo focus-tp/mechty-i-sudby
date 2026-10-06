@@ -12,17 +12,19 @@ interface Story {
   color: string;
   initial: string;
   href?: string;
+  signature?: string;
 }
 
 const stories: Story[] = [
   {
-    quote: '«Каждый ребёнок ищет того, кто ищет его».',
-    author: 'Семья',
+    quote: '«Каждый ребёнок ищет того, кто ищет его». Нам не близко словосочетание «приемные дети», мы предпочитаем говорить о своих детях «рождённые сердцем».',
+    author: 'Семья Ольги и Николая',
     role: 'История семьи',
     years: 'Рождённые сердцем',
     color: '#c9547a',
-    initial: 'С',
+    initial: 'О',
     href: '/stories/rozhdennye-serdtsem',
+    signature: 'Ольга',
   },
   {
     quote: 'Когда мы впервые пришли на площадку «Связь», наш сын не разговаривал с нами уже три месяца. После первого занятия он сам взял меня за руку. Это было чудо.',
@@ -115,7 +117,7 @@ export function StoriesSection() {
             </div>
 
             <div className="stories-signature" aria-hidden="true">
-              с теплом, {story.author}
+              с теплом, {story.signature ?? story.author}
             </div>
 
             {story.href && (
