@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Reveal } from './Reveal';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import { asset } from '../utils';
@@ -10,9 +11,19 @@ interface Story {
   years: string;
   color: string;
   initial: string;
+  href?: string;
 }
 
 const stories: Story[] = [
+  {
+    quote: '«Каждый ребёнок ищет того, кто ищет его».',
+    author: 'Семья',
+    role: 'История семьи',
+    years: 'Рождённые сердцем',
+    color: '#c9547a',
+    initial: 'С',
+    href: '/stories/rozhdennye-serdtsem',
+  },
   {
     quote: 'Когда мы впервые пришли на площадку «Связь», наш сын не разговаривал с нами уже три месяца. После первого занятия он сам взял меня за руку. Это было чудо.',
     author: 'Марина',
@@ -106,6 +117,12 @@ export function StoriesSection() {
             <div className="stories-signature" aria-hidden="true">
               с теплом, {story.author}
             </div>
+
+            {story.href && (
+              <Link className="stories-read-link" to={story.href}>
+                Читать историю целиком
+              </Link>
+            )}
 
             {/* Навигация */}
             <div className="stories-nav">

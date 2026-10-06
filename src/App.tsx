@@ -30,6 +30,7 @@ const SvyazPage = lazy(() => import('./pages/SvyazPage').then(m => ({ default: m
 const CabinsPage = lazy(() => import('./pages/CabinsPage').then(m => ({ default: m.CabinsPage })));
 const TrainingPage = lazy(() => import('./pages/TrainingPage').then(m => ({ default: m.TrainingPage })));
 const TeamPage = lazy(() => import('./pages/TeamPage').then(m => ({ default: m.TeamPage })));
+const FamilyStoryPage = lazy(() => import('./pages/FamilyStoryPage').then(m => ({ default: m.FamilyStoryPage })));
 
 function ScrollToHash() {
   const location = useLocation();
@@ -53,8 +54,10 @@ function ScrollToHash() {
 }
 
 function SmoothScroll() {
+  const { pathname } = useLocation();
+
   useEffect(() => {
-    const nativeScrollPreferred = window.matchMedia('(pointer: coarse), (prefers-reduced-motion: reduce)').matches;
+    const nativeScrollPreferred = pathname.startsWith('/stories/') || window.matchMedia('(pointer: coarse), (prefers-reduced-motion: reduce)').matches;
     if (nativeScrollPreferred) return;
 
     const lenis = new Lenis({
@@ -66,14 +69,18 @@ function SmoothScroll() {
       touchMultiplier: 2,
     });
 
+    let frameId: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      frameId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
-    return () => lenis.destroy();
-  }, []);
+    frameId = requestAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(frameId);
+      lenis.destroy();
+    };
+  }, [pathname]);
   return null;
 }
 
@@ -198,6 +205,7 @@ export default function App() {
             <Route path="/cabins" element={<CabinsPage />} />
             <Route path="/training" element={<TrainingPage />} />
             <Route path="/team" element={<TeamPage />} />
+            <Route path="/stories/rozhdennye-serdtsem" element={<FamilyStoryPage />} />
             <Route path="/privacy" element={<LegalPage kind="privacy" />} />
             <Route path="/terms" element={<LegalPage kind="terms" />} />
             <Route path="/consent" element={<LegalPage kind="consent" />} />
