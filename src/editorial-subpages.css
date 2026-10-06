@@ -409,12 +409,16 @@ section.team {
   .family-story-body { padding-top: 1.3rem; }
   .family-story-prose p { font-size: 1.05rem; line-height: 1.7; }
   .family-story-prose__chapter { font-size: 1.8rem; }
-  .family-story-margin-drawing { width: 5.4rem; margin: 0 0 .35rem .55rem; }
+  .family-story-margin-drawing { width: 6.4rem; margin: 0 0 .35rem .55rem; overflow: hidden; }
+  .family-story-margin-drawing img { filter: contrast(1.1) saturate(.88); transform: scale(1.18); }
+  .family-story-margin-drawing--shoes img { transform: scale(1.35); }
+  .family-story-margin-drawing--phone img,
+  .family-story-margin-drawing--table img { filter: contrast(1.08) saturate(.72); transform: scale(1.12); }
   .family-story-margin-drawing--cups { margin: 0 .55rem .35rem 0; }
   .family-story-margin-drawing--braids { margin: 0 .55rem .35rem 0; }
-  .family-story-margin-drawing--mittens { width: 6rem; }
+  .family-story-margin-drawing--mittens { width: 7.1rem; }
   .family-story-margin-drawing--phone { margin: 0 .55rem .35rem 0; }
-  .family-story-margin-drawing--table { width: 6rem; margin: 0 .55rem .35rem 0; }
+  .family-story-margin-drawing--table { width: 7.1rem; margin: 0 .55rem .35rem 0; }
   .family-story-reading-bar__chapter { display: none; }
 }
 
