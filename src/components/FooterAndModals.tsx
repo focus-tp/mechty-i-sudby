@@ -56,7 +56,6 @@ export function Footer() {
           <h5>О нас</h5>
           <ul>
             <li><Link to="/#about">Миссия</Link></li>
-            <li><Link to="/team">Команда</Link></li>
             <li><Link to="/#contact">Контакты</Link></li>
             <li><Link to="/#donate">Пожертвовать</Link></li>
           </ul>

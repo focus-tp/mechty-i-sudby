@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Link, Routes, Route, useLocation } from 'react-router-dom';
+import { Link, Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, lazy, Suspense, useState } from 'react';
 import Lenis from 'lenis';
 import { UIProvider } from './context/UIContext';
@@ -29,7 +29,6 @@ import { MobileDisclosure } from './components/MobileDisclosure';
 const SvyazPage = lazy(() => import('./pages/SvyazPage').then(m => ({ default: m.SvyazPage })));
 const CabinsPage = lazy(() => import('./pages/CabinsPage').then(m => ({ default: m.CabinsPage })));
 const TrainingPage = lazy(() => import('./pages/TrainingPage').then(m => ({ default: m.TrainingPage })));
-const TeamPage = lazy(() => import('./pages/TeamPage').then(m => ({ default: m.TeamPage })));
 const FamilyStoryPage = lazy(() => import('./pages/FamilyStoryPage').then(m => ({ default: m.FamilyStoryPage })));
 
 function ScrollToHash() {
@@ -217,7 +216,7 @@ export default function App() {
             <Route path="/domiki" element={<CabinsPage />} />
             <Route path="/cabins" element={<CabinsPage />} />
             <Route path="/training" element={<TrainingPage />} />
-            <Route path="/team" element={<TeamPage />} />
+            <Route path="/team" element={<Navigate to="/#about" replace />} />
             <Route path="/stories/rozhdennye-serdtsem" element={<FamilyStoryPage />} />
             <Route path="/privacy" element={<LegalPage kind="privacy" />} />
             <Route path="/terms" element={<LegalPage kind="terms" />} />
