@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Link, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, lazy, Suspense, useState } from 'react';
 import Lenis from 'lenis';
-import { UIProvider, useUI } from './context/UIContext';
+import { UIProvider } from './context/UIContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { LetopisSection } from './components/LetopisSection';
@@ -159,30 +159,43 @@ function ChapterRail() {
   );
 }
 
-function MobileHelpCta() {
+function MobileSupportCta() {
   const location = useLocation();
-  const { isHeroVisible } = useUI();
-  const [contactVisible, setContactVisible] = useState(false);
+  const [visibleOnHome, setVisibleOnHome] = useState(false);
 
   useEffect(() => {
     if (location.pathname !== '/') return;
-    const contact = document.getElementById('contact');
-    if (!contact) return;
+    const hero = document.getElementById('hero-section');
+    const destinations = ['contact', 'donate']
+      .map((id) => document.getElementById(id))
+      .filter((element): element is HTMLElement => Boolean(element));
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setContactVisible(entry.isIntersecting),
-      { threshold: 0.08 },
-    );
-    observer.observe(contact);
-    return () => observer.disconnect();
-  }, [location.pathname]);
+    const updateVisibility = () => {
+      const pastHero = (hero?.getBoundingClientRect().bottom ?? window.innerHeight) < window.innerHeight * 0.35;
+      const destinationVisible = destinations.some((element) => {
+        const rect = element.getBoundingClientRect();
+        return rect.top < window.innerHeight * 0.55 && rect.bottom > 0;
+      });
+      setVisibleOnHome(pastHero && !destinationVisible);
+    };
+    updateVisibility();
+    const delayedUpdate = window.setTimeout(updateVisibility, 350);
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    window.addEventListener('resize', updateVisibility);
+    return () => {
+      window.clearTimeout(delayedUpdate);
+      window.removeEventListener('scroll', updateVisibility);
+      window.removeEventListener('resize', updateVisibility);
+    };
+  }, [location.pathname, location.hash]);
 
-  if (location.pathname !== '/') return null;
-  const visible = !isHeroVisible && !contactVisible;
+  const isHome = location.pathname === '/';
+  if (!isHome && location.pathname !== '/stories/rozhdennye-serdtsem') return null;
+  const visible = !isHome || visibleOnHome;
   return (
-    <a className={`mobile-help-cta${visible ? ' is-visible' : ''}`} href="#contact">
-      Получить поддержку
-    </a>
+    <Link className={`mobile-help-cta${isHome ? '' : ' mobile-help-cta--story'}${visible ? ' is-visible' : ''}`} to="/#donate">
+      Поддержать
+    </Link>
   );
 }
 
@@ -195,7 +208,7 @@ export default function App() {
       <ScrollToHash />
       <Navbar />
       <ChapterRail />
-      <MobileHelpCta />
+      <MobileSupportCta />
       <main id="main-content" className="relative">
         <Suspense fallback={<PageLoader />}>
           <Routes>

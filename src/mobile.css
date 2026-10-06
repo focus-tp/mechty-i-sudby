@@ -562,8 +562,8 @@
     min-height: 300px;
   }
 
-  /* Contextual CTA: present after hero, absent over the menu and contact form. */
-  body:has(.warm-editorial-home) .mobile-help-cta {
+  /* Mobile support action on the home page and while reading a family story. */
+  .mobile-help-cta {
     position: fixed;
     right: var(--mobile-gutter);
     bottom: calc(0.75rem + env(safe-area-inset-bottom));
@@ -584,10 +584,17 @@
     transition: opacity 180ms ease, transform 220ms ease;
   }
 
-  body:has(.warm-editorial-home) .mobile-help-cta.is-visible {
+  .mobile-help-cta.is-visible {
     opacity: 1;
     pointer-events: auto;
     transform: none;
+  }
+
+  .mobile-help-cta--story {
+    left: auto;
+    min-width: 148px;
+    min-height: 50px;
+    padding: 0.7rem 1.25rem;
   }
 
   body.mobile-menu-open .mobile-help-cta {

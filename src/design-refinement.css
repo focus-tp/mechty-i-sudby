@@ -743,7 +743,6 @@ nav#mainNav .nav-links a.nav-active::after {
 /* Keep the most useful action within thumb reach on small screens. */
 @media (max-width: 560px) {
   .mobile-help-cta {
-    content: 'Получить поддержку';
     position: fixed;
     z-index: 35;
     right: 1rem;
