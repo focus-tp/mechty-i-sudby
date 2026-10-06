@@ -339,6 +339,8 @@ section.team {
   margin: -.25rem 0 .5rem 1.2rem;
   transform: rotate(2deg);
 }
+.family-story-margin-drawing--shoes { aspect-ratio: 7 / 5; overflow: hidden; }
+.family-story-margin-drawing--shoes img { height: 100%; object-fit: cover; object-position: center 60%; }
 .family-story-margin-drawing--cups { float: left; margin: -.25rem 1.2rem .5rem 0; transform: rotate(-2deg); }
 .family-story-margin-drawing--braids { float: left; margin: -.25rem 1.2rem .5rem 0; transform: rotate(-2deg); }
 .family-story-margin-drawing--mittens { width: clamp(9rem, 22vw, 12rem); }
