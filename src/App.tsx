@@ -13,7 +13,7 @@ import { LetopisSection } from './components/LetopisSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { DonateSection } from './components/DonateSection';
 import { Footer, ModalsAndToasts } from './components/FooterAndModals';
-import { CustomCursor } from './components/CustomCursor';
+import { CookieBanner } from './components/CookieBanner';
 import { useDocumentTitle } from './hooks/useDocumentTitle';
 
 import { AboutSection } from './components/AboutSection';
@@ -75,7 +75,13 @@ function SmoothScroll() {
     }
 
     frameId = requestAnimationFrame(raf);
+    const handleReaderScrollLock = (event: Event) => {
+      if ((event as CustomEvent<boolean>).detail) lenis.stop();
+      else lenis.start();
+    };
+    window.addEventListener('chronicle-scroll-lock', handleReaderScrollLock);
     return () => {
+      window.removeEventListener('chronicle-scroll-lock', handleReaderScrollLock);
       cancelAnimationFrame(frameId);
       lenis.destroy();
     };
@@ -203,7 +209,6 @@ export default function App() {
     <UIProvider>
       <a className="skip-link" href="#main-content">Перейти к основному содержанию</a>
       <SmoothScroll />
-      <CustomCursor />
       <ScrollToHash />
       <Navbar />
       <ChapterRail />
@@ -222,7 +227,7 @@ export default function App() {
             <Route path="/terms" element={<LegalPage kind="terms" />} />
             <Route path="/consent" element={<LegalPage kind="consent" />} />
             <Route path="/offer" element={<LegalPage kind="offer" />} />
-            <Route path="/recurring" element={<LegalPage kind="recurring" />} />
+            <Route path="/recurring" element={<Navigate to="/#donate" replace />} />
             <Route path="/legal" element={<LegalPage kind="legal" />} />
             <Route path="/reports" element={<LegalPage kind="reports" />} />
           </Routes>
@@ -230,6 +235,7 @@ export default function App() {
       </main>
       <Footer />
       <ModalsAndToasts />
+      <CookieBanner />
     </UIProvider>
   );
 }

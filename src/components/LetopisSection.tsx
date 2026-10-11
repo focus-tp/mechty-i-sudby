@@ -7,13 +7,46 @@ type Post = {
   id: string;
   title: string;
   content: string;
+  fullContent?: string[];
   image: string;
   imagePosition?: string;
+  modalImageFit?: 'cover' | 'contain';
+  modalImagePosition?: string;
+  modalImageScale?: number;
   date: string;
   publishedAt: string;
 };
 
 const allPosts: Post[] = [
+  {
+    id: 'support-groups-vysotsky-2026',
+    title: 'Группы поддержки для приёмных родителей в БЦ «Высоцкий»',
+    content: 'В Екатеринбурге в БЦ «Высоцкий» по субботам 1 раз в месяц проходят группы поддержки для приёмных родителей. Тренеры проводят занятия для мам и пап по материалам программы «Компетентная помощь при травме», а команда волонтёров в это время занимается с детьми.',
+    fullContent: [
+      'В Екатеринбурге в БЦ «Высоцкий» по субботам 1 раз в месяц проходят регулярные группы поддержки для приёмных родителей.',
+      '✔️ Тренеры проводят практические занятия для пап и мам, а группа заботливых волонтёров в это время организует развивающие занятия и игры с детьми.',
+      '❤️ Ко всем встречам тренеры и волонтёры относятся с глубокой ответственностью — готовятся заранее по материалам «Компетентная помощь при травме» (КППТ).',
+      '🧡 Целью занятий является поддержка и обучение родителей, которые заботятся о детях с неблагоприятным детским опытом, переживших потерю биологической мамы или другого близкого человека, жестокое обращение, пренебрежение и другие глубокие потрясения.',
+      'По завершении обучения участники:\n• Поймут принципы благополучия детей;\n• Узнают о влиянии травмы на развитие детей и их взрослую жизнь;\n• Обретут основные навыки качественного ухода за травмированными детьми;\n• Смогут распознать, как детский травматический стресс усугубляется постоянными стрессовыми факторами в жизни ребёнка;\n• Научатся распознавать детские реакции и их истинные источники;\n• Узнают о сильных защитных факторах, которые способствуют позитивной адаптации травмированных детей;\n• Обретут новые стратегии, методы и навыки, чтобы бережно реагировать на вызывающее поведение детей с травматической историей;\n• И что немаловажно — научатся осознанной заботе о себе и профилактике эмоционального выгорания.',
+      '🙂 На каждой группе мы максимально стараемся создать атмосферу безусловного принятия, доверия, безопасности и взаимной поддержки.',
+    ],
+    image: '/vysotsky-support-group.jpg',
+    imagePosition: 'center 18%',
+    modalImageFit: 'cover',
+    modalImagePosition: 'center 22%',
+    modalImageScale: 1,
+    date: 'По субботам · Раз в месяц',
+    publishedAt: '2026-10-01',
+  },
+  {
+    id: 'svyaz-way-home',
+    title: 'Прошла очередная ежегодная площадка «Связь»',
+    content: 'С 9 по 11 июля 2026 года прошла очередная ежегодная площадка «Связь» для приёмных семей. Это были три дня живого общения, поддержки, совместных занятий для детей и родителей, отдыха и бережной работы с семейными историями. Такие встречи помогают семьям почувствовать, что они не одни, найти новые силы и сохранить тёплую связь друг с другом.',
+    image: '/площадка связь.jpg',
+    imagePosition: 'center 24%',
+    date: '9-11 Июл 2026',
+    publishedAt: '2026-07-09',
+  },
   {
     id: 'kpt-training-2026',
     title: 'Состоялся трёхдневный тренинг КППТ',
@@ -29,15 +62,6 @@ const allPosts: Post[] = [
     image: '/hero/christmas-banquet.jpg',
     date: '07 Янв 2025',
     publishedAt: '2025-01-07',
-  },
-  {
-    id: 'svyaz-way-home',
-    title: 'Прошла очередная ежегодная площадка «Связь»',
-    content: 'С 9 по 11 июля 2026 года прошла очередная ежегодная площадка «Связь» для приёмных семей. Это были три дня живого общения, поддержки, совместных занятий для детей и родителей, отдыха и бережной работы с семейными историями. Такие встречи помогают семьям почувствовать, что они не одни, найти новые силы и сохранить тёплую связь друг с другом.',
-    image: '/площадка связь.jpg',
-    imagePosition: 'center 24%',
-    date: '9-11 Июл 2026',
-    publishedAt: '2026-07-09',
   },
 ];
 
@@ -120,11 +144,14 @@ export function LetopisSection() {
       if (event.key === 'ArrowRight') showNext();
     };
 
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    window.dispatchEvent(new CustomEvent('chronicle-scroll-lock', { detail: true }));
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = previousOverflow;
+      window.dispatchEvent(new CustomEvent('chronicle-scroll-lock', { detail: false }));
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [selectedPost, selectedIndex]);
@@ -226,7 +253,7 @@ export function LetopisSection() {
                   })}
 
                   {showContents && (
-                    <aside className={`letopis-toc-page ${currentSpread.length === 0 ? 'letopis-toc-page--full' : ''}`}>
+                    <aside className={`letopis-toc-page ${pagesPerSpread === 2 ? 'letopis-toc-page--right-side' : 'letopis-toc-page--full'}`}>
                       <div className="letopis-toc-page__heading">
                         <CalendarDays size={24} strokeWidth={1.3} aria-hidden="true" />
                         <div>
@@ -279,6 +306,7 @@ export function LetopisSection() {
       {selectedPost && selectedIndex !== null && (
         <div
           className="letopis-modal-overlay"
+          data-lenis-prevent
           role="dialog"
           aria-modal="true"
           aria-labelledby="letopis-modal-title"
@@ -287,51 +315,79 @@ export function LetopisSection() {
           }}
         >
           <article className="letopis-modal letopis-reader">
-            <button type="button" className="letopis-modal-close" onClick={closeReader} aria-label="Закрыть летопись">
-              <X size={20} aria-hidden="true" />
-              <span>Закрыть</span>
-            </button>
+            <header className="letopis-modal-header">
+              <div className="letopis-modal-header__meta">
+                <span className="letopis-modal-kicker">Запись летописи</span>
+                <span className="letopis-modal-header__sep">·</span>
+                <time>{selectedPost.date}</time>
+              </div>
+              <button type="button" className="letopis-modal-close" onClick={closeReader} aria-label="Закрыть летопись">
+                <X size={18} aria-hidden="true" />
+                <span>Закрыть</span>
+              </button>
+            </header>
 
-            <div key={readerKey} className="letopis-reader__page" data-turn={readerDirection}>
+            <div key={readerKey} className="letopis-reader__scrollable" data-turn={readerDirection}>
+              <div className="letopis-modal-intro">
               <div className="letopis-modal-media">
                 <img
                   src={asset(selectedPost.image)}
                   alt={selectedPost.title}
-                  style={{ objectPosition: selectedPost.imagePosition }}
+                  style={{
+                    objectFit: selectedPost.modalImageFit ?? 'cover',
+                    objectPosition: selectedPost.modalImagePosition ?? selectedPost.imagePosition ?? 'center 18%',
+                    transform: selectedPost.modalImageScale ? `scale(${selectedPost.modalImageScale})` : undefined,
+                    transformOrigin: selectedPost.modalImagePosition ?? 'center 18%',
+                  }}
                 />
+              </div>
+              <div className="letopis-modal-heading">
+                <h3 id="letopis-modal-title">{selectedPost.title}</h3>
+                <div className="letopis-modal-divider" />
+              </div>
               </div>
 
               <div className="letopis-modal-body">
-                <div className="letopis-modal-kicker">Запись летописи</div>
-                <time>{selectedPost.date}</time>
-                <h3 id="letopis-modal-title">{selectedPost.title}</h3>
-                <div className="letopis-modal-divider" />
-                <p>{selectedPost.content}</p>
-
-                <div className="letopis-reader__footer">
-                  <span>{String(selectedIndex + 1).padStart(2, '0')} / {String(posts.length).padStart(2, '0')}</span>
-                  <div className="letopis-reader__controls">
-                    <button type="button" onClick={showPrevious} aria-label="Предыдущая запись">
-                      <ChevronLeft size={19} aria-hidden="true" />
-                    </button>
-                    <div className="letopis-reader__dots" aria-label="Записи летописи">
-                      {posts.map((post, index) => (
-                        <button
-                          key={post.id}
-                          type="button"
-                          className={index === selectedIndex ? 'is-active' : ''}
-                          onClick={() => turnReader(index, index > selectedIndex ? 'next' : 'previous')}
-                          aria-label={`Открыть запись ${index + 1}`}
-                        />
-                      ))}
-                    </div>
-                    <button type="button" onClick={showNext} aria-label="Следующая запись">
-                      <ChevronRight size={19} aria-hidden="true" />
-                    </button>
-                  </div>
+                <div className="letopis-modal-text">
+                  {selectedPost.fullContent ? (
+                    selectedPost.fullContent.map((paragraph, pIdx) => (
+                      <p key={pIdx} style={{ whiteSpace: 'pre-line', marginBottom: '0.85rem' }}>
+                        {paragraph}
+                      </p>
+                    ))
+                  ) : (
+                    <p>{selectedPost.content}</p>
+                  )}
                 </div>
               </div>
             </div>
+
+            <footer className="letopis-reader__footer">
+              <span className="letopis-reader__counter">
+                {String(selectedIndex + 1).padStart(2, '0')} / {String(posts.length).padStart(2, '0')}
+              </span>
+              <div className="letopis-reader__controls">
+                <button type="button" onClick={showPrevious} aria-label="Предыдущая запись">
+                  <ChevronLeft size={18} aria-hidden="true" />
+                  <span className="letopis-reader__btn-text">Предыдущая</span>
+                </button>
+                <div className="letopis-reader__dots" aria-label="Записи летописи">
+                  {posts.map((post, index) => (
+                    <button
+                      key={post.id}
+                      type="button"
+                      className={index === selectedIndex ? 'is-active' : ''}
+                      onClick={() => turnReader(index, index > selectedIndex ? 'next' : 'previous')}
+                      aria-label={`Открыть запись ${index + 1}`}
+                    />
+                  ))}
+                </div>
+                <button type="button" onClick={showNext} aria-label="Следующая запись">
+                  <span className="letopis-reader__btn-text">Следующая</span>
+                  <ChevronRight size={18} aria-hidden="true" />
+                </button>
+              </div>
+            </footer>
           </article>
         </div>
       )}

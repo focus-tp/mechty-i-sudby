@@ -1,11 +1,10 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { ChevronDown, Copy, ExternalLink, FileText, ReceiptText } from 'lucide-react';
 import { Reveal } from './Reveal';
 import { useUI } from '../context/UIContext';
 import { asset } from '../utils';
-
-type Frequency = 'once' | 'monthly';
 
 const presetAmounts = [500, 1000, 2500, 5000];
 const documents = [
@@ -39,7 +38,6 @@ const bankDetailsText = `Получатель: ${bankDetails.recipient}
 
 export function DonateSection() {
   const { showToast } = useUI();
-  const [frequency, setFrequency] = useState<Frequency>('once');
   const [amount, setAmount] = useState('1000');
   const [isCustom, setIsCustom] = useState(false);
   const [showTransfer, setShowTransfer] = useState(false);
@@ -48,15 +46,8 @@ export function DonateSection() {
   const [donorEmail, setDonorEmail] = useState('');
   const [offerAccepted, setOfferAccepted] = useState(false);
   const [dataAccepted, setDataAccepted] = useState(false);
-  const [recurringAccepted, setRecurringAccepted] = useState(false);
 
-  const isMonthly = frequency === 'monthly';
-  const canPrepareTransfer = offerAccepted && (!isMonthly || recurringAccepted);
-
-  const changeFrequency = (value: Frequency) => {
-    setFrequency(value);
-    setShowTransfer(false);
-  };
+  const canPrepareTransfer = offerAccepted;
 
   const selectAmount = (value: number) => {
     setAmount(String(value));
@@ -78,10 +69,6 @@ export function DonateSection() {
     }
     if (!offerAccepted) {
       showToast('Примите условия публичной оферты');
-      return;
-    }
-    if (isMonthly && !recurringAccepted) {
-      showToast('Подтвердите условия ежемесячной поддержки');
       return;
     }
     setShowTransfer(true);
@@ -134,28 +121,7 @@ export function DonateSection() {
 
           <Reveal delay={0.15}>
             <div className="donate-panel">
-              <div className="donate-frequency" aria-label="Периодичность пожертвования">
-                <button type="button" className={!isMonthly ? 'is-active' : ''} onClick={() => changeFrequency('once')} aria-pressed={!isMonthly}>
-                  Один раз
-                </button>
-                <button type="button" className={isMonthly ? 'is-active' : ''} onClick={() => changeFrequency('monthly')} aria-pressed={isMonthly}>
-                  Ежемесячно
-                </button>
-              </div>
-
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.p
-                  key={frequency}
-                  className="donate-frequency-note"
-                  initial={{ opacity: 0, y: 5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -5 }}
-                >
-                  {isMonthly
-                    ? 'Постоянная помощь позволяет планировать программы заранее.'
-                    : 'Разовое пожертвование на уставные программы организации.'}
-                </motion.p>
-              </AnimatePresence>
+              <p className="donate-frequency-note">Разовое пожертвование на уставные программы организации.</p>
 
               <div className="donate-panel__heading">
                 <span>Размер пожертвования</span>
@@ -220,7 +186,7 @@ export function DonateSection() {
                     </div>
                     <label className="consent-label consent-label--light" style={{ display: 'flex' }}>
                       <input type="checkbox" checked={dataAccepted} onChange={(event) => setDataAccepted(event.target.checked)} />
-                      <span><a href={asset('/consent')} target="_blank" rel="noreferrer">Даю согласие на обработку персональных данных</a> в соответствии с <a href={asset('/privacy')} target="_blank" rel="noreferrer">Политикой обработки персональных данных</a>.</span>
+                      <span><Link to="/consent" target="_blank">Даю согласие на обработку персональных данных</Link> в соответствии с <Link to="/privacy" target="_blank">Политикой обработки персональных данных</Link>.</span>
                     </label>
                     <button type="button" className="donate-receipt-action" onClick={prepareReceiptEmail} disabled={!dataAccepted}>Подготовить письмо для квитанции</button>
                   </motion.div>
@@ -228,12 +194,6 @@ export function DonateSection() {
               </AnimatePresence>
 
               <div className="donate-agreements" aria-label="Согласия и условия">
-                {isMonthly && (
-                  <label>
-                    <input type="checkbox" checked={recurringAccepted} onChange={(event) => setRecurringAccepted(event.target.checked)} />
-                    <span>Я согласен(на) с <a href={asset('/recurring')} target="_blank" rel="noreferrer">условиями ежемесячной поддержки</a></span>
-                  </label>
-                )}
                 <label>
                   <input type="checkbox" checked={offerAccepted} onChange={(event) => setOfferAccepted(event.target.checked)} />
                   <span>Я принимаю <a href={asset('/offer')} target="_blank" rel="noreferrer">публичную оферту о пожертвовании</a></span>
@@ -244,9 +204,7 @@ export function DonateSection() {
                 Показать способы перевода <span>{amount ? formattedAmount : ''}</span>
               </button>
               <p className="donate-helper">
-                {isMonthly
-                  ? 'Настройка ежемесячного перевода происходит в приложении вашего банка. Автоматических списаний на сайте нет.'
-                  : 'Перевод проходит в приложении вашего банка. Данные карты на сайте не вводятся.'}
+                Перевод проходит в приложении вашего банка. Данные карты на сайте не вводятся.
               </p>
 
               <AnimatePresence initial={false}>
@@ -254,12 +212,10 @@ export function DonateSection() {
                   <motion.div className="donate-transfer" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
                     <div className="donate-transfer__top">
                       <div>
-                        <span>{isMonthly ? 'Ежемесячная поддержка' : 'Разовое пожертвование'}</span>
-                        <strong>{formattedAmount}{isMonthly ? ' в месяц' : ''}</strong>
+                        <span>Разовое пожертвование</span>
+                        <strong>{formattedAmount}</strong>
                         <small>
-                          {isMonthly
-                            ? `Выбрано: ${formattedAmount} в месяц. Отсканируйте код, укажите эту сумму и настройте автоплатёж в приложении банка.`
-                            : `Выбрано: ${formattedAmount}. Отсканируйте код в приложении банка и укажите эту сумму.`}
+                          {`Выбрано: ${formattedAmount}. Отсканируйте код в приложении банка и укажите эту сумму.`}
                         </small>
                       </div>
                     </div>
@@ -300,7 +256,7 @@ export function DonateSection() {
 
                     <a
                       className="donate-requisites"
-                      href={`mailto:mechty.sudby@mail.ru?subject=${isMonthly ? 'Ежемесячное%20пожертвование' : 'Вопрос%20о%20пожертвовании'}`}
+                      href="mailto:mechty.sudby@mail.ru?subject=Вопрос%20о%20пожертвовании"
                     >
                       Не получается оплатить? Написать нам <ExternalLink size={15} />
                     </a>

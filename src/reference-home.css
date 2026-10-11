@@ -1612,10 +1612,10 @@ body:has(.warm-editorial-home) .footer-bottom .footer-legal-links a:hover {
 }
 
 .warm-editorial-home .letopis-page .letopis-stream-card__media {
-  width: min(74%, 390px);
-  height: 165px;
+  width: min(84%, 410px);
+  height: 195px;
   align-self: center;
-  margin: 2rem auto 0;
+  margin: 1.6rem auto 0;
   aspect-ratio: auto;
 }
 
@@ -1623,7 +1623,6 @@ body:has(.warm-editorial-home) .footer-bottom .footer-legal-links a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
 .warm-editorial-home .letopis-page .letopis-stream-card__body {
@@ -1711,6 +1710,11 @@ body:has(.warm-editorial-home) .footer-bottom .footer-legal-links a:hover {
 .warm-editorial-home .letopis-toc-page--full {
   grid-column: 1 / -1;
   padding-inline: max(2.8rem, calc((100% - 720px) / 2));
+}
+
+.warm-editorial-home .letopis-toc-page--right-side {
+  grid-column: 2;
+  border-left: 1px solid rgba(68, 32, 106, 0.08);
 }
 
 .warm-editorial-home .letopis-toc-page__heading {
@@ -1875,10 +1879,51 @@ body:has(.warm-editorial-home) .footer-bottom .footer-legal-links a:hover {
   background: var(--warm-coral);
 }
 
-/* The expanded article gives most of the page to text. */
 .warm-editorial-home .letopis-modal {
-  width: min(1100px, 100%);
-  height: min(760px, calc(100dvh - clamp(2rem, 8vw, 5rem)));
+  width: min(940px, calc(100vw - 2rem));
+  max-height: min(860px, calc(100dvh - 3rem));
+  height: min(860px, calc(100dvh - 3rem));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.warm-editorial-home .letopis-modal-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex: 0 0 auto;
+  padding: 1rem 1.6rem;
+}
+
+.warm-editorial-home .letopis-modal-header__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+}
+
+.warm-editorial-home .letopis-modal-header .letopis-modal-close {
+  position: static;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.8rem;
+}
+
+.warm-editorial-home .letopis-reader__scrollable {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
 }
 
 .warm-editorial-home .letopis-modal::after {
@@ -1886,26 +1931,45 @@ body:has(.warm-editorial-home) .footer-bottom .footer-legal-links a:hover {
 }
 
 .warm-editorial-home .letopis-reader__page {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: calc(100dvh - 5rem);
+  padding-bottom: 2rem;
+}
+
+.warm-editorial-home .letopis-modal-intro {
   display: grid;
-  grid-template-columns: minmax(190px, 0.34fr) minmax(0, 1.66fr);
-  grid-template-rows: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 1.8rem;
+  padding: 0.25rem clamp(1.6rem, 4vw, 3.2rem) 0.5rem;
 }
 
 .warm-editorial-home .letopis-modal-media {
-  width: calc(100% - 2rem);
-  height: 210px;
-  align-self: start;
-  margin: 5.2rem 1rem 1rem;
-  border-radius: 10px;
+  width: 100%;
+  height: clamp(150px, 24dvh, 240px);
+  max-height: 240px;
+  align-self: center;
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: none;
+  border: 0;
+  background: transparent;
 }
 
 .warm-editorial-home .letopis-modal-media::before {
-  inset: 0.55rem;
-  background-size: 2rem 2px, 2px 2rem, 2rem 2px, 2px 2rem, 2rem 2px, 2px 2rem, 2rem 2px, 2px 2rem;
+  display: none;
+  inset: 0.65rem;
+  background-size: 2.5rem 2px, 2px 2.5rem, 2.5rem 2px, 2px 2.5rem, 2.5rem 2px, 2px 2.5rem, 2.5rem 2px, 2px 2.5rem;
 }
 
 .warm-editorial-home .letopis-modal-media img {
-  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain !important;
 }
 
 .warm-editorial-home .letopis-modal-body {
@@ -1913,31 +1977,83 @@ body:has(.warm-editorial-home) .footer-bottom .footer-legal-links a:hover {
   min-height: 0;
   align-items: stretch;
   flex-direction: column;
-  padding: 4.8rem clamp(2rem, 4vw, 4.2rem) 2rem clamp(1.6rem, 3vw, 3rem);
+  padding: 1.1rem clamp(1.6rem, 4vw, 3.2rem) 1rem;
 }
 
-.warm-editorial-home .letopis-modal-body h3 {
-  max-width: 23ch;
-  font-size: clamp(2rem, 3.4vw, 3rem);
+.warm-editorial-home .letopis-modal-kicker {
+  font-size: 0.8rem;
+  font-weight: 750;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.warm-editorial-home .letopis-modal-body time {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.warm-editorial-home .letopis-modal-heading h3 {
+  max-width: 32ch;
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  line-height: 1.25;
+  margin-top: 0.5rem;
+  color: var(--purple-deep);
+  font-family: "Cormorant", serif;
+  font-weight: 600;
+}
+
+.warm-editorial-home .letopis-modal-media::after {
+  display: none;
 }
 
 .warm-editorial-home .letopis-modal-divider {
-  margin: 1rem 0 1.1rem;
+  margin: 0.7rem 0 0.8rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(232, 122, 93, 0.4), rgba(107, 63, 160, 0.12), transparent);
 }
 
-.warm-editorial-home .letopis-modal-body p {
-  flex: 1;
+.warm-editorial-home .letopis-modal-text {
   width: 100%;
-  max-width: 72ch;
-  padding: 0 0.8rem 0 0;
-  font-size: clamp(1rem, 1.2vw, 1.12rem);
-  line-height: 1.75;
-  overflow-y: auto;
+  max-width: 100%;
+  padding: 0;
+  font-size: clamp(1.02rem, 1.15vw, 1.12rem);
+  line-height: 1.78;
+  color: #2e2638;
+}
+
+.warm-editorial-home .letopis-modal-text p {
+  max-width: 100%;
+  padding: 0;
+  margin-bottom: 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  overflow: visible;
 }
 
 .warm-editorial-home .letopis-reader__footer {
   width: 100%;
-  margin-top: 1.2rem;
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  align-self: stretch;
+  margin-top: 0;
+  padding: 0.8rem 1.6rem;
+  border-top: 1px solid rgba(107, 63, 160, 0.1);
+}
+
+.warm-editorial-home .letopis-reader__controls > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: auto;
+  height: 36px;
+  padding: 0 0.75rem;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.85rem;
 }
 
 @keyframes chronicleSpreadIn {
@@ -2056,17 +2172,23 @@ body:has(.warm-editorial-home) .footer-bottom .footer-legal-links a:hover {
   }
 
   .warm-editorial-home .letopis-modal-media {
-    width: calc(100% - 1.4rem);
-    height: 140px;
-    margin: 0.7rem;
+    width: 100%;
+    height: 180px;
+    margin: 0;
+  }
+
+  .warm-editorial-home .letopis-modal-intro {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 0.25rem 1.25rem;
   }
 
   .warm-editorial-home .letopis-modal-body {
-    padding: 3.3rem 1.25rem 1rem;
+    padding: 0.75rem 1.25rem 1rem;
   }
 
-  .warm-editorial-home .letopis-modal-body h3 {
-    font-size: 1.85rem;
+  .warm-editorial-home .letopis-modal-heading h3 {
+    font-size: 1.4rem;
   }
 
   .warm-editorial-home .letopis-modal-body p {
@@ -2077,6 +2199,15 @@ body:has(.warm-editorial-home) .footer-bottom .footer-legal-links a:hover {
   .warm-editorial-home .letopis-reader__footer {
     align-items: center;
     flex-direction: row;
+    padding: 0.7rem 1rem;
+  }
+
+  .warm-editorial-home .letopis-modal-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .warm-editorial-home .letopis-reader__btn-text {
+    display: none;
   }
 }
 

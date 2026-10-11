@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useUI } from '../context/UIContext';
 import { Reveal } from './Reveal';
 import { asset } from '../utils';
@@ -112,7 +113,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
             <label className="consent-label consent-label--light" style={{ marginBottom: '.75rem', display: 'flex' }}>
               <input type="checkbox" checked={form.consent} onChange={(e) => setForm({...form, consent: e.target.checked})} />
               <span style={{ fontSize: '.8rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
-                <a href={asset('/consent')} target="_blank" rel="noreferrer" style={{ color: 'var(--purple)' }}>Даю согласие на обработку персональных данных</a> в соответствии с <a href={asset('/privacy')} target="_blank" rel="noreferrer" style={{ color: 'var(--purple)' }}>Политикой обработки персональных данных</a>.
+                <Link to="/consent" target="_blank" style={{ color: 'var(--purple)' }}>Даю согласие на обработку персональных данных</Link> в соответствии с <Link to="/privacy" target="_blank" style={{ color: 'var(--purple)' }}>Политикой обработки персональных данных</Link>.
               </span>
             </label>
             <button type="submit" className="form-submit" disabled={!form.consent}>Открыть письмо</button>

@@ -85,7 +85,6 @@ export function StoriesSection() {
         </Reveal>
       </div>
 
-      <Reveal delay={0.2}>
         <div className="stories-card stories-letter">
           <figure className="stories-keepsake stories-keepsake--illustration">
             <img src={asset('/letters-illustration.png')} alt="Бумажный конверт с письмами, сердцем и бабочкой" loading="lazy" />
@@ -122,13 +121,14 @@ export function StoriesSection() {
 
             {story.href && (
               <Link className="stories-read-link" to={story.href}>
-                Читать историю целиком
+                Читать историю целиком →
               </Link>
             )}
 
             {/* Навигация */}
             <div className="stories-nav">
               <button
+                type="button"
                 className="stories-page-turn stories-page-turn--previous"
                 onClick={prev}
                 aria-label="Предыдущая история"
@@ -142,6 +142,7 @@ export function StoriesSection() {
                 {stories.map((_, i) => (
                   <button
                     key={i}
+                    type="button"
                     className={`stories-dot ${i === current ? 'active' : ''}`}
                     onClick={() => setCurrent(i)}
                     aria-label={`История ${i + 1}`}
@@ -150,6 +151,7 @@ export function StoriesSection() {
               </div>
 
               <button
+                type="button"
                 className="stories-page-turn stories-page-turn--next"
                 onClick={next}
                 aria-label="Следующая история"
@@ -160,7 +162,6 @@ export function StoriesSection() {
             </div>
           </div>
         </div>
-      </Reveal>
 
       {/* CTA */}
       <Reveal delay={0.4}>

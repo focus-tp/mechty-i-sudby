@@ -5212,3 +5212,38 @@ footer::before {
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
+
+/* Consent in the receipt form sits on a light background. */
+.donate-receipt .consent-label span {
+  color: var(--text-muted);
+}
+.donate-receipt .consent-label a {
+  color: var(--purple);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.donate-receipt .consent-label input[type="checkbox"] {
+  accent-color: var(--purple);
+}
+
+/* Keep the actual click position visible and make consent links easy to target. */
+a[href], button:not(:disabled), summary, label:has(input[type="checkbox"]) {
+  cursor: pointer !important;
+}
+input:not([type="checkbox"]):not([type="radio"]), textarea {
+  cursor: text !important;
+}
+.consent-label a {
+  display: inline-block;
+  padding: .3rem .15rem;
+  text-underline-offset: 3px;
+}
+.consent-label input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  margin-top: .3rem;
+}
+a[href]:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 4px;
+}

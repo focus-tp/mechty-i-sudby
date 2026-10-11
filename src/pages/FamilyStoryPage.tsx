@@ -1,3 +1,4 @@
+import { bookmarkKey, readStorageChoice } from '../cookiePreferences';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, BookOpen, Bookmark } from 'lucide-react';
@@ -52,9 +53,10 @@ const chapters = storyBlocks.flatMap((text, index) => {
   return chapterIndex === -1 ? [] : [{ index, title: text, label: chapterLabels[chapterIndex] }];
 });
 
-const bookmarkKey = 'mechty-i-sudby:rozhdennye-serdtsem:bookmark';
+
 
 function readBookmark() {
+  if (readStorageChoice() !== true) return null;
   try {
     const index = Number(window.localStorage.getItem(bookmarkKey));
     return Number.isInteger(index) && index >= 1 && index < storyBlocks.length ? index : null;
@@ -138,6 +140,12 @@ export function FamilyStoryPage() {
   const [showRail, setShowRail] = useState(false);
 
   useEffect(() => {
+    const updateChoice = () => setResumeIndex(readBookmark());
+    window.addEventListener('storage-choice-changed', updateChoice);
+    return () => window.removeEventListener('storage-choice-changed', updateChoice);
+  }, []);
+
+  useEffect(() => {
     let frame = 0;
     let lastSaved = readBookmark();
 
@@ -159,7 +167,7 @@ export function FamilyStoryPage() {
       }
       setActiveChapter(currentChapter);
 
-      if (currentIndex < 1 || currentIndex === lastSaved) return;
+      if (readStorageChoice() !== true || currentIndex < 1 || currentIndex === lastSaved) return;
       try {
         window.localStorage.setItem(bookmarkKey, String(currentIndex));
         lastSaved = currentIndex;

@@ -4379,6 +4379,60 @@ footer {
 .cookie-text a {
   color: var(--pink-light);
 }
+.cookie-policy-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+}
+.cookie-customize-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.78rem;
+  padding: 0;
+  font-family: inherit;
+  transition: color 0.2s;
+}
+.cookie-customize-btn:hover {
+  color: white;
+}
+.cookie-details {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+}
+.cookie-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  cursor: pointer;
+}
+.cookie-checkbox-label input[type="checkbox"] {
+  accent-color: var(--pink-deep, #e8779a);
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.15rem;
+  cursor: pointer;
+}
+.cookie-checkbox-label span {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.cookie-checkbox-label span strong {
+  font-size: 0.82rem;
+  color: white;
+}
+.cookie-checkbox-label span small {
+  font-size: 0.74rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.35;
+}
 .cookie-btns {
   display: flex;
   gap: 0.6rem;
@@ -4529,20 +4583,6 @@ footer {
 /* ══════════════════════════════════════════
    КАСТОМНЫЙ КУРСОР
    ══════════════════════════════════════════ */
-@media (min-width: 769px) {
-  body,
-  a,
-  button,
-  .team-card-inner,
-  .cabin-card,
-  .btn-primary,
-  .btn-secondary,
-  input,
-  textarea,
-  select {
-    cursor: none !important;
-  }
-}
 
 #cur {
   position: fixed;
@@ -4726,7 +4766,7 @@ body.hov #cur .butterfly-icon {
   object-fit: cover;
 }
 .book-nav {
-  position: absolute; bottom: 0; width: 70px; height: 70px; border: none; background: transparent; cursor: none;
+  position: absolute; bottom: 0; width: 70px; height: 70px; border: none; background: transparent; cursor: pointer;
   z-index: 10; display: flex; align-items: flex-end; padding: 15px; transition: opacity 0.3s;
 }
 .book-nav .corner {
@@ -5686,3 +5726,25 @@ footer::before {
   position: relative;
   z-index: 1;
 }
+
+.cookie-settings {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font: inherit;
+  cursor: pointer;
+  padding: .5rem 0;
+}
+.cookie-banner .cookie-btns { flex-wrap: wrap; }
+.cookie-banner .cookie-accept,
+.cookie-banner .cookie-decline {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,.65);
+  min-height: 44px;
+}
+.cookie-banner .cookie-text span { color: rgba(255,255,255,.85); }
+.cookie-banner { max-height: calc(100dvh - 2rem); overflow-y: auto; }
+@media (prefers-reduced-motion: reduce) { .cookie-banner { animation: none; } }

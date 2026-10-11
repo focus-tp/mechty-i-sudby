@@ -1,3 +1,4 @@
+import { CookiePreferencesButton } from './CookieBanner';
 import { useUI } from '../context/UIContext';
 import { Link } from 'react-router-dom';
 import { asset } from '../utils';
@@ -16,9 +17,9 @@ export function Footer() {
           <Link to="/legal">Реквизиты организации</Link><Link to="/reports">Отчёты</Link>
           <Link to="/offer">Публичная оферта</Link><Link to="/privacy">Политика обработки ПДн</Link>
           <Link to="/terms">Пользовательское соглашение</Link><Link to="/consent">Согласие на обработку данных</Link>
-          <Link to="/recurring">Ежемесячная поддержка</Link>
         </div>
       </MobileDisclosure>
+      <CookiePreferencesButton />
       <p>© 2026 АНО «Мечты и судьбы»</p>
     </footer>
   );
@@ -80,7 +81,8 @@ export function Footer() {
       </section>
 
       <div className="footer-bottom">
-        <p>© 2026 АНО «Мечты и судьбы»</p>
+        <CookiePreferencesButton />
+      <p>© 2026 АНО «Мечты и судьбы»</p>
         <nav className="footer-legal-links" aria-label="Правовая информация">
           <Link to="/legal">Реквизиты</Link>
           <Link to="/reports">Отчёты</Link>
@@ -88,7 +90,6 @@ export function Footer() {
           <Link to="/privacy">Политика обработки ПДн</Link>
           <Link to="/terms">Пользовательское соглашение</Link>
           <Link to="/consent">Согласие на обработку данных</Link>
-          <Link to="/recurring">Ежемесячная поддержка</Link>
         </nav>
       </div>
     </footer>
