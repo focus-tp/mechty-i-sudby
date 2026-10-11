@@ -69,13 +69,15 @@ export function Hero() {
           </div>
           <figure className="book-photo book-photo--main">
             <img
-              src={asset('/hero/hero-embrace.jpeg')}
-              srcSet={`${asset('/hero/hero-embrace-720.jpg')} 720w, ${asset('/hero/hero-embrace.jpeg')} 1280w`}
-              sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1100px) 70vw, 510px"
+              src={asset('/hero/hero-embrace-1280.webp')}
+              srcSet={`${asset('/hero/hero-embrace-480.webp')} 480w, ${asset('/hero/hero-embrace-720.webp')} 720w, ${asset('/hero/hero-embrace-1024.webp')} 1024w, ${asset('/hero/hero-embrace-1280.webp')} 1280w`}
+              sizes="(max-width: 900px) calc(100vw - 32px), 510px"
               width="1280"
               height="768"
               alt="Мама и мальчик в тёплом объятии на встрече сообщества"
               fetchPriority="high"
+              loading="eager"
+              decoding="async"
             />
             <figcaption>истории, которые продолжаются</figcaption>
           </figure>

@@ -3258,6 +3258,16 @@ body:has(.warm-editorial-home) :is(.footer-epilogue, .footer-grid, .footer-colop
   white-space: normal;
 }
 
+@media (min-width: 901px) {
+  .warm-editorial-home .chapter-projects__list {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .warm-editorial-home .chapter-project-wrap:nth-child(1) { grid-column: span 7; }
+  .warm-editorial-home .chapter-project-wrap:nth-child(2) { grid-column: span 5; }
+  .warm-editorial-home .chapter-project-wrap:nth-child(n + 3) { grid-column: span 4; }
+}
+
 /* A horizontal illustration keeps the contact card calm and deliberately framed. */
 .warm-editorial-home .contact-closing-photo {
   min-height: 0;
