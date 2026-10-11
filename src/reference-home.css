@@ -933,7 +933,7 @@ body:has(.warm-editorial-home) nav#mainNav .btn-primary,
   padding: 0 !important;
   border: 0;
   background: transparent;
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
 .warm-editorial-home .contact-form-card::before {
@@ -2888,14 +2888,28 @@ body:has(.warm-editorial-home) .site-footer { background: #f5eafc; }
 /* Make the visual language feel intentional: quiet surfaces, one accent per card. */
 .warm-editorial-home .chapter-project,
 .warm-editorial-home .stories-card,
-.warm-editorial-home .impact-card,
-.warm-editorial-home .contact-form-letter {
+.warm-editorial-home .impact-card {
   border-color: rgba(74, 43, 110, .13);
   box-shadow: 0 16px 42px -24px rgba(74, 43, 110, .32);
 }
 
-.warm-editorial-home :is(.chapter-project, .impact-card, .stories-card, .contact-form-letter):focus-within {
+.warm-editorial-home :is(.chapter-project, .impact-card, .stories-card):focus-within {
   outline: 3px solid rgba(232, 122, 93, .25);
+  outline-offset: 3px;
+}
+
+.warm-editorial-home .contact-form-card:focus-within {
+  box-shadow: none;
+}
+
+.warm-editorial-home .contact-form-card :is(input:not([type="checkbox"]), select, textarea):focus {
+  border-color: var(--purple-light);
+  box-shadow: 0 0 0 3px rgba(107, 63, 160, .08);
+  outline: none;
+}
+
+.warm-editorial-home .contact-form-card input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--purple-light);
   outline-offset: 3px;
 }
 
