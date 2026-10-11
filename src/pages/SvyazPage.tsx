@@ -40,7 +40,17 @@ export function SvyazPage() {
 
           <Reveal type="right" delay={0.18}>
             <figure className="svyaz-hero__photo">
-              <img src={asset('/svyaz/group.jpg')} alt="Участники и команда семейной площадки «Связь»" />
+              <img
+                src={asset('/svyaz/group.webp')}
+                srcSet={`${asset('/svyaz/group-480.webp')} 480w, ${asset('/svyaz/group-720.webp')} 720w, ${asset('/svyaz/group.webp')} 1280w`}
+                sizes="(max-width: 760px) calc(100vw - 32px), 620px"
+                width="1280"
+                height="720"
+                alt="Участники и команда семейной площадки «Связь»"
+                fetchPriority="high"
+                loading="eager"
+                decoding="async"
+              />
               <img className="svyaz-hero__project-logo" src={asset('/svyaz/logo.png')} alt="Семейная площадка «Связь»" />
               <figcaption>вместе учимся быть ближе</figcaption>
             </figure>
@@ -90,7 +100,7 @@ export function SvyazPage() {
           <div className="svyaz-process__grid">
             <Reveal type="left">
               <figure className="svyaz-process__photo">
-                <img src={asset('/svyaz/care.jpg')} alt="Специалист поддерживает ребёнка во время семейной площадки" loading="lazy" />
+                <img src={asset('/svyaz/care.webp')} alt="Специалист поддерживает ребёнка во время семейной площадки" loading="lazy" />
                 <figcaption>быть рядом и замечать</figcaption>
               </figure>
             </Reveal>
@@ -134,7 +144,7 @@ export function SvyazPage() {
           <div className="svyaz-camp__feature">
             <Reveal type="left">
               <figure className="svyaz-camp__sand-photo">
-                <img src={asset('/camp/sand-therapy.jpeg')} alt="Композиция с миниатюрами во время занятия песочной терапией" loading="lazy" />
+                <img src={asset('/camp/sand-therapy.webp')} alt="Композиция с миниатюрами во время занятия песочной терапией" loading="lazy" />
                 <figcaption>бережный язык образов</figcaption>
               </figure>
             </Reveal>
@@ -148,9 +158,9 @@ export function SvyazPage() {
           </div>
 
           <div className="svyaz-camp__gallery" aria-label="Фотографии лагеря «Связь» 2026">
-            <Reveal delay={0.06}><figure><img src={asset('/camp/movement.jpeg')} alt="Подвижная игра в лагере «Связь»" loading="lazy" /><figcaption>движение</figcaption></figure></Reveal>
-            <Reveal delay={0.12}><figure><img src={asset('/camp/family-connection.jpeg')} alt="Мама и ребёнок во время семейного занятия" loading="lazy" /><figcaption>контакт</figcaption></figure></Reveal>
-            <Reveal delay={0.18}><figure><img src={asset('/camp/water-play.jpeg')} alt="Ребёнок играет с водой на свежем воздухе" loading="lazy" /><figcaption>свободная игра</figcaption></figure></Reveal>
+            <Reveal delay={0.06}><figure><img src={asset('/camp/movement.webp')} alt="Подвижная игра в лагере «Связь»" loading="lazy" /><figcaption>движение</figcaption></figure></Reveal>
+            <Reveal delay={0.12}><figure><img src={asset('/camp/family-connection.webp')} alt="Мама и ребёнок во время семейного занятия" loading="lazy" /><figcaption>контакт</figcaption></figure></Reveal>
+            <Reveal delay={0.18}><figure><img src={asset('/camp/water-play.webp')} alt="Ребёнок играет с водой на свежем воздухе" loading="lazy" /><figcaption>свободная игра</figcaption></figure></Reveal>
           </div>
         </div>
       </section>
@@ -174,7 +184,7 @@ export function SvyazPage() {
 
           <Reveal type="right" delay={0.12}>
             <figure className="svyaz-video">
-              <video controls playsInline preload="metadata" poster={asset('/svyaz/group.jpg')}>
+              <video controls playsInline preload="metadata" poster={asset('/svyaz/group.webp')}>
                 <source src={asset('/video/svyaz-presentation.mp4')} type="video/mp4" />
                 Ваш браузер не поддерживает встроенное видео.
               </video>

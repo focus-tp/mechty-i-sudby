@@ -67,11 +67,11 @@ function readBookmark() {
 
 const drawings = {
   shoes: {
-    source: '/stories/rozhdennye-serdtsem-pencil-shoes.jpg',
+    source: '/stories/rozhdennye-serdtsem-pencil-shoes.webp',
     alt: 'Детская и взрослая обувь у двери, нарисованные цветными карандашами',
   },
   braids: {
-    source: '/stories/rozhdennye-serdtsem-pencil-braids.jpg',
+    source: '/stories/rozhdennye-serdtsem-pencil-braids.webp',
     alt: 'Две детские косички с ленточками и гребень, нарисованные цветными карандашами',
   },
   mittens: {
@@ -79,15 +79,15 @@ const drawings = {
     alt: 'Две детские варежки, соединённые нитью, нарисованные цветными карандашами',
   },
   phone: {
-    source: '/stories/rozhdennye-serdtsem-pencil-phone.jpg',
+    source: '/stories/rozhdennye-serdtsem-pencil-phone.webp',
     alt: 'Телефонная трубка рядом с листком бумаги, нарисованные цветными карандашами',
   },
   cups: {
-    source: '/stories/rozhdennye-serdtsem-pencil-cups.jpg',
+    source: '/stories/rozhdennye-serdtsem-pencil-cups.webp',
     alt: 'Чашки, собранные в круг, нарисованные цветными карандашами',
   },
   table: {
-    source: '/stories/rozhdennye-serdtsem-pencil-table.jpg',
+    source: '/stories/rozhdennye-serdtsem-pencil-table.webp',
     alt: 'Семейный стол с четырьмя детскими стульями, нарисованный цветными карандашами',
   },
 } as const;
@@ -220,7 +220,7 @@ export function FamilyStoryPage() {
                 «Каждый ребёнок ищет того, кто ищет его».
               </blockquote>
               <figure className="family-story-cover-doodle">
-                <img src={asset('/stories/rozhdennye-serdtsem-pencil-home.jpg')} alt="Детская зарисовка цветными карандашами: дом с открытой дверью" />
+                <img src={asset('/stories/rozhdennye-serdtsem-pencil-home.webp')} alt="Детская зарисовка цветными карандашами: дом с открытой дверью" />
               </figure>
             </div>
           </Reveal>

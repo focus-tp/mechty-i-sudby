@@ -106,7 +106,17 @@ export function TrainingPage() {
 
           <Reveal type="right" delay={0.16}>
             <figure className="kpt-hero__photo">
-              <img src={asset('/training/group.jpg')} alt="Участники тренинга КППТ с преподавателями" />
+              <img
+                src={asset('/training/group.webp')}
+                srcSet={`${asset('/training/group-480.webp')} 480w, ${asset('/training/group-720.webp')} 720w, ${asset('/training/group.webp')} 1244w`}
+                sizes="(max-width: 760px) calc(100vw - 32px), 620px"
+                width="1244"
+                height="852"
+                alt="Участники тренинга КППТ с преподавателями"
+                fetchPriority="high"
+                loading="eager"
+                decoding="async"
+              />
               <figcaption>знания, которые помогают быть рядом</figcaption>
             </figure>
           </Reveal>
@@ -168,13 +178,13 @@ export function TrainingPage() {
             <div className="kpt-format__gallery" aria-label="Фотографии очного тренинга КППТ">
               <Reveal type="right">
                 <figure className="kpt-format__photo kpt-format__photo--main">
-                  <img src={asset('/training/theory.jpg')} alt="Тренер объясняет участникам формирование здоровой привязанности" loading="lazy" />
+                  <img src={asset('/training/theory.webp')} alt="Тренер объясняет участникам формирование здоровой привязанности" loading="lazy" />
                   <figcaption>обучение в диалоге</figcaption>
                 </figure>
               </Reveal>
               <Reveal type="right" delay={0.08}>
                 <figure className="kpt-format__photo">
-                  <img src={asset('/training/community.jpg')} alt="Плакат участников тренинга из разных городов" loading="lazy" />
+                  <img src={asset('/training/community.webp')} alt="Плакат участников тренинга из разных городов" loading="lazy" />
                   <figcaption>сообщество</figcaption>
                 </figure>
               </Reveal>
@@ -194,7 +204,7 @@ export function TrainingPage() {
           <Reveal type="left">
             <div className="kpt-experience">
               <figure>
-                <img src={asset('/training/session.jpg')} alt="Практическая работа участников во время тренинга КППТ" loading="lazy" />
+                <img src={asset('/training/session.webp')} alt="Практическая работа участников во время тренинга КППТ" loading="lazy" />
                 <figcaption>обсуждаем реальные ситуации</figcaption>
               </figure>
               <div className="kpt-quote">

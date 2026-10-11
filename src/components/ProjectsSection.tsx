@@ -12,6 +12,7 @@ interface Project {
   linkLabel: string;
   image: string;
   mobileImage?: string;
+  imageSet?: { src: string; width: number }[];
 }
 
 const projects: Project[] = [
@@ -22,8 +23,9 @@ const projects: Project[] = [
     detail: 'На занятиях дети осваивают навыки саморегуляции, а взрослые учатся поддерживать ребёнка в сложных ситуациях.',
     link: '/svyaz',
     linkLabel: 'О площадке',
-    image: '/hero/svyaz-project.jpeg',
-    mobileImage: '/hero/svyaz-project-720.jpg',
+    image: '/hero/svyaz-project.webp',
+    mobileImage: '/hero/svyaz-project-720.webp',
+    imageSet: [{ src: '/hero/svyaz-project-480.webp', width: 480 }, { src: '/hero/svyaz-project-960.webp', width: 960 }, { src: '/hero/svyaz-project.webp', width: 1280 }],
   },
   {
     id: 'training',
@@ -32,8 +34,9 @@ const projects: Project[] = [
     detail: 'Три дня практики, девять модулей и опыт, который помогает специалистам бережно работать с семьями.',
     link: '/training',
     linkLabel: 'О тренинге',
-    image: '/Тренинг RGGN.jpg',
-    mobileImage: '/training-project-720.jpg',
+    image: '/Тренинг RGGN.webp',
+    mobileImage: '/training-project-720.webp',
+    imageSet: [{ src: '/Тренинг RGGN-480.webp', width: 480 }, { src: '/Тренинг RGGN-960.webp', width: 960 }, { src: '/Тренинг RGGN.webp', width: 1280 }],
   },
   {
     id: 'support-groups',
@@ -42,8 +45,9 @@ const projects: Project[] = [
     detail: 'Безопасное пространство для честного разговора, поддержки родителей и занятий с детьми.',
     link: '#contact',
     linkLabel: 'Записаться',
-    image: '/hero/support-groups.jpg',
-    mobileImage: '/hero/support-groups-720.jpg',
+    image: '/hero/support-groups.webp',
+    mobileImage: '/hero/support-groups-720.webp',
+    imageSet: [{ src: '/hero/support-groups-480.webp', width: 480 }, { src: '/hero/support-groups-960.webp', width: 960 }, { src: '/hero/support-groups.webp', width: 1600 }],
   },
   {
     id: 'cabins',
@@ -53,6 +57,7 @@ const projects: Project[] = [
     link: '/domiki',
     linkLabel: 'Посмотреть дома',
     image: '/cabins/family-interior.jpeg',
+    mobileImage: '/cabins/family-interior-480.webp',
   },
   {
     id: 'consult',
@@ -61,8 +66,9 @@ const projects: Project[] = [
     detail: 'Разбираем вопросы усыновления, опеки и приёмного родительства вместе с сертифицированными специалистами.',
     link: '#contact',
     linkLabel: 'Записаться',
-    image: '/hero/consultations.jpeg',
-    mobileImage: '/hero/consultations-720.jpg',
+    image: '/hero/consultations.webp',
+    mobileImage: '/hero/consultations-720.webp',
+    imageSet: [{ src: '/hero/consultations-480.webp', width: 480 }, { src: '/hero/consultations-960.webp', width: 960 }, { src: '/hero/consultations.webp', width: 1280 }],
   },
 ];
 
@@ -119,6 +125,8 @@ export function ProjectsSection() {
                     {project.mobileImage && <source media="(max-width: 900px)" srcSet={asset(project.mobileImage)} />}
                     <img
                       src={asset(project.image)}
+                      srcSet={project.imageSet?.map(({ src, width }) => `${asset(src)} ${width}w`).join(', ')}
+                      sizes="(max-width: 900px) calc(100vw - 32px), (max-width: 1300px) 45vw, 760px"
                       alt={project.title}
                       loading="lazy"
                       decoding="async"

@@ -27,7 +27,7 @@ const pillars = [
 export function AboutSection({ compact = false }: { compact?: boolean }) {
   if (compact) return (
     <section className="mobile-about" id="about">
-      <img src={asset('/hero/team-specialists.jpeg')} alt="Команда специалистов и волонтёров «Мечты и судьбы»" loading="lazy" />
+      <img src={asset('/hero/team-specialists.webp')} srcSet={`${asset('/hero/team-specialists-480.webp')} 480w, ${asset('/hero/team-specialists-960.webp')} 960w, ${asset('/hero/team-specialists.webp')} 1280w`} sizes="calc(100vw - 32px)" alt="Команда специалистов и волонтёров «Мечты и судьбы»" loading="lazy" decoding="async" />
       <div className="mobile-about__copy">
         <span className="section-label">Давайте знакомиться</span>
         <h2>Рядом — <em>свои люди</em></h2>
@@ -71,10 +71,13 @@ export function AboutSection({ compact = false }: { compact?: boolean }) {
             <div className="about-photo-block">
               <div className="about-photo-frame">
                 <img
-                  src={asset('/hero/team-specialists.jpeg')}
+                  src={asset('/hero/team-specialists.webp')}
+                  srcSet={`${asset('/hero/team-specialists-480.webp')} 480w, ${asset('/hero/team-specialists-960.webp')} 960w, ${asset('/hero/team-specialists.webp')} 1280w`}
+                  sizes="(max-width: 900px) calc(100vw - 32px), 620px"
                   alt="Команда специалистов и волонтёров Мечты и судьбы"
                   className="about-photo"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="about-float-badge">
                   <div className="about-float-badge__num">15</div>

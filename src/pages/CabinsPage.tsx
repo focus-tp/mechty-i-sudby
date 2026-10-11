@@ -26,11 +26,11 @@ const amenities = [
 ];
 
 const gallery = [
-  { src: '/cabins/bedroom.jpeg', alt: 'Подготовленная кровать в деревянном интерьере дома', label: 'отдых' },
+  { src: '/cabins/bedroom.webp', alt: 'Подготовленная кровать в деревянном интерьере дома', label: 'отдых' },
   { src: '/cabins/table.jpeg', alt: 'Сервированный стол на кухне дома', label: 'вместе за столом' },
-  { src: '/cabins/hammock.jpeg', alt: 'Гостья отдыхает в подвесном кресле на террасе', label: 'тишина' },
+  { src: '/cabins/hammock.webp', alt: 'Гостья отдыхает в подвесном кресле на террасе', label: 'тишина' },
   { src: '/cabins/kitchen.jpeg', alt: 'Оборудованная кухня внутри дома', label: 'как дома' },
-  { src: '/cabins/fire.jpeg', alt: 'Огонь в уличной чаше рядом с домами', label: 'вечером' },
+  { src: '/cabins/fire.webp', alt: 'Огонь в уличной чаше рядом с домами', label: 'вечером' },
   { src: '/cabins/playground.jpeg', alt: 'Детская площадка на зелёной территории', label: 'простор для детей' },
 ];
 
@@ -75,18 +75,20 @@ export function CabinsPage() {
             <div className="cabins-hero__visual">
               <figure className="cabins-hero__main-photo">
                 <img
-                  src={asset('/cabins/domiki-evening-exterior.jpeg')}
-                  srcSet={`${asset('/cabins/domiki-evening-exterior-720.jpg')} 720w, ${asset('/cabins/domiki-evening-exterior.jpeg')} 2400w`}
+                  src={asset('/cabins/domiki-evening-exterior.webp')}
+                  srcSet={`${asset('/cabins/domiki-evening-exterior-480.webp')} 480w, ${asset('/cabins/domiki-evening-exterior-720.webp')} 720w, ${asset('/cabins/domiki-evening-exterior-1280.webp')} 1280w, ${asset('/cabins/domiki-evening-exterior.webp')} 1600w`}
                   sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1100px) 80vw, 620px"
-                  width="2400"
-                  height="1800"
+                  width="1600"
+                  height="1200"
                   alt="Уютный загородный дом с освещённой террасой вечером"
                   fetchPriority="high"
+                  loading="eager"
+                  decoding="async"
                 />
                 <figcaption>тишина, воздух и время друг для друга</figcaption>
               </figure>
               <figure className="cabins-hero__family-photo">
-                <img src={asset('/cabins/family-rest.jpeg')} alt="Мама и сын отдыхают вместе в доме" />
+                <img src={asset('/cabins/family-rest.jpeg')} alt="Мама и сын отдыхают вместе в доме" loading="lazy" decoding="async" />
               </figure>
               <span className="cabins-hand-note">семейная пауза</span>
             </div>

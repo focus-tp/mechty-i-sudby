@@ -87,7 +87,7 @@ export function StoriesSection() {
 
         <div className="stories-card stories-letter">
           <figure className="stories-keepsake stories-keepsake--illustration">
-            <img src={asset('/letters-illustration.png')} alt="Бумажный конверт с письмами, сердцем и бабочкой" loading="lazy" />
+            <img src={asset('/letters-illustration.webp')} alt="Бумажный конверт с письмами, сердцем и бабочкой" loading="lazy" />
             <figcaption>история, которую хочется сохранить</figcaption>
           </figure>
 

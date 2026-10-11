@@ -3,11 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Start the first-screen photo before the React bundle has executed. Keep sizes in sync with Hero.tsx. -->
-    <link rel="preload" as="image" type="image/webp" fetchpriority="high"
-      href="/hero/hero-embrace-1280.webp"
-      imagesrcset="/hero/hero-embrace-480.webp 480w, /hero/hero-embrace-720.webp 720w, /hero/hero-embrace-1024.webp 1024w, /hero/hero-embrace-1280.webp 1280w"
-      imagesizes="(max-width: 900px) calc(100vw - 32px), 510px">
+    <!-- Preload only the first-screen photo for the current route. -->
+    <script>
+      (function () {
+        var base = '%BASE_URL%';
+        var route = location.pathname.slice(base.length).replace(/\/$/, '');
+        var photos = {
+          '': ['hero/hero-embrace', [480, 720, 1024, 1280], '(max-width: 900px) calc(100vw - 32px), 510px'],
+          'domiki': ['cabins/domiki-evening-exterior', [480, 720, 1280, 1600], '(max-width: 760px) calc(100vw - 32px), (max-width: 1100px) 80vw, 620px'],
+          'svyaz': ['svyaz/group', [480, 720, 1280], '(max-width: 760px) calc(100vw - 32px), 620px'],
+          'training': ['training/group', [480, 720, 1244], '(max-width: 760px) calc(100vw - 32px), 620px']
+        };
+        var photo = photos[route];
+        if (!photo) return;
+        var link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.type = 'image/webp';
+        link.fetchPriority = 'high';
+        var imageUrl = function (width) {
+          var fullSize = width === 1600 || width === 1244 || (width === 1280 && route === 'svyaz');
+          return base + photo[0] + (fullSize ? '' : '-' + width) + '.webp';
+        };
+        link.setAttribute('imagesrcset', photo[1].map(function (width) {
+          return imageUrl(width) + ' ' + width + 'w';
+        }).join(', '));
+        link.href = imageUrl(photo[1].at(-1));
+        link.imageSizes = photo[2];
+        document.head.appendChild(link);
+      }());
+    </script>
     
     <link rel="preload" href="/fonts/YS%20Text-Regular.woff" as="font" type="font/woff" crossorigin>
     <link rel="preload" href="/fonts/Cormorant-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin>
