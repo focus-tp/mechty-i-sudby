@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { readStoragePreferences, saveCookiePreferences } from '../cookiePreferences';
+import { YANDEX_METRIKA_ID } from '../yandexMetrika';
+
+const analyticsAvailable = YANDEX_METRIKA_ID !== null;
 
 export function CookiePreferencesButton() {
   return (
@@ -22,7 +25,7 @@ export function CookieBanner() {
   useEffect(() => {
     const listener = () => {
       const current = readStoragePreferences();
-      if (current) {
+      if (current && analyticsAvailable) {
         setAnalyticsAllowed(current.analytics);
       }
       setOpen(true);
@@ -43,7 +46,7 @@ export function CookieBanner() {
   }
 
   function handleSaveCustom() {
-    saveCookiePreferences({ analytics: analyticsAllowed });
+    saveCookiePreferences({ analytics: analyticsAvailable && analyticsAllowed });
     setOpen(false);
   }
 
@@ -54,9 +57,11 @@ export function CookieBanner() {
       <div className="cookie-content">
         <div className="cookie-icon" aria-hidden="true">🍪</div>
         <div className="cookie-text">
-          <strong id="cookie-title">Мы используем файлы cookie и аналитику</strong>
+          <strong id="cookie-title">{analyticsAvailable ? 'Настройки cookies и аналитики' : 'Сохранение настроек сайта'}</strong>
           <span>
-            Они помогают сохранять место чтения в электронной книге, обеспечивать работу сайта и анонимно понимать, какие разделы и материалы наиболее полезны приёмным семьям.
+            {analyticsAvailable
+              ? 'Хранилище браузера сохраняет место чтения в электронной книге и ваш выбор. Аналитика помогает понимать, какие разделы полезны посетителям, и включается только с вашего согласия.'
+              : 'Сайт использует хранилище браузера, чтобы сохранить ваш выбор и место чтения в электронной книге. Аналитика сейчас не подключена.'}
           </span>
 
           {showDetails && (
@@ -71,7 +76,7 @@ export function CookieBanner() {
                 </label>
               </div>
 
-              <div className="cookie-category" style={{ marginTop: '0.5rem' }}>
+              {analyticsAvailable && <div className="cookie-category" style={{ marginTop: '0.5rem' }}>
                 <label className="cookie-checkbox-label">
                   <input
                     type="checkbox"
@@ -83,13 +88,13 @@ export function CookieBanner() {
                     <small>Анонимный сбор посещаемости без передачи персональных данных третьим лицам.</small>
                   </span>
                 </label>
-              </div>
+              </div>}
             </div>
           )}
 
           <div className="cookie-policy-link">
-            <Link to="/privacy#browser-storage">Политика обработки данных</Link>
-            {!showDetails && (
+            <Link to="/privacy">Политика обработки данных</Link>
+            {!showDetails && analyticsAvailable && (
               <button
                 type="button"
                 className="cookie-customize-btn"
@@ -102,7 +107,11 @@ export function CookieBanner() {
         </div>
 
         <div className="cookie-btns">
-          {showDetails ? (
+          {!analyticsAvailable ? (
+            <button type="button" className="cookie-accept" onClick={handleAcceptEssentialOnly}>
+              Понятно
+            </button>
+          ) : showDetails ? (
             <>
               <button type="button" className="cookie-accept" onClick={handleSaveCustom}>
                 Сохранить выбор
