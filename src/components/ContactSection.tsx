@@ -4,6 +4,7 @@ import { useUI } from '../context/UIContext';
 import { Reveal } from './Reveal';
 import { asset } from '../utils';
 import { MobileDisclosure } from './MobileDisclosure';
+import { NewsletterSignup } from './NewsletterSignup';
 
 function FormContainer({ compact, children }: { compact: boolean; children: import('react').ReactNode }) {
   return compact ? <MobileDisclosure title="Написать письмо">{children}</MobileDisclosure> : <>{children}</>;
@@ -58,6 +59,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
               <a className="contact-quick-action" href="https://t.me/svyaz_ekb" target="_blank" rel="noreferrer">Telegram</a>
               <a className="contact-quick-action" href="mailto:mechty.sudby@mail.ru">Написать на почту</a>
             </div>
+            <NewsletterSignup />
             <div className="contact-reassurance">
               <img src={asset('/team/zenya.jpeg')} alt="Евгения Ощепкова, руководитель АНО" loading="lazy" />
               <span><strong>На связи команда АНО</strong>Обычно отвечаем в течение 1–2 рабочих дней.</span>

@@ -72,6 +72,103 @@ footer.site-footer :is(.footer-epilogue, .footer-grid, .footer-colophon, .footer
   font-size: .85rem;
 }
 
+.newsletter-signup {
+  margin: 1.5rem 0;
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+  border: 1px solid rgba(74, 43, 110, .14);
+  border-radius: 1.25rem;
+  background: #f6edf9;
+}
+
+.newsletter-signup h3 {
+  margin: 0 0 .25rem;
+  color: var(--dark);
+  font-family: "Cormorant", serif;
+  font-size: 1.7rem;
+}
+
+.contact-info .newsletter-signup p {
+  margin: 0 0 1rem;
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
+.newsletter-signup__email {
+  display: block;
+  margin-bottom: .4rem;
+  color: var(--dark);
+  font-size: .82rem;
+  font-weight: 600;
+}
+
+.newsletter-signup__row {
+  display: flex;
+  gap: .6rem;
+}
+
+.newsletter-signup__row input {
+  min-width: 0;
+  flex: 1;
+  padding: .8rem 1rem;
+  border: 1px solid rgba(74, 43, 110, .2);
+  border-radius: .8rem;
+  background: #fff;
+}
+
+.newsletter-signup__row input:focus-visible,
+.newsletter-signup__consent input:focus-visible,
+.newsletter-signup__row button:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 2px;
+}
+
+.newsletter-signup__row button {
+  padding: .75rem 1rem;
+  border: 0;
+  border-radius: .8rem;
+  background: var(--purple);
+  color: #fff;
+  font-weight: 600;
+}
+
+.newsletter-signup__row button:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+.newsletter-signup__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: .55rem;
+  margin: .85rem 0 .35rem;
+  color: var(--text-muted);
+  font-size: .8rem;
+  line-height: 1.45;
+}
+
+.newsletter-signup__consent input {
+  flex: none;
+  margin-top: .2rem;
+}
+
+.newsletter-signup__consent a {
+  color: var(--purple);
+  text-decoration: underline;
+}
+
+.newsletter-signup > small {
+  display: block;
+  color: var(--text-muted);
+  font-size: .75rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .newsletter-signup__row {
+    flex-direction: column;
+  }
+}
+
 @media (min-width: 1021px) {
   footer.site-footer,
   body:has(.warm-editorial-home) footer.site-footer {

@@ -20,12 +20,12 @@ export function CookiePreferencesButton() {
 export function CookieBanner() {
   const [open, setOpen] = useState(() => readStoragePreferences() === null);
   const [showDetails, setShowDetails] = useState(false);
-  const [analyticsAllowed, setAnalyticsAllowed] = useState(true);
+  const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
 
   useEffect(() => {
     const listener = () => {
       const current = readStoragePreferences();
-      if (current && analyticsAvailable) {
+      if (current) {
         setAnalyticsAllowed(current.analytics);
       }
       setOpen(true);
@@ -46,7 +46,7 @@ export function CookieBanner() {
   }
 
   function handleSaveCustom() {
-    saveCookiePreferences({ analytics: analyticsAvailable && analyticsAllowed });
+    saveCookiePreferences({ analytics: analyticsAllowed });
     setOpen(false);
   }
 
@@ -57,11 +57,11 @@ export function CookieBanner() {
       <div className="cookie-content">
         <div className="cookie-icon" aria-hidden="true">🍪</div>
         <div className="cookie-text">
-          <strong id="cookie-title">{analyticsAvailable ? 'Настройки cookies и аналитики' : 'Сохранение настроек сайта'}</strong>
+          <strong id="cookie-title">Настройки cookies и аналитики</strong>
           <span>
             {analyticsAvailable
-              ? 'Хранилище браузера сохраняет место чтения в электронной книге и ваш выбор. Аналитика помогает понимать, какие разделы полезны посетителям, и включается только с вашего согласия.'
-              : 'Сайт использует хранилище браузера, чтобы сохранить ваш выбор и место чтения в электронной книге. Аналитика сейчас не подключена.'}
+              ? 'Хранилище браузера сохраняет ваш выбор и место чтения. Яндекс Метрика собирает статистику посещений только с вашего согласия.'
+              : 'Хранилище браузера сохраняет ваш выбор и место чтения. Яндекс Метрика пока не подключена: вы можете заранее разрешить её использование, а до подключения данные ей не передаются.'}
           </span>
 
           {showDetails && (
@@ -76,7 +76,7 @@ export function CookieBanner() {
                 </label>
               </div>
 
-              {analyticsAvailable && <div className="cookie-category" style={{ marginTop: '0.5rem' }}>
+              <div className="cookie-category" style={{ marginTop: '0.5rem' }}>
                 <label className="cookie-checkbox-label">
                   <input
                     type="checkbox"
@@ -85,16 +85,16 @@ export function CookieBanner() {
                   />
                   <span>
                     <strong>Статистика и Яндекс Метрика</strong>
-                    <small>Анонимный сбор посещаемости без передачи персональных данных третьим лицам.</small>
+                    <small>После подключения передаёт Яндексу данные о посещениях и идентификаторы браузера. Необязательно для работы сайта.</small>
                   </span>
                 </label>
-              </div>}
+              </div>
             </div>
           )}
 
           <div className="cookie-policy-link">
             <Link to="/privacy">Политика обработки данных</Link>
-            {!showDetails && analyticsAvailable && (
+            {!showDetails && (
               <button
                 type="button"
                 className="cookie-customize-btn"
@@ -107,11 +107,7 @@ export function CookieBanner() {
         </div>
 
         <div className="cookie-btns">
-          {!analyticsAvailable ? (
-            <button type="button" className="cookie-accept" onClick={handleAcceptEssentialOnly}>
-              Понятно
-            </button>
-          ) : showDetails ? (
+          {showDetails ? (
             <>
               <button type="button" className="cookie-accept" onClick={handleSaveCustom}>
                 Сохранить выбор
@@ -123,7 +119,7 @@ export function CookieBanner() {
           ) : (
             <>
               <button type="button" className="cookie-accept" onClick={handleAcceptAll}>
-                Принять все
+                Разрешить аналитику
               </button>
               <button
                 type="button"

@@ -17,6 +17,7 @@ export function Footer() {
           <Link to="/legal">Реквизиты организации</Link><Link to="/reports">Отчёты</Link>
           <Link to="/offer">Публичная оферта</Link><Link to="/privacy">Политика обработки ПДн</Link>
           <Link to="/terms">Пользовательское соглашение</Link><Link to="/consent">Согласие на обработку данных</Link>
+          <Link to="/mailing-consent">Согласие на рассылку</Link>
         </div>
       </MobileDisclosure>
       <CookiePreferencesButton />
@@ -90,6 +91,7 @@ export function Footer() {
           <Link to="/privacy">Политика обработки ПДн</Link>
           <Link to="/terms">Пользовательское соглашение</Link>
           <Link to="/consent">Согласие на обработку данных</Link>
+          <Link to="/mailing-consent">Согласие на рассылку</Link>
         </nav>
       </div>
     </footer>

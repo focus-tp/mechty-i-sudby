@@ -1,7 +1,8 @@
-import { initYandexMetrika } from './yandexMetrika';
+import { disableYandexMetrika, initYandexMetrika } from './yandexMetrika';
 
 export const bookmarkKey = 'mechty-i-sudby:rozhdennye-serdtsem:bookmark';
-const preferenceKey = 'mechty-i-sudby:cookie-preferences:v2';
+const preferenceKey = 'mechty-i-sudby:cookie-preferences:v3';
+const previousPreferenceKey = 'mechty-i-sudby:cookie-preferences:v2';
 const legacyPreferenceKey = 'mechty-i-sudby:storage-choice:v1';
 const lifetime = 180 * 24 * 60 * 60 * 1000;
 
@@ -28,18 +29,6 @@ export function readStoragePreferences(): CookiePreferences | null {
       }
     }
 
-    // Обратная совместимость с предыдущей версией хранилища
-    const legacyRaw = localStorage.getItem(legacyPreferenceKey);
-    if (legacyRaw) {
-      const legacy = JSON.parse(legacyRaw);
-      if (legacy && typeof legacy.allowed === 'boolean') {
-        return {
-          necessary: true,
-          analytics: legacy.allowed,
-          at: legacy.at || Date.now(),
-        };
-      }
-    }
   } catch {
     /* Storage can be unavailable */
   }
@@ -51,9 +40,24 @@ export function readStoragePreferences(): CookiePreferences | null {
  */
 export function readStorageChoice(): boolean | null {
   const prefs = readStoragePreferences();
-  if (!prefs) return null;
-  // Если пользователь явно сделал выбор, функциональное сохранение в браузере разрешено
-  return prefs.necessary;
+  if (prefs) return prefs.necessary;
+  try {
+    const previous = localStorage.getItem(previousPreferenceKey);
+    if (previous) {
+      const record = JSON.parse(previous);
+      if (typeof record.necessary === 'boolean' && typeof record.at === 'number' && Date.now() - record.at < lifetime) {
+        return record.necessary;
+      }
+    }
+    const legacy = localStorage.getItem(legacyPreferenceKey);
+    if (legacy) {
+      const record = JSON.parse(legacy);
+      if (typeof record.allowed === 'boolean') return record.allowed;
+    }
+  } catch {
+    /* Storage can be unavailable */
+  }
+  return null;
 }
 
 export function saveCookiePreferences(options: { analytics: boolean }) {
@@ -74,6 +78,8 @@ export function saveCookiePreferences(options: { analytics: boolean }) {
 
   if (options.analytics) {
     initYandexMetrika();
+  } else {
+    disableYandexMetrika();
   }
 
   window.dispatchEvent(new CustomEvent('cookie-preferences-changed', { detail: preferences }));

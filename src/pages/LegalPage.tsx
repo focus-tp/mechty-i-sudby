@@ -4,8 +4,9 @@ import { asset } from '../utils';
 import { ProvidedLegalDocument } from '../components/ProvidedLegalDocument';
 import privacyPolicy from '../legal-documents/privacy-policy.txt?raw';
 import donationOffer from '../legal-documents/donation-offer.txt?raw';
+import mailingConsent from '../legal-documents/mailing-consent.txt?raw';
 
-type LegalPageKind = 'privacy' | 'consent' | 'offer' | 'recurring' | 'legal' | 'reports' | 'terms';
+type LegalPageKind = 'privacy' | 'consent' | 'mailing' | 'offer' | 'recurring' | 'legal' | 'reports' | 'terms';
 
 const content = {
   privacy: {
@@ -17,6 +18,11 @@ const content = {
     label: 'Персональные данные',
     title: 'Согласие на обработку данных',
     intro: 'Отдельное согласие посетителя на обработку сведений, которые он добровольно передаёт через формы сайта.',
+  },
+  mailing: {
+    label: 'Информационная рассылка',
+    title: 'Согласие на получение рассылки',
+    intro: 'Отдельное добровольное согласие на письма о проектах и мероприятиях организации.',
   },
   offer: {
     label: 'Пожертвования',
@@ -60,9 +66,16 @@ export function LegalPage({ kind }: { kind: LegalPageKind }) {
         <article className="legal-page__paper">
           {kind === 'privacy' && (
             <>
-              <p><strong>Утверждена:</strong> 12 октября 2026 года.</p>
-              <p>Ниже опубликован полный текст политики организации. Для обращений через сайт действует также <Link to="/consent">отдельное согласие на обработку данных</Link>.</p>
+              <p><strong>Редакция сайта:</strong> 13 октября 2026 года. Подготовлена на основе документа организации от 12 октября 2026 года.</p>
+              <p>Для обращений через сайт действует также <Link to="/consent">отдельное согласие на обработку данных</Link>.</p>
               <ProvidedLegalDocument text={privacyPolicy} startAt="Основные термины и определения" privacyTable />
+            </>
+          )}
+
+          {kind === 'mailing' && (
+            <>
+              <p><strong>Редакция:</strong> 13 октября 2026 года.</p>
+              <ProvidedLegalDocument text={mailingConsent} startAt="Я добровольно" />
             </>
           )}
 

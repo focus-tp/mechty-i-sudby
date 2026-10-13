@@ -2,11 +2,11 @@
  * Модуль интеграции Яндекс Метрики.
  * 
  * Инициализируется только после согласия пользователя в окне Cookie/Согласия.
- * Чтобы активировать сбор аналитики, укажите реальный ID счетчика в переменной YANDEX_METRIKA_ID.
+ * Чтобы активировать сбор аналитики, задайте VITE_YANDEX_METRIKA_ID при сборке.
  */
 
-// Замените на ваш ID счетчика Яндекс Метрики, когда получите его
-export const YANDEX_METRIKA_ID: number | null = null;
+const configuredId = Number(import.meta.env.VITE_YANDEX_METRIKA_ID);
+export const YANDEX_METRIKA_ID: number | null = Number.isSafeInteger(configuredId) && configuredId > 0 ? configuredId : null;
 
 declare global {
   interface Window {
@@ -22,6 +22,7 @@ let isInitialized = false;
 export function initYandexMetrika() {
   if (isInitialized || !YANDEX_METRIKA_ID) return;
   if (typeof window === 'undefined') return;
+  Object.assign(window, { [`disableYaCounter${YANDEX_METRIKA_ID}`]: false });
 
   (function (m: any, e: any, t: any, r: any, i: any) {
     m[i] =
@@ -46,10 +47,17 @@ export function initYandexMetrika() {
     clickmap: true,
     trackLinks: true,
     accurateTrackBounce: true,
-    webvisor: true,
+    webvisor: false,
   });
 
   isInitialized = true;
+}
+
+export function disableYandexMetrika() {
+  if (!YANDEX_METRIKA_ID || typeof window === 'undefined') return;
+  Object.assign(window, { [`disableYaCounter${YANDEX_METRIKA_ID}`]: true });
+  if (isInitialized) window.ym?.(YANDEX_METRIKA_ID, 'destruct');
+  isInitialized = false;
 }
 
 export function trackGoal(targetName: string, params?: Record<string, any>) {

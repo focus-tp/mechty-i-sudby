@@ -226,6 +226,7 @@ export default function App() {
             <Route path="/privacy" element={<LegalPage kind="privacy" />} />
             <Route path="/terms" element={<LegalPage kind="terms" />} />
             <Route path="/consent" element={<LegalPage kind="consent" />} />
+            <Route path="/mailing-consent" element={<LegalPage kind="mailing" />} />
             <Route path="/offer" element={<LegalPage kind="offer" />} />
             <Route path="/recurring" element={<Navigate to="/#donate" replace />} />
             <Route path="/legal" element={<LegalPage kind="legal" />} />
