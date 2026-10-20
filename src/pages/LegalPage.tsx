@@ -3,8 +3,10 @@ import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { asset } from '../utils';
 import { ProvidedLegalDocument } from '../components/ProvidedLegalDocument';
 import privacyPolicy from '../legal-documents/privacy-policy.txt?raw';
+import regPrivacyPolicy from '../legal-documents/privacy-policy-reg-ru.txt?raw';
 import donationOffer from '../legal-documents/donation-offer.txt?raw';
 import mailingConsent from '../legal-documents/mailing-consent.txt?raw';
+import { isRegHosting, withCurrentSiteUrl } from '../siteConfig';
 
 type LegalPageKind = 'privacy' | 'consent' | 'mailing' | 'offer' | 'recurring' | 'legal' | 'reports' | 'terms';
 
@@ -66,16 +68,16 @@ export function LegalPage({ kind }: { kind: LegalPageKind }) {
         <article className="legal-page__paper">
           {kind === 'privacy' && (
             <>
-              <p><strong>Редакция сайта:</strong> 13 октября 2026 года. Подготовлена на основе документа организации от 12 октября 2026 года.</p>
+              <p><strong>Редакция сайта:</strong> {isRegHosting ? '20 октября 2026 года' : '13 октября 2026 года'}. Подготовлена на основе документа организации от 12 октября 2026 года.</p>
               <p>Для обращений через сайт действует также <Link to="/consent">отдельное согласие на обработку данных</Link>.</p>
-              <ProvidedLegalDocument text={privacyPolicy} startAt="Основные термины и определения" privacyTable />
+              <ProvidedLegalDocument text={isRegHosting ? regPrivacyPolicy : privacyPolicy} startAt="Основные термины и определения" privacyTable />
             </>
           )}
 
           {kind === 'mailing' && (
             <>
               <p><strong>Редакция:</strong> 13 октября 2026 года.</p>
-              <ProvidedLegalDocument text={mailingConsent} startAt="Я добровольно" />
+              <ProvidedLegalDocument text={withCurrentSiteUrl(mailingConsent)} startAt="Я добровольно" />
             </>
           )}
 
@@ -104,7 +106,7 @@ export function LegalPage({ kind }: { kind: LegalPageKind }) {
             <>
               <p><strong>Дата публикации:</strong> 13 октября 2026 года.</p>
               <p>Ниже опубликован полный текст оферты. На сайте сейчас можно получить реквизиты для перевода; данные банковской карты здесь не вводятся.</p>
-              <ProvidedLegalDocument text={donationOffer} startAt="1. Общие положения" endBefore="Директор:" />
+              <ProvidedLegalDocument text={withCurrentSiteUrl(donationOffer)} startAt="1. Общие положения" endBefore="Директор:" />
             </>
           )}
 

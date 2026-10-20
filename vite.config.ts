@@ -4,9 +4,19 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
+  const base = process.env.SITE_BASE_PATH || '/mechty-i-sudby/';
+  const siteUrl = process.env.VITE_SITE_URL || 'https://focus-tp.github.io/mechty-i-sudby/';
+
   return {
-    base: '/mechty-i-sudby/',
-    plugins: [react(), tailwindcss()],
+    base,
+    plugins: [
+      react(),
+      tailwindcss(),
+      {
+        name: 'site-url-metadata',
+        transformIndexHtml: (html: string) => html.replaceAll('__PUBLIC_SITE_URL__', siteUrl),
+      },
+    ],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

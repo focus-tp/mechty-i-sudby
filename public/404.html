@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <title>Мечты и Судьбы</title>
     <script>
-      // SPA redirect for GitHub Pages
-      // Converts the path to a query string so index.html can restore it
-      var pathSegmentsToKeep = 1; // /mechty-i-sudby/ = 1 segment
+      // GitHub Pages serves this project from a subpath; REG.RU serves it from the domain root.
+      var pathSegmentsToKeep = location.hostname.endsWith('github.io') ? 1 : 0;
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +

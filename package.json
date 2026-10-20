@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
+    "build:reg": "SITE_BASE_PATH=/ VITE_SITE_URL=https://mechtysudb.ru/ VITE_HOSTING_PROVIDER=reg-ru vite build",
+    "package:reg": "python3 scripts/package_reg.py",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"

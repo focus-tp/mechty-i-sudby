@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
+import { siteUrl } from '../siteConfig';
 
 export function NewsletterSignup() {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ export function NewsletterSignup() {
 
     const subject = encodeURIComponent('Заявка на информационную рассылку');
     const body = encodeURIComponent(
-      `Здравствуйте! Прошу добавить меня в список для информационной рассылки АНО «Мечты и судьбы».\n\nАдрес для рассылки: ${email.trim()}\n\nПодтверждаю отдельное согласие на получение информационной рассылки и обработку этого адреса электронной почты. Редакция согласия от 13.10.2026: https://focus-tp.github.io/mechty-i-sudby/mailing-consent.`,
+      `Здравствуйте! Прошу добавить меня в список для информационной рассылки АНО «Мечты и судьбы».\n\nАдрес для рассылки: ${email.trim()}\n\nПодтверждаю отдельное согласие на получение информационной рассылки и обработку этого адреса электронной почты. Редакция согласия от 13.10.2026: ${siteUrl}mailing-consent.`,
     );
     window.location.href = `mailto:mechty.sudby@mail.ru?subject=${subject}&body=${body}`;
   }
