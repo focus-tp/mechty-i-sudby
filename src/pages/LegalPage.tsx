@@ -134,7 +134,7 @@ export function LegalPage({ kind }: { kind: LegalPageKind }) {
               <h2>Учредительные документы</h2>
               <div className="legal-page__documents">
                 <a href={asset('/документы/устав НКО.pdf')} target="_blank" rel="noreferrer">Устав АНО</a>
-                <a href={asset('/документы/Лист записи ЕГРН.pdf')} target="_blank" rel="noreferrer">Лист записи ЕГРЮЛ</a>
+                <a href={asset('/документы/Лист записи ЕГРЮЛ.pdf')} target="_blank" rel="noreferrer">Лист записи ЕГРЮЛ</a>
                 <a href={asset('/документы/Выписка из ЕГРН.pdf')} target="_blank" rel="noreferrer">Выписка из ЕГРН (реестр налогоплательщиков)</a>
               </div>
               <h2>Контакты</h2>
