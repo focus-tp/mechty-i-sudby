@@ -8,6 +8,7 @@ import './reference-home.css';
 import './editorial-subpages.css';
 import './cabins-page.css';
 import './mobile.css';
+import './cursor.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

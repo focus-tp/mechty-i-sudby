@@ -2182,8 +2182,19 @@ footer::before {
 }
 
 .donate-documents__list > a:hover {
-  background: rgba(255, 253, 247, 0.58);
+  background: rgba(231, 215, 245, 0.52);
   color: var(--amethyst);
+  box-shadow: inset 4px 0 0 var(--amethyst);
+}
+
+.donate-documents__list > a:focus-visible {
+  background: rgba(231, 215, 245, 0.52);
+  box-shadow: inset 4px 0 0 var(--amethyst);
+}
+
+.donate-documents__list > a:is(:hover, :focus-visible) strong {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .donate-documents__list > a > svg:first-child {

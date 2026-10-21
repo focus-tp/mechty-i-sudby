@@ -1,0 +1,38 @@
+/* A native cursor keeps its visible hotspot exactly where clicks land. */
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body,
+  body * {
+    cursor: url('./assets/butterfly-cursor.svg') 16 15, auto !important;
+  }
+
+  a[href],
+  a[href] *,
+  button:not(:disabled),
+  button:not(:disabled) *,
+  summary,
+  summary *,
+  [role='button'],
+  [role='button'] *,
+  label:has(input[type='checkbox']),
+  label:has(input[type='checkbox']) *,
+  label:has(input[type='radio']),
+  label:has(input[type='radio']) *,
+  input[type='checkbox'],
+  input[type='radio'],
+  select:not(:disabled) {
+    cursor: url('./assets/butterfly-cursor-active.svg') 16 15, pointer !important;
+  }
+
+  input:not([type='checkbox']):not([type='radio']),
+  textarea,
+  [contenteditable='true'] {
+    cursor: text !important;
+  }
+
+  button:disabled,
+  input:disabled,
+  select:disabled {
+    cursor: not-allowed !important;
+  }
+}
