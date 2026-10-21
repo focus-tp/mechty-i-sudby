@@ -2182,19 +2182,26 @@ footer::before {
 }
 
 .donate-documents__list > a:hover {
-  background: rgba(231, 215, 245, 0.52);
+  background: #e9daf4;
   color: var(--amethyst);
-  box-shadow: inset 4px 0 0 var(--amethyst);
+  box-shadow: inset 5px 0 0 var(--amethyst);
 }
 
 .donate-documents__list > a:focus-visible {
-  background: rgba(231, 215, 245, 0.52);
-  box-shadow: inset 4px 0 0 var(--amethyst);
+  background: #e9daf4;
+  box-shadow: inset 5px 0 0 var(--amethyst);
+  outline: 2px solid var(--amethyst);
+  outline-offset: -2px;
 }
 
 .donate-documents__list > a:is(:hover, :focus-visible) strong {
+  color: var(--amethyst);
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+.donate-documents__list > a:is(:hover, :focus-visible) small {
+  color: #5c2d8e;
 }
 
 .donate-documents__list > a > svg:first-child {
