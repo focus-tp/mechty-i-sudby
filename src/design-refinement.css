@@ -674,6 +674,7 @@ nav#mainNav .nav-links a.nav-active::after {
 .chapter-rail {
   position: fixed;
   z-index: 40;
+  left: auto;
   right: 1.25rem;
   top: 50%;
   width: auto;
@@ -689,9 +690,11 @@ nav#mainNav .nav-links a.nav-active::after {
   align-items: flex-end;
   transform: translateY(-50%);
   opacity: 0.72;
+  pointer-events: none;
 }
 
 .chapter-rail a {
+  pointer-events: auto;
   display: flex;
   align-items: center;
   gap: 0.45rem;
